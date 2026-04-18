@@ -89,6 +89,25 @@ const FAQS = [
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "BPTrack",
+            "applicationCategory": "LifestyleApplication",
+            "operatingSystem": "iOS, Android",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "description": "Blood pressure reference data from AHA and CDC guidelines. Log your readings, track trends, and share reports with your doctor.",
+            "url": "https://www.bptrack.app"
+          })
+        }}
+      />
       <SiteNav />
       <main id="main-content" className="pt-20">
 
