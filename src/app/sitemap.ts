@@ -12,5 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/privacy`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE}/terms`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE}/support`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
+    // SEO content pages
+    { url: `${BASE}/blood-pressure-chart`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/how-to-read-blood-pressure`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/log-sheet`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/free-blood-pressure-log-pdf`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/prehypertension`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE}/aha-blood-pressure-log`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
   ];
 }
