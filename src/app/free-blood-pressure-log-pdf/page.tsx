@@ -1,13 +1,12 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { FileText, CheckCircle, ArrowRight, Smartphone, Download } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Free Blood Pressure Log PDF — Printable + Digital | BPTrack',
   description:
-    'Free printable blood pressure log PDF. Track systolic, diastolic, pulse, and notes. Or skip the paper — BPTrack does it all on your phone, free.',
+    'Free printable blood pressure log PDF. Track systolic, diastolic, pulse, and notes. Or skip the paper, BPTrack does it all on your phone, free.',
 };
 
 const LOG_ESSENTIALS = [
@@ -28,6 +27,12 @@ const BENEFITS = [
   '$6.99 one-time. No subscription.',
 ];
 
+const STEPS = [
+  { num: '1', title: 'Take your reading', body: 'Use your home blood pressure monitor. Sit quietly for 5 minutes first. Note both readings if you take two.' },
+  { num: '2', title: 'Log it in BPTrack', body: 'Enter the numbers, choose your arm, and add a quick note if anything unusual happened. Takes about 15 seconds.' },
+  { num: '3', title: 'Export before your appointment', body: 'Tap Export, send the PDF to yourself, and print or share it at your next visit. Your doctor sees your last 30 days at a glance.' },
+];
+
 export default function FreePdfPage() {
   return (
     <>
@@ -35,34 +40,40 @@ export default function FreePdfPage() {
       <main id="main-content" className="pt-20">
 
         {/* Hero */}
-        <section aria-label="Page introduction" className="py-16 px-4 bg-red-50">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex w-14 h-14 bg-white rounded-2xl items-center justify-center mb-6 shadow-sm">
-              <FileText className="text-red-600" size={28} />
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Free Blood Pressure Log PDF
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-6 block">
+              Free PDF + free app
+            </span>
+            <h1 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)', lineHeight: 1.1 }}
+                className="text-4xl sm:text-5xl font-bold mb-6">
+              Free blood pressure log PDF.
             </h1>
-            <p className="text-gray-600 text-lg max-w-xl mx-auto leading-relaxed mb-6">
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8 max-w-2xl">
               Want a printable log? We have one. Want something faster and smarter? BPTrack logs readings on your phone and exports a clean PDF your doctor can actually read.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href="/free-download"
-                className="inline-flex items-center justify-center gap-2 bg-red-600 text-white font-semibold px-8 py-3 rounded-xl hover:bg-red-700 transition-colors min-h-[48px]"
-              >
-                Get BPTrack free <ArrowRight size={18} />
-              </Link>
-            </div>
-            <p className="text-sm text-gray-400 mt-3">Free download. No credit card. iPhone and Android.</p>
+            <Link href="/free-download" className="btn-primary">
+              Get BPTrack free
+            </Link>
+            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
+              Free download. No credit card. iPhone and Android.
+            </p>
           </div>
         </section>
 
         {/* Why people want a printable log */}
-        <section aria-label="Why people use printable blood pressure logs" className="py-16 px-4 bg-white">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why people look for a printable log</h2>
-            <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed space-y-4">
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              The case for paper
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-8">
+              Why people look for a printable log.
+            </h2>
+            <div className="space-y-4 leading-relaxed" style={{ color: 'oklch(0.40 0.018 20)' }}>
               <p>
                 Most people search for a printable blood pressure log after their doctor tells them to track their readings at home. The office measurement is just one data point. Your doctor needs to see a pattern.
               </p>
@@ -70,7 +81,7 @@ export default function FreePdfPage() {
                 A paper log works. You fill it out after each reading, bring it to your next appointment, and your doctor reviews it. Simple.
               </p>
               <p>
-                The problem is paper logs get lost. Pages fill up and you need to print more. You can not easily calculate your 30-day average or share it quickly. And if you want to see a trend, you have to plot it yourself.
+                The problem is paper logs get lost. Pages fill up and you need to print more. You cannot easily calculate your 30-day average or share it quickly. And if you want to see a trend, you have to plot it yourself.
               </p>
               <p>
                 That is exactly the problem BPTrack solves. It is the digital version of that paper log. Same information, same columns, but it does the math, shows the trend, and prints a clean PDF for your doctor in one tap.
@@ -80,22 +91,34 @@ export default function FreePdfPage() {
         </section>
 
         {/* What a good log includes */}
-        <section aria-label="What a blood pressure log should include" className="py-16 px-4 bg-gray-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">What a good log sheet includes</h2>
-            <p className="text-gray-600 text-center max-w-xl mx-auto mb-10">
-              Not all log sheets are built the same. A useful log has six columns. Here is what each one does for you.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {LOG_ESSENTIALS.map(({ item, reason }) => (
-                <div key={item} className="bg-white rounded-xl border border-gray-100 p-5">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="text-red-600 flex-shrink-0 mt-0.5" size={18} />
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">{item}</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">{reason}</p>
-                    </div>
-                  </div>
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
+            <div className="max-w-2xl mb-12">
+              <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                    className="uppercase text-xs font-semibold mb-5 block">
+                Six columns
+              </span>
+              <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                  className="text-3xl sm:text-4xl font-bold mb-5">
+                What a good log sheet includes.
+              </h2>
+              <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed">
+                Not all log sheets are built the same. A useful log has six columns. Here is what each one does for you.
+              </p>
+            </div>
+            <div>
+              {LOG_ESSENTIALS.map((item, i) => (
+                <div key={item.item}
+                     style={{
+                       borderTop: '1px solid oklch(0.86 0.012 20)',
+                       borderBottom: i === LOG_ESSENTIALS.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                     }}
+                     className="py-6 grid sm:grid-cols-[260px_1fr] gap-4">
+                  <span style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.45 0.18 25)' }}
+                        className="text-base font-semibold">
+                    {item.item}
+                  </span>
+                  <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed">{item.reason}</p>
                 </div>
               ))}
             </div>
@@ -103,84 +126,106 @@ export default function FreePdfPage() {
         </section>
 
         {/* BPTrack as digital version */}
-        <section aria-label="BPTrack as digital blood pressure log" className="py-16 px-4 bg-white">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">BPTrack: the digital log that replaces paper</h2>
-            <p className="text-gray-600 text-center max-w-xl mx-auto mb-10 leading-relaxed">
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              The digital version
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-5">
+              BPTrack replaces paper.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
               BPTrack is a free iPhone and Android app built around one idea: log your reading, see the trend, share it with your doctor. No paper, no pen, no lost logs.
             </p>
-            <div className="bg-red-50 rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <Smartphone className="text-red-600" size={24} />
-                <h3 className="font-bold text-gray-900 text-lg">What BPTrack does</h3>
-              </div>
-              <ul className="space-y-3">
-                {BENEFITS.map((b, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <CheckCircle className="text-red-600 flex-shrink-0" size={18} />
-                    <span className="text-gray-700 text-sm">{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
 
-            <div className="mt-10 bg-gray-50 rounded-xl p-6 border border-gray-200">
-              <h3 className="font-bold text-gray-900 mb-3">The PDF export doctors actually want</h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                When you tap Export in BPTrack, you get a clean PDF with every reading organized by date, a 30-day trend chart, and your average systolic, diastolic, and pulse. It is formatted for a clinical appointment. You can email it, print it, or AirDrop it to a tablet in the waiting room.
-              </p>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                This is what the American Heart Association means when they say &quot;bring your home readings to your appointment.&quot; BPTrack makes that easy.
-              </p>
-            </div>
+            <span style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', letterSpacing: '0.16em' }}
+                  className="uppercase text-xs font-semibold mb-3 block">
+              What BPTrack does
+            </span>
+            <ul className="mb-12">
+              {BENEFITS.map((b, i) => (
+                <li key={i}
+                    style={{
+                      borderTop: '1px solid oklch(0.86 0.012 20)',
+                      borderBottom: i === BENEFITS.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                    }}
+                    className="py-3 flex items-center gap-3">
+                  <span aria-hidden="true"
+                        style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'oklch(0.45 0.18 25)' }} />
+                  <span style={{ color: 'oklch(0.18 0.02 20)' }}>{b}</span>
+                </li>
+              ))}
+            </ul>
+
+            <h3 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-xl font-semibold mb-3">
+              The PDF export doctors actually want.
+            </h3>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-3">
+              When you tap Export in BPTrack, you get a clean PDF with every reading organized by date, a 30-day trend chart, and your average systolic, diastolic, and pulse. It is formatted for a clinical appointment. You can email it, print it, or AirDrop it to a tablet in the waiting room.
+            </p>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed">
+              This is what the American Heart Association means when they say &quot;bring your home readings to your appointment.&quot; BPTrack makes that easy.
+            </p>
           </div>
         </section>
 
         {/* How to use it */}
-        <section aria-label="How to use BPTrack for home monitoring" className="py-16 px-4 bg-gray-50">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">How to use BPTrack in three steps</h2>
-            <div className="space-y-4">
-              <div className="bg-white rounded-xl p-6 border border-gray-100 flex gap-4">
-                <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">1</div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-1">Take your reading</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">Use your home blood pressure monitor. Sit quietly for 5 minutes first. Note both readings if you take two.</p>
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Three steps
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-10">
+              How to use BPTrack.
+            </h2>
+            <div>
+              {STEPS.map((step, i) => (
+                <div key={step.num}
+                     style={{
+                       borderTop: '1px solid oklch(0.86 0.012 20)',
+                       borderBottom: i === STEPS.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                     }}
+                     className="py-7 grid sm:grid-cols-[80px_1fr] gap-4">
+                  <span style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.45 0.18 25)', fontVariantNumeric: 'tabular-nums' }}
+                        className="text-3xl font-bold">
+                    {step.num}
+                  </span>
+                  <div>
+                    <h3 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                        className="font-semibold text-lg mb-2">{step.title}</h3>
+                    <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed">{step.body}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="bg-white rounded-xl p-6 border border-gray-100 flex gap-4">
-                <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">2</div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-1">Log it in BPTrack</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">Enter the numbers, choose your arm, and add a quick note if anything unusual happened. Takes about 15 seconds.</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-xl p-6 border border-gray-100 flex gap-4">
-                <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">3</div>
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-1">Export before your appointment</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">Tap Export, send the PDF to yourself, and print or share it at your next visit. Your doctor sees your last 30 days at a glance.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section aria-label="Download BPTrack" className="py-16 px-4 bg-red-50">
-          <div className="max-w-2xl mx-auto text-center">
-            <Download className="text-red-600 mx-auto mb-4" size={32} />
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Get the free log that never runs out of pages</h2>
-            <p className="text-gray-600 mb-6 leading-relaxed">
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Free
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-5">
+              Get the free log that never runs out of pages.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
               BPTrack is free to download. Log your readings, see your trend, and export a doctor-ready PDF. No subscription, no recurring fees.
             </p>
-            <Link
-              href="/free-download"
-              className="inline-flex items-center gap-2 bg-red-600 text-white font-semibold px-8 py-3 rounded-xl hover:bg-red-700 transition-colors min-h-[48px]"
-            >
-              Download BPTrack free <ArrowRight size={18} />
+            <Link href="/free-download" className="btn-primary">
+              Download BPTrack free
             </Link>
-            <p className="text-sm text-gray-400 mt-3">iPhone and Android. Free. $6.99 one-time to unlock log and export.</p>
+            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
+              iPhone and Android. Free. $6.99 one-time to unlock log and export.
+            </p>
           </div>
         </section>
 

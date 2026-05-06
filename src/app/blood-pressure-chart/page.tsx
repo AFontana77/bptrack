@@ -1,13 +1,12 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { Activity, ArrowRight, HelpCircle, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Blood Pressure Chart — AHA Ranges by Category | BPTrack',
   description:
-    'Blood pressure chart with AHA categories — Normal, Elevated, Stage 1, Stage 2, and Hypertensive Crisis. Know what your numbers mean.',
+    'Blood pressure chart with AHA categories: Normal, Elevated, Stage 1, Stage 2, and Hypertensive Crisis. Know what your numbers mean.',
 };
 
 const AHA_CHART = [
@@ -17,10 +16,7 @@ const AHA_CHART = [
     diastolic: 'Under 80',
     meaning: 'Your blood pressure is in a healthy range.',
     action: 'Keep doing what you are doing. Check again in 1 to 2 years.',
-    bg: 'bg-green-50',
-    border: 'border-green-200',
-    badge: 'bg-green-100 text-green-800',
-    dot: 'bg-green-500',
+    dot: 'oklch(0.62 0.14 150)',
   },
   {
     category: 'Elevated',
@@ -28,10 +24,7 @@ const AHA_CHART = [
     diastolic: 'Under 80',
     meaning: 'Higher than normal but not yet hypertension. This used to be called prehypertension.',
     action: 'Make lifestyle changes now. Cut sodium, exercise more, manage your weight. No medication in most cases yet.',
-    bg: 'bg-yellow-50',
-    border: 'border-yellow-200',
-    badge: 'bg-yellow-100 text-yellow-800',
-    dot: 'bg-yellow-500',
+    dot: 'oklch(0.74 0.14 75)',
   },
   {
     category: 'Stage 1 Hypertension',
@@ -39,10 +32,7 @@ const AHA_CHART = [
     diastolic: '80 to 89',
     meaning: 'Hypertension. Your cardiovascular risk is elevated.',
     action: 'Talk to your doctor. Lifestyle changes are step one. Medication may be added based on your overall health profile.',
-    bg: 'bg-orange-50',
-    border: 'border-orange-200',
-    badge: 'bg-orange-100 text-orange-800',
-    dot: 'bg-orange-500',
+    dot: 'oklch(0.66 0.16 50)',
   },
   {
     category: 'Stage 2 Hypertension',
@@ -50,10 +40,7 @@ const AHA_CHART = [
     diastolic: '90 or higher',
     meaning: 'High blood pressure that almost always requires medication.',
     action: 'See your doctor soon. Medication plus lifestyle changes is the standard approach. Regular monitoring is essential.',
-    bg: 'bg-red-50',
-    border: 'border-red-200',
-    badge: 'bg-red-100 text-red-800',
-    dot: 'bg-red-500',
+    dot: 'oklch(0.45 0.18 25)',
   },
   {
     category: 'Hypertensive Crisis',
@@ -61,10 +48,8 @@ const AHA_CHART = [
     diastolic: 'Over 120',
     meaning: 'A medical emergency.',
     action: 'Call 911 or go to an emergency room immediately. Do not drive yourself. Do not wait to see if the reading drops.',
-    bg: 'bg-red-100',
-    border: 'border-red-400',
-    badge: 'bg-red-700 text-white',
-    dot: 'bg-red-700',
+    dot: 'oklch(0.36 0.16 25)',
+    emphasis: true,
   },
   {
     category: 'Low Blood Pressure',
@@ -72,17 +57,14 @@ const AHA_CHART = [
     diastolic: 'Under 60',
     meaning: 'Hypotension. May be normal or may cause dizziness and fainting.',
     action: 'If you have symptoms like dizziness or fainting, talk to your doctor. Dehydration, medication, and certain conditions can cause low BP.',
-    bg: 'bg-blue-50',
-    border: 'border-blue-200',
-    badge: 'bg-blue-100 text-blue-800',
-    dot: 'bg-blue-500',
+    dot: 'oklch(0.62 0.12 200)',
   },
 ];
 
 const FAQS = [
   {
     q: 'What is a normal blood pressure reading?',
-    a: 'Normal is under 120 systolic and under 80 diastolic. Written as 120/80 or lower. If your reading is in this range, your risk is low. The AHA recommends checking again in one to two years if you have no other risk factors.',
+    a: 'Normal is under 120 systolic and under 80 diastolic, written as 120/80 or lower. If your reading is in this range, your risk is low. The AHA recommends checking again in one to two years if you have no other risk factors.',
   },
   {
     q: 'What is a good blood pressure for my age?',
@@ -113,90 +95,96 @@ export default function BloodPressureChartPage() {
       <main id="main-content" className="pt-20">
 
         {/* Hero */}
-        <section aria-label="Page introduction" className="py-16 px-4 bg-red-50">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex w-14 h-14 bg-white rounded-2xl items-center justify-center mb-6 shadow-sm">
-              <Activity className="text-red-600" size={28} />
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Blood Pressure Chart
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-6 block">
+              AHA reference chart
+            </span>
+            <h1 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)', lineHeight: 1.1 }}
+                className="text-4xl sm:text-5xl font-bold mb-6">
+              Blood pressure chart.
             </h1>
-            <p className="text-gray-600 text-lg max-w-xl mx-auto leading-relaxed mb-6">
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-6 max-w-2xl">
               The American Heart Association defines five blood pressure categories. Here is what each range means and what to do if your reading falls there.
             </p>
-            <p className="text-xs text-gray-400">Source: American Heart Association 2025 guidelines</p>
+            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm">
+              Source: American Heart Association 2025 guidelines.
+            </p>
           </div>
         </section>
 
-        {/* AHA Chart */}
-        <section aria-label="AHA blood pressure categories chart" className="py-16 px-4 bg-white">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">AHA Blood Pressure Ranges</h2>
-            <p className="text-gray-600 text-center max-w-xl mx-auto mb-10">
+        {/* AHA Chart - bordered table rows */}
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Categories
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-5">
+              AHA blood pressure ranges.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-12 max-w-2xl">
               These ranges apply to adults age 18 and older. Both numbers matter. If either is in a higher category, that is your classification.
             </p>
 
-            {/* Desktop table */}
-            <div className="hidden sm:block overflow-x-auto rounded-xl border border-gray-200 mb-8">
-              <table className="w-full text-sm" aria-label="Blood pressure chart with AHA categories, ranges, and guidance">
-                <thead>
-                  <tr className="bg-gray-900 text-white">
-                    <th scope="col" className="text-left px-5 py-4 font-semibold">Category</th>
-                    <th scope="col" className="text-left px-5 py-4 font-semibold">Systolic (mmHg)</th>
-                    <th scope="col" className="text-left px-5 py-4 font-semibold">Diastolic (mmHg)</th>
-                    <th scope="col" className="text-left px-5 py-4 font-semibold">What it means</th>
-                    <th scope="col" className="text-left px-5 py-4 font-semibold">What to do</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {AHA_CHART.map((row, i) => (
-                    <tr key={i} className={`${row.bg} border-b ${row.border}`}>
-                      <td className="px-5 py-4">
-                        <div className="flex items-center gap-2">
-                          <div className={`w-3 h-3 rounded-full ${row.dot} flex-shrink-0`} aria-hidden="true" />
-                          <span className="font-semibold text-gray-900">{row.category}</span>
-                        </div>
-                      </td>
-                      <td className="px-5 py-4 font-mono font-medium text-gray-800">{row.systolic}</td>
-                      <td className="px-5 py-4 font-mono font-medium text-gray-800">{row.diastolic}</td>
-                      <td className="px-5 py-4 text-gray-700 leading-relaxed max-w-xs">{row.meaning}</td>
-                      <td className="px-5 py-4 text-gray-700 leading-relaxed max-w-xs">{row.action}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Mobile cards */}
-            <div className="sm:hidden space-y-4 mb-8">
+            <div>
               {AHA_CHART.map((row, i) => (
-                <div key={i} className={`rounded-xl border p-5 ${row.bg} ${row.border}`}>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className={`w-3 h-3 rounded-full ${row.dot} flex-shrink-0`} aria-hidden="true" />
-                    <h3 className="font-bold text-gray-900">{row.category}</h3>
-                    <span className={`ml-auto text-xs font-semibold px-2 py-0.5 rounded-full ${row.badge}`}>
-                      {row.systolic} / {row.diastolic}
-                    </span>
+                <div key={i}
+                     style={{
+                       borderTop: '1px solid oklch(0.86 0.012 20)',
+                       borderBottom: i === AHA_CHART.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                     }}
+                     className="py-7 grid sm:grid-cols-[200px_1fr] gap-4 sm:gap-8">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span aria-hidden="true"
+                            style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: row.dot, flexShrink: 0 }} />
+                      <span style={{ fontFamily: 'var(--font-display)', color: row.emphasis ? 'oklch(0.45 0.18 25)' : 'oklch(0.18 0.02 20)' }}
+                            className="font-semibold">
+                        {row.category}
+                      </span>
+                    </div>
+                    <p style={{ color: 'oklch(0.48 0.015 20)', fontVariantNumeric: 'tabular-nums' }}
+                       className="text-sm pl-5">
+                      {row.systolic} / {row.diastolic} mmHg
+                    </p>
                   </div>
-                  <p className="text-sm text-gray-700 mb-2 leading-relaxed"><strong>What it means:</strong> {row.meaning}</p>
-                  <p className="text-sm text-gray-700 leading-relaxed"><strong>What to do:</strong> {row.action}</p>
+                  <div className="space-y-2">
+                    <p style={{ color: 'oklch(0.18 0.02 20)' }} className="leading-relaxed">
+                      <span style={{ color: 'oklch(0.48 0.015 20)' }} className="text-xs uppercase font-semibold tracking-wider mr-2">Means</span>
+                      {row.meaning}
+                    </p>
+                    <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed">
+                      <span style={{ color: 'oklch(0.48 0.015 20)' }} className="text-xs uppercase font-semibold tracking-wider mr-2">Do</span>
+                      {row.action}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <p className="text-center text-xs text-gray-400 mb-2">
+            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-xs mt-6">
               Source: American Heart Association. Last updated 2025. Always consult your doctor for personal medical advice.
             </p>
           </div>
         </section>
 
         {/* How to read your number */}
-        <section aria-label="How to interpret your blood pressure reading" className="py-16 px-4 bg-gray-50">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">How to find your category</h2>
-            <div className="space-y-4 text-gray-600 leading-relaxed">
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Find your category
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-8">
+              How to read your number.
+            </h2>
+            <div className="space-y-4 leading-relaxed" style={{ color: 'oklch(0.40 0.018 20)' }}>
               <p>
-                Your blood pressure is written as two numbers separated by a slash. For example, <strong>128/82</strong>. The top number (128) is systolic. The bottom number (82) is diastolic.
+                Your blood pressure is written as two numbers separated by a slash. For example, <strong style={{ color: 'oklch(0.18 0.02 20)' }}>128/82</strong>. The top number (128) is systolic. The bottom number (82) is diastolic.
               </p>
               <p>
                 Look up each number in the chart above. Whichever falls in the higher category is your classification. In the example above, 128 is Elevated and 82 is Stage 1. That reading is Stage 1 Hypertension.
@@ -204,30 +192,35 @@ export default function BloodPressureChartPage() {
               <p>
                 One reading does not tell the whole story. The AHA recommends taking readings twice a day for at least a week before drawing any conclusions. Your home average is more reliable than a single clinic reading.
               </p>
-            </div>
-            <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-xl p-5">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="text-yellow-600 flex-shrink-0 mt-0.5" size={18} />
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  <strong>White coat hypertension is real.</strong> Many people read higher in a doctor&apos;s office than at home. The AHA says home monitoring is the most accurate way to know your true blood pressure.
-                </p>
-              </div>
+              <p style={{ color: 'oklch(0.18 0.02 20)' }} className="font-medium pt-2">
+                White coat hypertension is real. Many people read higher in a doctor&apos;s office than at home. The AHA says home monitoring is the most accurate way to know your true blood pressure.
+              </p>
             </div>
           </div>
         </section>
 
         {/* FAQ */}
-        <section aria-label="Frequently asked questions about blood pressure" className="py-16 px-4 bg-white">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center">Common questions</h2>
-            <div className="space-y-6">
-              {FAQS.map(({ q, a }) => (
-                <div key={q} className="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
-                  <div className="flex items-start gap-3 mb-3">
-                    <HelpCircle className="text-red-600 flex-shrink-0 mt-0.5" size={18} />
-                    <h3 className="font-semibold text-gray-900">{q}</h3>
-                  </div>
-                  <p className="text-sm text-gray-600 leading-relaxed pl-7">{a}</p>
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              FAQ
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-10">
+              Common questions.
+            </h2>
+            <div>
+              {FAQS.map((faq, i) => (
+                <div key={faq.q}
+                     style={{
+                       borderTop: '1px solid oklch(0.86 0.012 20)',
+                       borderBottom: i === FAQS.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                     }}
+                     className="py-6">
+                  <h3 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                      className="font-semibold mb-3">{faq.q}</h3>
+                  <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>
@@ -235,19 +228,25 @@ export default function BloodPressureChartPage() {
         </section>
 
         {/* CTA */}
-        <section aria-label="Track your readings in BPTrack" className="py-16 px-4 bg-red-50">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Know which category you are actually in</h2>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              BPTrack logs your readings and shows you your AHA category after each one. Track for 30 days and see your real trend. Free to download.
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Track it
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-5">
+              Know which category you are actually in.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
+              BPTrack logs your readings and shows you your AHA category after each one. Track for 30 days and see your real trend.
             </p>
-            <Link
-              href="/free-download"
-              className="inline-flex items-center gap-2 bg-red-600 text-white font-semibold px-8 py-3 rounded-xl hover:bg-red-700 transition-colors min-h-[48px]"
-            >
-              Track my readings free <ArrowRight size={18} />
+            <Link href="/free-download" className="btn-primary">
+              Track my readings free
             </Link>
-            <p className="text-sm text-gray-400 mt-3">Free download. iPhone and Android. No subscription.</p>
+            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
+              Free download. iPhone and Android. No subscription.
+            </p>
           </div>
         </section>
 

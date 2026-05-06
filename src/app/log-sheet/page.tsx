@@ -1,6 +1,5 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { ClipboardList, CheckCircle, ArrowRight, Smartphone } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -11,41 +10,13 @@ export const metadata: Metadata = {
 };
 
 const COLUMNS = [
-  {
-    name: 'Date',
-    example: '04/19/2026',
-    why: 'Lets you spot patterns over days and weeks. Your doctor will want to see trends, not just one number.',
-  },
-  {
-    name: 'Time',
-    example: '7:42 AM',
-    why: 'Blood pressure shifts throughout the day. Morning readings are often highest. Logging the time shows that pattern clearly.',
-  },
-  {
-    name: 'Systolic',
-    example: '124',
-    why: 'The top number. It measures the force of blood against your artery walls when your heart beats.',
-  },
-  {
-    name: 'Diastolic',
-    example: '78',
-    why: 'The bottom number. It measures pressure between beats, when your heart rests and refills.',
-  },
-  {
-    name: 'Pulse',
-    example: '68',
-    why: 'Heart rate (beats per minute). Some medications lower both blood pressure and pulse. Tracking both helps your doctor fine-tune your care.',
-  },
-  {
-    name: 'Arm (L/R)',
-    example: 'L',
-    why: 'Readings can differ between arms by up to 10 mmHg. Use the same arm each time so your data is consistent.',
-  },
-  {
-    name: 'Notes',
-    example: 'Took medication, slept 6 hrs',
-    why: 'A place to flag anything unusual — skipped medication, stress, illness, caffeine, exercise. These are often the reason a reading looks off.',
-  },
+  { name: 'Date', example: '04/19/2026', why: 'Lets you spot patterns over days and weeks. Your doctor will want to see trends, not just one number.' },
+  { name: 'Time', example: '7:42 AM', why: 'Blood pressure shifts throughout the day. Morning readings are often highest. Logging the time shows that pattern clearly.' },
+  { name: 'Systolic', example: '124', why: 'The top number. It measures the force of blood against your artery walls when your heart beats.' },
+  { name: 'Diastolic', example: '78', why: 'The bottom number. It measures pressure between beats, when your heart rests and refills.' },
+  { name: 'Pulse', example: '68', why: 'Heart rate (beats per minute). Some medications lower both blood pressure and pulse. Tracking both helps your doctor fine-tune your care.' },
+  { name: 'Arm (L/R)', example: 'L', why: 'Readings can differ between arms by up to 10 mmHg. Use the same arm each time so your data is consistent.' },
+  { name: 'Notes', example: 'Took medication, slept 6 hrs', why: 'A place to flag anything unusual: skipped medication, stress, illness, caffeine, exercise. These are often the reason a reading looks off.' },
 ];
 
 const SAMPLE_READINGS = [
@@ -59,11 +30,27 @@ const SAMPLE_READINGS = [
 ];
 
 const TIPS = [
-  { tip: 'Sit quietly for 5 minutes before measuring.' },
-  { tip: 'Keep your feet flat on the floor and your arm at heart level.' },
-  { tip: 'Take two readings, 2 minutes apart, and record both.' },
-  { tip: 'Avoid caffeine, exercise, and smoking for 30 minutes before.' },
-  { tip: 'Use the same arm every time.' },
+  'Sit quietly for 5 minutes before measuring.',
+  'Keep your feet flat on the floor and your arm at heart level.',
+  'Take two readings, 2 minutes apart, and record both.',
+  'Avoid caffeine, exercise, and smoking for 30 minutes before.',
+  'Use the same arm every time.',
+];
+
+const PAPER_PROS = [
+  { text: 'No phone required', positive: true },
+  { text: 'Easy to bring to appointments', positive: true },
+  { text: 'No automatic trends or averages', positive: false },
+  { text: 'Can get lost or damaged', positive: false },
+  { text: 'Manual math to find your average', positive: false },
+];
+
+const APP_PROS = [
+  'Automatic 30-day trend chart',
+  'PDF export ready for your doctor',
+  'AHA reference tables built in',
+  'Never lose your data',
+  'Free to download, $6.99 one-time unlock',
 ];
 
 export default function LogSheetPage() {
@@ -73,72 +60,96 @@ export default function LogSheetPage() {
       <main id="main-content" className="pt-20">
 
         {/* Hero */}
-        <section aria-label="Page introduction" className="py-16 px-4 bg-red-50">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex w-14 h-14 bg-white rounded-2xl items-center justify-center mb-6 shadow-sm">
-              <ClipboardList className="text-red-600" size={28} />
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Free Blood Pressure Log Sheet
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-6 block">
+              Log sheet
+            </span>
+            <h1 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)', lineHeight: 1.1 }}
+                className="text-4xl sm:text-5xl font-bold mb-6">
+              Free blood pressure log sheet.
             </h1>
-            <p className="text-gray-600 text-lg max-w-xl mx-auto leading-relaxed mb-6">
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8 max-w-2xl">
               Track every reading with the right columns. Print it out or log it on your phone with BPTrack. Either way, you will have data your doctor can actually use.
             </p>
-            <Link
-              href="/free-download"
-              className="inline-flex items-center gap-2 bg-red-600 text-white font-semibold px-8 py-3 rounded-xl hover:bg-red-700 transition-colors min-h-[48px]"
-            >
-              Get the free app <ArrowRight size={18} />
+            <Link href="/free-download" className="btn-primary">
+              Get the free app
             </Link>
-            <p className="text-sm text-gray-400 mt-3">Free. No subscription. iPhone and Android.</p>
+            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
+              Free. No subscription. iPhone and Android.
+            </p>
           </div>
         </section>
 
-        {/* What a log sheet records */}
-        <section aria-label="Why tracking matters" className="py-16 px-4 bg-white">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">Why tracking your readings matters</h2>
-            <p className="text-gray-600 text-center max-w-2xl mx-auto mb-10 leading-relaxed">
+        {/* Why tracking matters */}
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Why log
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-5">
+              Why tracking your readings matters.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-12 max-w-2xl">
               A single reading tells your doctor almost nothing. Blood pressure changes hour to hour based on stress, sleep, salt, and activity. A log gives them a real picture over time.
             </p>
-            <div className="grid sm:grid-cols-3 gap-6">
-              <div className="bg-red-50 rounded-xl p-6">
-                <h3 className="font-bold text-gray-900 mb-2">Spot patterns</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  High readings every morning but normal at night? That is masked hypertension. A log catches it. One clinic reading never would.
-                </p>
-              </div>
-              <div className="bg-red-50 rounded-xl p-6">
-                <h3 className="font-bold text-gray-900 mb-2">Doctor visits are faster</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Hand your doctor 30 days of readings instead of one office number. They can adjust medication, confirm control, or rule out white coat hypertension in minutes.
-                </p>
-              </div>
-              <div className="bg-red-50 rounded-xl p-6">
-                <h3 className="font-bold text-gray-900 mb-2">See what moves the needle</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Log your notes column honestly. You will quickly see if salt, sleep, stress, or skipped medication is driving your numbers up.
-                </p>
-              </div>
+            <div>
+              {[
+                { title: 'Spot patterns', body: 'High readings every morning but normal at night? That is masked hypertension. A log catches it. One clinic reading never would.' },
+                { title: 'Doctor visits are faster', body: 'Hand your doctor 30 days of readings instead of one office number. They can adjust medication, confirm control, or rule out white coat hypertension in minutes.' },
+                { title: 'See what moves the needle', body: 'Log your notes column honestly. You will quickly see if salt, sleep, stress, or skipped medication is driving your numbers up.' },
+              ].map((item, i, arr) => (
+                <div key={item.title}
+                     style={{
+                       borderTop: '1px solid oklch(0.86 0.012 20)',
+                       borderBottom: i === arr.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                     }}
+                     className="py-6 grid sm:grid-cols-[260px_1fr] gap-4">
+                  <span style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.45 0.18 25)' }}
+                        className="text-base font-semibold">
+                    {item.title}
+                  </span>
+                  <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed">{item.body}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Column guide */}
-        <section aria-label="Log sheet columns explained" className="py-16 px-4 bg-gray-50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">What each column means</h2>
-            <p className="text-gray-600 text-center max-w-xl mx-auto mb-10">
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Seven columns
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-5">
+              What each column means.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-12 max-w-2xl">
               A good blood pressure log has 7 columns. Here is what each one records and why it matters.
             </p>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {COLUMNS.map(({ name, example, why }) => (
-                <div key={name} className="bg-white rounded-xl border border-gray-100 p-5">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-gray-900">{name}</h3>
-                    <span className="text-xs font-mono bg-gray-100 text-gray-600 px-2 py-1 rounded">{example}</span>
-                  </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{why}</p>
+            <div>
+              {COLUMNS.map((col, i) => (
+                <div key={col.name}
+                     style={{
+                       borderTop: '1px solid oklch(0.86 0.012 20)',
+                       borderBottom: i === COLUMNS.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                     }}
+                     className="py-6 grid sm:grid-cols-[200px_140px_1fr] gap-4 items-start">
+                  <span style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.45 0.18 25)' }}
+                        className="text-base font-semibold">
+                    {col.name}
+                  </span>
+                  <span style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', fontVariantNumeric: 'tabular-nums' }}
+                        className="text-sm">
+                    {col.example}
+                  </span>
+                  <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed">{col.why}</p>
                 </div>
               ))}
             </div>
@@ -146,87 +157,159 @@ export default function LogSheetPage() {
         </section>
 
         {/* Sample log table */}
-        <section aria-label="Sample blood pressure log" className="py-16 px-4 bg-white">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">Sample blood pressure log</h2>
-            <p className="text-gray-600 text-center max-w-xl mx-auto mb-8">
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Sample week
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-5">
+              Sample blood pressure log.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-12 max-w-2xl">
               Here is what a week of readings looks like filled in correctly. Notice two readings per day and the notes column.
             </p>
-            <div className="overflow-x-auto rounded-xl border border-gray-200">
+            <div className="overflow-x-auto" style={{ border: '1px solid oklch(0.86 0.012 20)' }}>
               <table className="w-full text-sm" aria-label="Sample blood pressure log with 7 days of readings">
                 <thead>
-                  <tr className="bg-red-600 text-white">
-                    <th scope="col" className="text-left px-4 py-3 font-semibold">Date</th>
-                    <th scope="col" className="text-left px-4 py-3 font-semibold">Time</th>
-                    <th scope="col" className="text-left px-4 py-3 font-semibold">Systolic</th>
-                    <th scope="col" className="text-left px-4 py-3 font-semibold">Diastolic</th>
-                    <th scope="col" className="text-left px-4 py-3 font-semibold">Pulse</th>
-                    <th scope="col" className="text-left px-4 py-3 font-semibold">Arm</th>
-                    <th scope="col" className="text-left px-4 py-3 font-semibold">Notes</th>
+                  <tr style={{ background: 'oklch(0.99 0.003 20)', borderBottom: '1px solid oklch(0.86 0.012 20)' }}>
+                    <th scope="col" style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', letterSpacing: '0.16em' }}
+                        className="text-left px-4 py-4 font-semibold uppercase text-xs">Date</th>
+                    <th scope="col" style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', letterSpacing: '0.16em' }}
+                        className="text-left px-4 py-4 font-semibold uppercase text-xs">Time</th>
+                    <th scope="col" style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', letterSpacing: '0.16em' }}
+                        className="text-left px-4 py-4 font-semibold uppercase text-xs">Sys</th>
+                    <th scope="col" style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', letterSpacing: '0.16em' }}
+                        className="text-left px-4 py-4 font-semibold uppercase text-xs">Dia</th>
+                    <th scope="col" style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', letterSpacing: '0.16em' }}
+                        className="text-left px-4 py-4 font-semibold uppercase text-xs">Pulse</th>
+                    <th scope="col" style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', letterSpacing: '0.16em' }}
+                        className="text-left px-4 py-4 font-semibold uppercase text-xs">Arm</th>
+                    <th scope="col" style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', letterSpacing: '0.16em' }}
+                        className="text-left px-4 py-4 font-semibold uppercase text-xs">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
                   {SAMPLE_READINGS.map((row, i) => (
-                    <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                      <td className="px-4 py-3 text-gray-700">{row.date}</td>
-                      <td className="px-4 py-3 text-gray-700">{row.time}</td>
-                      <td className="px-4 py-3 font-medium text-gray-900">{row.sys}</td>
-                      <td className="px-4 py-3 font-medium text-gray-900">{row.dia}</td>
-                      <td className="px-4 py-3 text-gray-700">{row.pulse}</td>
-                      <td className="px-4 py-3 text-gray-700">{row.arm}</td>
-                      <td className="px-4 py-3 text-gray-500 italic">{row.notes || '—'}</td>
+                    <tr key={i}
+                        style={{ borderTop: i === 0 ? 'none' : '1px solid oklch(0.86 0.012 20)' }}>
+                      <td style={{ color: 'oklch(0.40 0.018 20)', fontVariantNumeric: 'tabular-nums' }} className="px-4 py-4">{row.date}</td>
+                      <td style={{ color: 'oklch(0.40 0.018 20)', fontVariantNumeric: 'tabular-nums' }} className="px-4 py-4">{row.time}</td>
+                      <td style={{ color: 'oklch(0.18 0.02 20)', fontVariantNumeric: 'tabular-nums' }} className="px-4 py-4 font-semibold">{row.sys}</td>
+                      <td style={{ color: 'oklch(0.18 0.02 20)', fontVariantNumeric: 'tabular-nums' }} className="px-4 py-4 font-semibold">{row.dia}</td>
+                      <td style={{ color: 'oklch(0.40 0.018 20)', fontVariantNumeric: 'tabular-nums' }} className="px-4 py-4">{row.pulse}</td>
+                      <td style={{ color: 'oklch(0.40 0.018 20)' }} className="px-4 py-4">{row.arm}</td>
+                      <td style={{ color: 'oklch(0.48 0.015 20)' }} className="px-4 py-4 italic">{row.notes || '—'}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <p className="text-center mt-4 text-xs text-gray-400">
+            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-xs mt-6">
               Sample data only. Values shown are for illustration purposes.
             </p>
           </div>
         </section>
 
         {/* Measurement tips */}
-        <section aria-label="Tips for accurate measurements" className="py-16 px-4 bg-gray-50">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">5 tips for accurate readings</h2>
-            <div className="space-y-3">
-              {TIPS.map(({ tip }, i) => (
-                <div key={i} className="flex items-start gap-3 bg-white rounded-xl p-4 border border-gray-100">
-                  <CheckCircle className="text-red-600 flex-shrink-0 mt-0.5" size={18} />
-                  <p className="text-gray-700 text-sm leading-relaxed">{tip}</p>
-                </div>
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Five tips
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-10">
+              Tips for accurate readings.
+            </h2>
+            <ul>
+              {TIPS.map((tip, i) => (
+                <li key={i}
+                    style={{
+                      borderTop: '1px solid oklch(0.86 0.012 20)',
+                      borderBottom: i === TIPS.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                    }}
+                    className="py-4 flex items-start gap-4">
+                  <span aria-hidden="true"
+                        style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'oklch(0.45 0.18 25)', marginTop: '0.5rem', flexShrink: 0 }} />
+                  <span style={{ color: 'oklch(0.18 0.02 20)' }} className="leading-relaxed">{tip}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
 
         {/* Paper vs app */}
-        <section aria-label="Paper log vs digital app comparison" className="py-16 px-4 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-10 text-center">Paper log or phone app?</h2>
-            <div className="grid sm:grid-cols-2 gap-8">
-              <div className="rounded-xl border border-gray-200 p-6">
-                <h3 className="font-bold text-gray-900 mb-4 text-lg">Paper log sheet</h3>
-                <ul className="space-y-3 text-sm text-gray-600">
-                  <li className="flex items-start gap-2"><CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} /><span>No phone required</span></li>
-                  <li className="flex items-start gap-2"><CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} /><span>Easy to bring to appointments</span></li>
-                  <li className="flex items-start gap-2 text-gray-400"><span className="flex-shrink-0 mt-0.5 w-4 h-4 text-center">-</span><span>No automatic trends or averages</span></li>
-                  <li className="flex items-start gap-2 text-gray-400"><span className="flex-shrink-0 mt-0.5 w-4 h-4 text-center">-</span><span>Can get lost or damaged</span></li>
-                  <li className="flex items-start gap-2 text-gray-400"><span className="flex-shrink-0 mt-0.5 w-4 h-4 text-center">-</span><span>Manual math to find your average</span></li>
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Compare
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-12">
+              Paper log or phone app?
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-12">
+              <div>
+                <h3 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                    className="font-semibold text-lg mb-4 pb-4"
+                    >
+                  Paper log sheet
+                </h3>
+                <ul>
+                  {PAPER_PROS.map((item, i) => (
+                    <li key={i}
+                        style={{
+                          borderTop: '1px solid oklch(0.86 0.012 20)',
+                          borderBottom: i === PAPER_PROS.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                        }}
+                        className="py-3 flex items-start gap-3">
+                      <span aria-hidden="true"
+                            style={{
+                              display: 'inline-block',
+                              width: '8px',
+                              height: '8px',
+                              borderRadius: '50%',
+                              background: item.positive ? 'oklch(0.62 0.14 150)' : 'oklch(0.86 0.012 20)',
+                              marginTop: '0.5rem',
+                              flexShrink: 0,
+                            }} />
+                      <span style={{ color: item.positive ? 'oklch(0.18 0.02 20)' : 'oklch(0.48 0.015 20)' }}
+                            className="text-sm leading-relaxed">
+                        {item.text}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </div>
-              <div className="rounded-xl border border-red-200 bg-red-50 p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Smartphone className="text-red-600" size={20} />
-                  <h3 className="font-bold text-gray-900 text-lg">BPTrack app</h3>
-                </div>
-                <ul className="space-y-3 text-sm text-gray-600">
-                  <li className="flex items-start gap-2"><CheckCircle className="text-red-600 flex-shrink-0 mt-0.5" size={16} /><span>Automatic 30-day trend chart</span></li>
-                  <li className="flex items-start gap-2"><CheckCircle className="text-red-600 flex-shrink-0 mt-0.5" size={16} /><span>PDF export ready for your doctor</span></li>
-                  <li className="flex items-start gap-2"><CheckCircle className="text-red-600 flex-shrink-0 mt-0.5" size={16} /><span>AHA reference tables built in</span></li>
-                  <li className="flex items-start gap-2"><CheckCircle className="text-red-600 flex-shrink-0 mt-0.5" size={16} /><span>Never lose your data</span></li>
-                  <li className="flex items-start gap-2"><CheckCircle className="text-red-600 flex-shrink-0 mt-0.5" size={16} /><span>Free to download, $6.99 one-time unlock</span></li>
+              <div>
+                <h3 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.45 0.18 25)' }}
+                    className="font-semibold text-lg mb-4 pb-4">
+                  BPTrack app
+                </h3>
+                <ul>
+                  {APP_PROS.map((text, i) => (
+                    <li key={i}
+                        style={{
+                          borderTop: '1px solid oklch(0.86 0.012 20)',
+                          borderBottom: i === APP_PROS.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                        }}
+                        className="py-3 flex items-start gap-3">
+                      <span aria-hidden="true"
+                            style={{
+                              display: 'inline-block',
+                              width: '8px',
+                              height: '8px',
+                              borderRadius: '50%',
+                              background: 'oklch(0.45 0.18 25)',
+                              marginTop: '0.5rem',
+                              flexShrink: 0,
+                            }} />
+                      <span style={{ color: 'oklch(0.18 0.02 20)' }} className="text-sm leading-relaxed">{text}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -234,19 +317,25 @@ export default function LogSheetPage() {
         </section>
 
         {/* CTA */}
-        <section aria-label="Download BPTrack app" className="py-16 px-4 bg-red-50">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Stop losing readings on scraps of paper</h2>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              BPTrack logs every reading on your phone, shows your 30-day trend, and exports a clean PDF for your doctor. Free to download. No subscription.
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Stop losing data
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-5">
+              Stop losing readings on scraps of paper.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
+              BPTrack logs every reading on your phone, shows your 30-day trend, and exports a clean PDF for your doctor.
             </p>
-            <Link
-              href="/free-download"
-              className="inline-flex items-center gap-2 bg-red-600 text-white font-semibold px-8 py-3 rounded-xl hover:bg-red-700 transition-colors min-h-[48px]"
-            >
-              Download BPTrack free <ArrowRight size={18} />
+            <Link href="/free-download" className="btn-primary">
+              Download BPTrack free
             </Link>
-            <p className="text-sm text-gray-400 mt-3">Free. No subscription. iPhone and Android.</p>
+            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
+              Free. No subscription. iPhone and Android.
+            </p>
           </div>
         </section>
 

@@ -1,60 +1,109 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { EmailCaptureForm } from '@/components/EmailCaptureForm';
-import { Download, CheckCircle, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Free Blood Pressure Log Sheet",
-  description: "A printable daily log — morning and evening readings, pulse, notes, and a 30-day grid. Free printable from BPTrack — no signup required.",
+  description: "A printable daily log with morning and evening readings, pulse, notes, and a 30-day grid. Free printable from BPTrack. No signup required.",
 };
+
+const INSIDE = [
+  'Morning and evening reading slots',
+  'Pulse / heart rate column',
+  'Notes for symptoms or medications',
+  '30-day grid layout, one page per month',
+  'US Letter format, printable at home',
+];
 
 export default function FreeDownloadPage() {
   return (
     <>
       <SiteNav />
       <main id="main-content" className="pt-20">
-        <section className="py-20 px-4" style={{ backgroundColor: '#FFF5F5' }}>
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex w-16 h-16 bg-red-50 rounded-2xl items-center justify-center mb-6">
-              <Download className="text-red-600" size={28} />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Free Blood Pressure Log Sheet
-            </h1>
-            <p className="text-gray-500 text-lg leading-relaxed mb-8">
-              A printable daily log — morning and evening readings, pulse, notes, and a 30-day grid.
-            </p>
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 text-left mb-6">
-              <h2 className="font-bold text-gray-900 text-lg mb-4">What is inside</h2>
-              <ul className="space-y-3">
-                            <li key="Morning and evening reading slots" className="flex items-start gap-3 text-gray-600 text-sm"><CheckCircle size={16} className="text-red-600 mt-0.5 shrink-0" /> Morning and evening reading slots</li>
-            <li key="Pulse / heart rate column" className="flex items-start gap-3 text-gray-600 text-sm"><CheckCircle size={16} className="text-red-600 mt-0.5 shrink-0" /> Pulse / heart rate column</li>
-            <li key="Notes for symptoms or medications" className="flex items-start gap-3 text-gray-600 text-sm"><CheckCircle size={16} className="text-red-600 mt-0.5 shrink-0" /> Notes for symptoms or medications</li>
-            <li key="30-day grid layout — one page per month" className="flex items-start gap-3 text-gray-600 text-sm"><CheckCircle size={16} className="text-red-600 mt-0.5 shrink-0" /> 30-day grid layout — one page per month</li>
-            <li key="US Letter format, printable at home" className="flex items-start gap-3 text-gray-600 text-sm"><CheckCircle size={16} className="text-red-600 mt-0.5 shrink-0" /> US Letter format, printable at home</li>
-              </ul>
-            </div>
-            <div className="bg-red-50 border border-red-100 rounded-2xl p-8">
-              <h2 className="font-bold text-gray-900 text-xl mb-2">Get your free copy</h2>
-              <p className="text-gray-500 text-sm mb-6">Enter your email and we will send it right to your inbox.</p>
-              <EmailCaptureForm buttonLabel="Send Me the Free PDF" />
-              <p className="text-xs text-gray-400 mt-4 text-center">No spam. Unsubscribe any time.</p>
+
+        {/* Hero */}
+        <section style={{ background: 'oklch(0.99 0.003 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
+            <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+              <div className="lg:col-span-7">
+                <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                      className="uppercase text-xs font-semibold mb-6 block">
+                  Free printable
+                </span>
+                <h1 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)', lineHeight: 1.1 }}
+                    className="text-4xl sm:text-5xl font-bold mb-6">
+                  Free blood pressure log sheet.
+                </h1>
+                <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8 max-w-xl">
+                  A printable daily log with morning and evening readings, pulse, notes, and a 30-day grid.
+                </p>
+
+                <div style={{ background: 'oklch(0.96 0.008 20)', border: '1px solid oklch(0.86 0.012 20)' }}
+                     className="p-7">
+                  <span style={{ color: 'oklch(0.48 0.015 20)', fontFamily: 'var(--font-body)', letterSpacing: '0.16em' }}
+                        className="uppercase text-xs font-semibold mb-3 block">
+                    What is inside
+                  </span>
+                  <ul>
+                    {INSIDE.map((item, i) => (
+                      <li key={item}
+                          style={{
+                            borderTop: '1px solid oklch(0.86 0.012 20)',
+                            borderBottom: i === INSIDE.length - 1 ? '1px solid oklch(0.86 0.012 20)' : 'none',
+                          }}
+                          className="py-3 flex items-center gap-3">
+                        <span aria-hidden="true"
+                              style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'oklch(0.45 0.18 25)' }} />
+                        <span style={{ color: 'oklch(0.18 0.02 20)' }} className="text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5">
+                <div style={{ background: 'oklch(0.96 0.008 20)', border: '1px solid oklch(0.86 0.012 20)' }}
+                     className="p-8">
+                  <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                        className="uppercase text-xs font-semibold mb-3 block">
+                    Get your free copy
+                  </span>
+                  <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                      className="text-2xl font-bold mb-3">
+                    Send it to my inbox.
+                  </h2>
+                  <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mb-6">Enter your email and we will send the PDF.</p>
+                  <EmailCaptureForm buttonLabel="Send Me the Free PDF" />
+                  <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-xs mt-4 text-center">No spam. Unsubscribe any time.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-        <section className="py-16 px-4 bg-white">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Want the searchable database?</h2>
-            <p className="text-gray-500 mb-6">The free PDF covers the basics. The BPTrack app gives you the full searchable library and your personal log — free on iPhone and Android.</p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center justify-center gap-2 bg-black text-white font-semibold px-8 py-3 rounded-xl hover:bg-gray-800 transition-colors min-h-[48px]">
-                Get on App Store <ArrowRight size={18} />
+
+        {/* Database CTA */}
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Want more?
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-5">
+              The searchable database lives in the app.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
+              The free PDF covers the basics. The BPTrack app gives you the full searchable library and your personal log. Free on iPhone and Android.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" className="btn-primary">
+                Get on App Store
               </a>
               <a href="https://play.google.com" target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center justify-center gap-2 bg-black text-white font-semibold px-8 py-3 rounded-xl hover:bg-gray-800 transition-colors min-h-[48px]">
-                Get on Google Play <ArrowRight size={18} />
+                 style={{ border: '1px solid oklch(0.86 0.012 20)', color: 'oklch(0.45 0.18 25)', background: 'transparent', fontFamily: 'var(--font-display)' }}
+                 className="inline-flex items-center justify-center gap-2 px-8 py-3 font-semibold transition-colors min-h-[48px]">
+                Get on Google Play
               </a>
             </div>
           </div>
