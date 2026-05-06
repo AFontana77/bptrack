@@ -6,13 +6,16 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -20,37 +23,96 @@
 }
 
 :root {
-  --background: oklch(0.99 0.002 0);
-  --foreground: oklch(0.15 0.02 0);
-  --primary: #DC2626;
+  /* Clinical-calm light palette (OKLCH, warm-tinted) */
+  --background: oklch(0.99 0.003 20);
+  --foreground: oklch(0.18 0.02 20);
+  --surface: oklch(0.96 0.008 20);
+  --muted: oklch(0.96 0.008 20);
+  --muted-foreground: oklch(0.48 0.015 20);
+  --border: oklch(0.86 0.012 20);
+  --input: oklch(0.86 0.012 20);
+
+  /* Medical burgundy primary */
+  --primary: oklch(0.45 0.18 25);
+  --primary-dark: oklch(0.36 0.16 25);
   --primary-foreground: oklch(0.99 0 0);
-  --muted: oklch(0.97 0.002 0);
-  --muted-foreground: oklch(0.52 0.01 0);
-  --border: oklch(0.91 0.004 0);
-  --input: oklch(0.91 0.004 0);
-  --ring: #DC2626;
-  --radius: 0.75rem;
-  --brand-primary: #DC2626;
-  --brand-hero-bg: #FFF5F5;
-  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.06);
-  --shadow-md: 0 4px 16px -4px rgb(0 0 0 / 0.10);
-  --shadow-lg: 0 8px 30px -6px rgb(0 0 0 / 0.12);
+
+  /* Calm cyan accent (normal-range indicators only) */
+  --accent: oklch(0.62 0.12 200);
+
+  /* Status dots */
+  --status-normal: oklch(0.62 0.14 150);
+  --status-elevated: oklch(0.74 0.14 75);
+  --status-stage1: oklch(0.66 0.16 50);
+  --status-stage2: oklch(0.45 0.18 25);
+
+  --ring: oklch(0.45 0.18 25);
+  --radius: 0.5rem;
+
+  --shadow-sm: 0 1px 2px 0 oklch(0.18 0.02 20 / 0.04);
+  --shadow-md: 0 4px 12px -2px oklch(0.18 0.02 20 / 0.06);
+  --shadow-lg: 0 12px 32px -8px oklch(0.18 0.02 20 / 0.10);
   --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @layer base {
   * { @apply border-border outline-ring/50; }
-  body { @apply bg-background text-foreground; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display), ui-serif, Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+  /* Tabular numerals for all readings */
+  .tabular,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
 }
 
 @layer utilities {
-  .press-feedback { @apply active:scale-[0.97] transition-transform; }
-  .card-hover { @apply hover:shadow-md transition-shadow duration-200; }
+  .press-feedback { @apply active:scale-[0.98] transition-transform; }
+  .font-display { font-family: var(--font-display), ui-serif, Georgia, serif; }
+  .font-body { font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif; }
+  .text-display { font-family: var(--font-display); letter-spacing: -0.015em; }
+  .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center font-semibold rounded-xl px-6 py-3 min-h-[48px]
-           bg-red-600 text-white hover:bg-red-700 transition-colors active:scale-[0.97];
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    min-height: 48px;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    transition: background var(--transition-base), transform var(--transition-base);
   }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    min-height: 48px;
+    background: transparent;
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    transition: background var(--transition-base);
+  }
+  .btn-ghost:hover { background: var(--surface); }
 }
