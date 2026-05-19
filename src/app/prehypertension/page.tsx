@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'What Is Prehypertension? AHA Ranges + What to Do | BPTrack',
+  title: 'What Is Prehypertension? AHA Ranges + What to Do | BP Central',
   description:
     'Prehypertension (now called Elevated blood pressure) means systolic 120 to 129 and diastolic under 80. Learn what it means and how to track it.',
 };
@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: 'How often should I check if I have elevated blood pressure?',
-    a: 'The AHA recommends more frequent monitoring for people with elevated or high blood pressure. A common approach is twice a day for one week, then weekly once you have a stable baseline. BPTrack makes this easy to track.',
+    a: 'The AHA recommends more frequent monitoring for people with elevated or high blood pressure. A common approach is twice a day for one week, then weekly once you have a stable baseline. BP Central makes this easy to track.',
   },
 ];
 
@@ -201,7 +201,7 @@ export default function PrehypertensionPage() {
               </p>
             </div>
             <Link href="/free-download" className="btn-primary">
-              Start tracking with BPTrack
+              Start tracking with BP Central
             </Link>
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
               Free. iPhone and Android. No subscription.
@@ -249,10 +249,10 @@ export default function PrehypertensionPage() {
               See if your changes are working.
             </h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
-              BPTrack logs your readings daily and shows your 30-day trend. You will know within weeks if your lifestyle changes are moving your numbers in the right direction.
+              BP Central logs your readings daily and shows your 30-day trend. You will know within weeks if your lifestyle changes are moving your numbers in the right direction.
             </p>
             <Link href="/free-download" className="btn-primary">
-              Download BPTrack free
+              Download BP Central free
             </Link>
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
               Free download. No subscription. iPhone and Android.

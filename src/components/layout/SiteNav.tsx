@@ -18,8 +18,8 @@ export function SiteNav() {
       </a>
       <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-red-100" role="navigation" aria-label="Main navigation">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-red-700 tracking-tight" aria-label="BPTrack home">
-            BPTrack
+          <Link href="/" className="text-xl font-bold text-red-700 tracking-tight" aria-label="BP Central home">
+            BP Central
           </Link>
           <div className="hidden sm:flex items-center gap-6">
             {links.map(l => (

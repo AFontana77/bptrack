@@ -3,8 +3,8 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — BPTrack',
-  description: 'Privacy policy for the BPTrack mobile application and bptrack.app website.',
+  title: 'Privacy Policy — BP Central',
+  description: 'Privacy policy for the BP Central mobile application and bptrack.app website.',
 };
 
 export default function PrivacyPage() {
@@ -27,7 +27,7 @@ export default function PrivacyPage() {
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
                 className="text-xl font-semibold mt-10 mb-3">1. Who We Are</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
-              Anvil Road LLC operates bptrack.app and the BPTrack mobile application.
+              Anvil Road LLC operates bptrack.app and the BP Central mobile application.
               Contact: <a href="mailto:support@bptrack.app" style={{ color: 'oklch(0.45 0.18 25)' }} className="hover:underline">support@bptrack.app</a>
             </p>
 
