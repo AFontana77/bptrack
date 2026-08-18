@@ -20,42 +20,56 @@ const workSans = Work_Sans({
 
 const SITE_URL = "https://www.bptrack.app";
 
+const DESCRIPTION =
+  "BP Central is a blood pressure log for your phone. Save each reading, see your 7, 30 and 90 day trends, and send a plain summary to your doctor. First 10 readings free, then $6.99 once. No subscription.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "BP Central — Search blood pressure ranges",
+    default: "BP Central - Blood pressure log for iPhone and Android",
     template: "%s | BP Central",
   },
-  description: "BP Central pairs AHA/CDC reference tables with a daily reading log. Search normal ranges, track trends, and export a report for your doctor. Free on iPhone and Android.",
-  keywords: ["blood pressure log", "blood pressure tracker app", "hypertension log", "bp log sheet", "blood pressure reading app"],
+  description: DESCRIPTION,
+  keywords: [
+    "blood pressure log",
+    "blood pressure tracker app",
+    "blood pressure app",
+    "hypertension log",
+    "home blood pressure monitoring",
+    "blood pressure chart",
+  ],
   authors: [{ name: "Anvil Road LLC" }],
   creator: "Anvil Road LLC",
   publisher: "Anvil Road LLC",
+  applicationName: "BP Central",
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
     siteName: "BP Central",
-    title: "BP Central — Search blood pressure ranges",
-    description: "BP Central pairs AHA/CDC reference tables with a daily reading log. Search normal ranges, track trends, and export a report for your doctor. Free on iPhone and Android.",
+    title: "BP Central - Blood pressure log for iPhone and Android",
+    description: DESCRIPTION,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "BP Central" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BP Central — Search blood pressure ranges",
-    description: "BP Central pairs AHA/CDC reference tables with a daily reading log. Search normal ranges, track trends, and export a report for your doctor. Free on iPhone and Android.",
+    title: "BP Central - Blood pressure log for iPhone and Android",
+    description: DESCRIPTION,
     images: ["/og-image.png"],
   },
   alternates: { canonical: SITE_URL },
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: "/icons/icon-192.png",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png", sizes: "64x64" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#7A1F2B",
+  themeColor: "#A20519",
   width: "device-width",
   initialScale: 1,
 };

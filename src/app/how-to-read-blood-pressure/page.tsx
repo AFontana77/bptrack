@@ -1,10 +1,11 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { AppStoreCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'How to Read Blood Pressure Numbers | BPTrack',
+  title: 'How to Read Blood Pressure Numbers',
   description:
     'Learn how to read blood pressure numbers. What systolic and diastolic mean, what the AHA categories are, and how to know if your reading is normal.',
 };
@@ -295,11 +296,9 @@ export default function HowToReadBloodPressurePage() {
               Start tracking your numbers.
             </h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
-              BPTrack logs every reading, shows your AHA category, and builds a 30-day trend you can share with your doctor.
+              BP Central logs every reading, shows the range it falls in, and builds a trend you can share with your doctor.
             </p>
-            <Link href="/free-download" className="btn-primary">
-              Download BPTrack free
-            </Link>
+            <AppStoreCta source="/how-to-read-blood-pressure" />
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
               Free. No subscription. iPhone and Android.
             </p>

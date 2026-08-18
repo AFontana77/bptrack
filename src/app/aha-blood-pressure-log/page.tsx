@@ -1,12 +1,13 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { AppStoreCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AHA Blood Pressure Log — Track Your Readings | BPTrack',
+  title: 'AHA Blood Pressure Log: Track Your Readings',
   description:
-    'The American Heart Association recommends tracking blood pressure at home. BPTrack is a free digital AHA-aligned blood pressure log for iPhone and Android.',
+    'The American Heart Association recommends tracking blood pressure at home. BP Central is a free digital AHA-aligned blood pressure log for iPhone and Android.',
 };
 
 const WHAT_TO_LOG = [
@@ -44,17 +45,17 @@ const AHA_GUIDANCE = [
   'Empty your bladder before measuring. A full bladder can raise readings.',
   'Do not talk during measurement.',
   'Log readings for at least a week before sharing with your doctor.',
-  'Bring your log (or export it from BPTrack) to every appointment.',
+  'Bring your log to every appointment. BP Central can write you a summary to take along.',
 ];
 
 const FAQS = [
   {
     q: 'Does the AHA have an official blood pressure log?',
-    a: 'The AHA publishes blood pressure tracking worksheets and recommends home monitoring. BPTrack is built on the same framework, with the same columns and same guidance, but on your phone instead of paper.',
+    a: 'The AHA publishes blood pressure tracking worksheets and recommends home monitoring. BP Central records the same things, but on your phone instead of paper.',
   },
   {
     q: 'How long should I keep a blood pressure log?',
-    a: 'The AHA recommends at least 7 days before an appointment to establish a reliable baseline. For ongoing management, many doctors want to see continuous logs. BPTrack stores all your readings so you never lose data.',
+    a: 'The AHA recommends at least 7 days before an appointment to establish a reliable baseline. For ongoing management, many doctors want to see continuous logs. BP Central keeps all your readings in one list, so nothing gets lost between visits.',
   },
   {
     q: 'What if my home readings differ from my doctor\'s office readings?',
@@ -88,10 +89,10 @@ export default function AhaBloodPressureLogPage() {
               The AHA recommends tracking blood pressure at home.
             </h1>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8 max-w-2xl">
-              BPTrack is the free digital log that follows the American Heart Association&apos;s guidance. Same columns, same protocol, but on your phone.
+              BP Central is the free digital log that follows the American Heart Association&apos;s guidance. Same columns, same protocol, but on your phone.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/free-download" className="btn-primary">
+              <Link href="/free-blood-pressure-log-pdf" className="btn-primary">
                 Get the free log
               </Link>
             </div>
@@ -198,7 +199,7 @@ export default function AhaBloodPressureLogPage() {
           </div>
         </section>
 
-        {/* BPTrack as digital AHA log */}
+        {/* BP Central as digital AHA log */}
         <section style={{ background: 'oklch(0.99 0.003 20)' }}>
           <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
             <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
@@ -207,24 +208,24 @@ export default function AhaBloodPressureLogPage() {
             </span>
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
                 className="text-3xl sm:text-4xl font-bold mb-5">
-              BPTrack is the digital version of the AHA log.
+              BP Central is the digital version of the AHA log.
             </h2>
             <div className="space-y-4 leading-relaxed mb-12 max-w-2xl" style={{ color: 'oklch(0.40 0.018 20)' }}>
               <p>
                 The AHA log sheet is a paper form with columns for date, time, systolic, diastolic, pulse, and notes. It works. But paper has limits.
               </p>
               <p>
-                BPTrack is the same log on your phone. Same columns. Same structure. But it adds a 30-day trend chart, automatic averages, and a PDF export you can email to your doctor in one tap.
+                BP Central is the same log on your phone. Same columns. Same structure. It adds a trend chart over 7, 30 and 90 days, works out your averages, and writes a plain summary you can send from your phone in a couple of taps.
               </p>
               <p>
-                Everything in BPTrack is built around the AHA&apos;s guidelines for what to record and how often. The reference chart inside the app uses AHA category thresholds. The export is formatted for a clinical appointment.
+                The reference chart inside the app uses the American Heart Association category thresholds. The summary lists your readings and your averages for the period you pick, and nothing else.
               </p>
             </div>
             <div className="grid sm:grid-cols-3 gap-0">
               {[
                 { num: '2x', label: 'Readings per day recommended by AHA' },
-                { num: '30', label: 'Days of trend data in your BPTrack chart' },
-                { num: '1 tap', label: 'To export a PDF for your doctor' },
+                { num: '90', label: 'Days of trend you can look back over' },
+                { num: '2 taps', label: 'To send a summary from your phone' },
               ].map((stat, i) => (
                 <div key={i}
                      style={{
@@ -283,13 +284,11 @@ export default function AhaBloodPressureLogPage() {
               Start your AHA-aligned log.
             </h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
-              BPTrack follows AHA guidelines for what to track and how often. Log your readings, see your trend, and bring a clean PDF to your next appointment.
+              Log your readings, watch the trend build, and take a clear summary to your next appointment.
             </p>
-            <Link href="/free-download" className="btn-primary">
-              Download BPTrack free
-            </Link>
+            <AppStoreCta source="/aha-blood-pressure-log" />
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
-              Free. $6.99 one-time to unlock log and export. No subscription.
+              First 10 readings free. Then $6.99 once. No subscription.
             </p>
           </div>
         </section>

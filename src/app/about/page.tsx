@@ -4,8 +4,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "About BPTrack",
-  description: "The story behind BPTrack. Search blood pressure ranges. Log your readings. Know your numbers.",
+  title: "About",
+  description: "The story behind BP Central. Search blood pressure ranges. Log your readings. Know your numbers.",
 };
 
 export default function AboutPage() {
@@ -26,16 +26,16 @@ export default function AboutPage() {
               A reference book for blood pressure, with a log built in.
             </h1>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-6 max-w-2xl">
-              BPTrack was built because 47% of American adults have high blood pressure but most cannot show their doctor a meaningful log at their appointment. BPTrack pairs AHA and CDC reference tables with a clean daily log so you know where every reading falls, not just whether it feels high.
+              BP Central was built because 47% of American adults have high blood pressure but most cannot show their doctor a meaningful log at their appointment. BP Central keeps every reading in one place and shows you where each one falls on the American Heart Association chart, so you have more than a feeling to go on.
             </p>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-10 max-w-2xl">
-              The companion app for iPhone and Android adds trend charts and exportable PDF reports. The free log sheet on this site gives you the paper version. No app required.
+              The app for iPhone and Android adds trends, averages and a summary you can send. The free log sheet on this site gives you the paper version. No app required.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/library" className="btn-primary">
                 Browse the library
               </Link>
-              <Link href="/free-download"
+              <Link href="/free-blood-pressure-log-pdf"
                     style={{ border: '1px solid oklch(0.86 0.012 20)', color: 'oklch(0.45 0.18 25)', background: 'transparent', fontFamily: 'var(--font-display)' }}
                     className="inline-flex items-center justify-center gap-2 px-8 py-3 font-semibold transition-colors min-h-[48px]">
                 Free download
@@ -56,7 +56,7 @@ export default function AboutPage() {
               Built by Anvil Road LLC.
             </h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed max-w-2xl">
-              Anvil Road is an independent publisher and app studio based in New Jersey. We build reference databases, log apps, KDP books, and companion print products across a range of hobby and professional categories. BPTrack is one of 20+ apps in the Anvil Road portfolio. All apps are free to start, with one-time unlocks for unlimited features. No subscriptions.
+              Anvil Road is an independent publisher and app studio based in New Jersey. We build reference databases, log apps, KDP books, and companion print products across a range of hobby and professional categories. BP Central is one of the apps in the Anvil Road portfolio. All apps are free to start, with one-time unlocks for unlimited features. No subscriptions.
             </p>
           </div>
         </section>

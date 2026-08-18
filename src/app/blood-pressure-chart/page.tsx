@@ -1,10 +1,11 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { AppStoreCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blood Pressure Chart — AHA Ranges by Category | BPTrack',
+  title: 'Blood Pressure Chart: AHA Ranges by Category',
   description:
     'Blood pressure chart with AHA categories: Normal, Elevated, Stage 1, Stage 2, and Hypertensive Crisis. Know what your numbers mean.',
 };
@@ -239,11 +240,9 @@ export default function BloodPressureChartPage() {
               Know which category you are actually in.
             </h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
-              BPTrack logs your readings and shows you your AHA category after each one. Track for 30 days and see your real trend.
+              BP Central logs your readings and shows the range each one falls in. Keep it up and watch the trend build over 7, 30 and 90 days.
             </p>
-            <Link href="/free-download" className="btn-primary">
-              Track my readings free
-            </Link>
+            <AppStoreCta source="/blood-pressure-chart" />
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
               Free download. iPhone and Android. No subscription.
             </p>

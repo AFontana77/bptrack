@@ -3,8 +3,8 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — BPTrack',
-  description: 'Terms of service for the BPTrack mobile application and bptrack.app website.',
+  title: 'Terms of Service',
+  description: 'Terms of service for the BP Central mobile application and bptrack.app website.',
 };
 
 export default function TermsPage() {
@@ -25,7 +25,7 @@ export default function TermsPage() {
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mb-12">Last updated: April 18, 2026</p>
 
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-6">
-              These Terms of Service govern your use of the BPTrack blood pressure log app and the website at bptrack.app.
+              These Terms of Service govern your use of the BP Central blood pressure log app and the website at bptrack.app.
               By downloading the app or using the website, you agree to these terms.
               If you do not agree, do not use the service.
             </p>
@@ -33,14 +33,14 @@ export default function TermsPage() {
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
                 className="text-xl font-semibold mt-10 mb-3">1. Who we are</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
-              Anvil Road LLC operates bptrack.app and the BPTrack mobile application.
+              Anvil Road LLC operates bptrack.app and the BP Central mobile application.
               Contact: <a href="mailto:support@bptrack.app" style={{ color: 'oklch(0.45 0.18 25)' }} className="hover:underline">support@bptrack.app</a>
             </p>
 
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
                 className="text-xl font-semibold mt-10 mb-3">2. Use of the service</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
-              BPTrack is a personal blood pressure log app. You may use the service for personal, non-commercial purposes only.
+              BP Central is a personal blood pressure log app. You may use the service for personal, non-commercial purposes only.
               You agree not to misuse the service, reverse-engineer the app, or use it in any way that violates applicable law.
             </p>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
@@ -48,16 +48,17 @@ export default function TermsPage() {
             </p>
 
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
-                className="text-xl font-semibold mt-10 mb-3">3. User accounts</h2>
+                className="text-xl font-semibold mt-10 mb-3">3. No accounts</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
-              Creating an account is optional. If you create an account, you are responsible for keeping your credentials secure.
-              You may delete your account at any time from the app settings.
+              BP Central has no sign up and no login. The app creates an anonymous identity on your device so it can store
+              your readings. Because there is no account, your readings do not move to another device, and we cannot recover
+              them for you. You can erase them at any time with Delete my data in the app settings.
             </p>
 
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
                 className="text-xl font-semibold mt-10 mb-3">4. In-app purchases</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
-              BPTrack offers a one-time in-app purchase ($6.99 USD) to unlock the full database and premium logging features.
+              BP Central gives you 10 readings free. After that a one-time in-app purchase ($6.99 USD) unlocks unlimited readings, your complete history, the 7, 30 and 90 day averages and trends, and the shareable summary. It is not a subscription.
               Purchases are processed by Apple App Store or Google Play and are subject to their respective refund policies.
               We do not process payment information directly.
             </p>
@@ -69,7 +70,7 @@ export default function TermsPage() {
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
                 className="text-xl font-semibold mt-10 mb-3">5. Intellectual property</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
-              All content, design, code, and database records in the BPTrack app and website are owned by Anvil Road LLC
+              All content, design, code, and database records in the BP Central app and website are owned by Anvil Road LLC
               or licensed to us. You may not copy, reproduce, or redistribute any part of the service without written permission.
             </p>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
@@ -79,13 +80,13 @@ export default function TermsPage() {
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
                 className="text-xl font-semibold mt-10 mb-3">Health and safety notice</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
-              BPTrack is a personal logging tool, not a medical device. It does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any questions about your blood pressure or health.
+              BP Central is a personal logging tool, not a medical device. It does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any questions about your blood pressure or health.
             </p>
 
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
                 className="text-xl font-semibold mt-10 mb-3">6. Limitation of liability</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
-              BPTrack is provided &quot;as is&quot; without warranties of any kind. Anvil Road LLC is not liable for any damages
+              BP Central is provided &quot;as is&quot; without warranties of any kind. Anvil Road LLC is not liable for any damages
               arising from use of the app, including data loss, inaccurate reference information, or service interruptions.
               Our total liability to you is limited to the amount you paid for any in-app purchase.
             </p>

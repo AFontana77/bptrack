@@ -3,3 +3,6 @@ node_modules/
 .env
 .env.local
 .vercel
+
+# Build artifact, regenerated on every build.
+*.tsbuildinfo

@@ -1,12 +1,13 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { AppStoreCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Blood Pressure Log Sheet | BPTrack',
+  title: 'Free Blood Pressure Log Sheet',
   description:
-    'Printable blood pressure log sheet with columns for date, time, systolic, diastolic, pulse, and notes. Download free PDF or track digitally in BPTrack.',
+    'Printable blood pressure log sheet with columns for date, time, systolic, diastolic, pulse, and notes. Download free PDF or track digitally in BP Central.',
 };
 
 const COLUMNS = [
@@ -47,7 +48,7 @@ const PAPER_PROS = [
 
 const APP_PROS = [
   'Automatic 30-day trend chart',
-  'PDF export ready for your doctor',
+  'A summary you can send from your phone',
   'AHA reference tables built in',
   'Never lose your data',
   'Free to download, $6.99 one-time unlock',
@@ -71,11 +72,9 @@ export default function LogSheetPage() {
               Free blood pressure log sheet.
             </h1>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8 max-w-2xl">
-              Track every reading with the right columns. Print it out or log it on your phone with BPTrack. Either way, you will have data your doctor can actually use.
+              Track every reading with the right columns. Print it out or log it on your phone with BP Central. Either way, you will have data your doctor can actually use.
             </p>
-            <Link href="/free-download" className="btn-primary">
-              Get the free app
-            </Link>
+            <AppStoreCta source="/log-sheet" />
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
               Free. No subscription. iPhone and Android.
             </p>
@@ -200,7 +199,7 @@ export default function LogSheetPage() {
                       <td style={{ color: 'oklch(0.18 0.02 20)', fontVariantNumeric: 'tabular-nums' }} className="px-4 py-4 font-semibold">{row.dia}</td>
                       <td style={{ color: 'oklch(0.40 0.018 20)', fontVariantNumeric: 'tabular-nums' }} className="px-4 py-4">{row.pulse}</td>
                       <td style={{ color: 'oklch(0.40 0.018 20)' }} className="px-4 py-4">{row.arm}</td>
-                      <td style={{ color: 'oklch(0.48 0.015 20)' }} className="px-4 py-4 italic">{row.notes || '—'}</td>
+                      <td style={{ color: 'oklch(0.48 0.015 20)' }} className="px-4 py-4 italic">{row.notes || '-'}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -287,7 +286,7 @@ export default function LogSheetPage() {
               <div>
                 <h3 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.45 0.18 25)' }}
                     className="font-semibold text-lg mb-4 pb-4">
-                  BPTrack app
+                  BP Central app
                 </h3>
                 <ul>
                   {APP_PROS.map((text, i) => (
@@ -328,11 +327,9 @@ export default function LogSheetPage() {
               Stop losing readings on scraps of paper.
             </h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
-              BPTrack logs every reading on your phone, shows your 30-day trend, and exports a clean PDF for your doctor.
+              BP Central logs every reading on your phone, shows your 7, 30 and 90 day trends, and writes a summary you can send.
             </p>
-            <Link href="/free-download" className="btn-primary">
-              Download BPTrack free
-            </Link>
+            <AppStoreCta source="/log-sheet" />
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
               Free. No subscription. iPhone and Android.
             </p>

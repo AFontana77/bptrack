@@ -1,10 +1,11 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { AppStoreCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'What Is Prehypertension? AHA Ranges + What to Do | BP Central',
+  title: 'What Is Prehypertension? AHA Ranges + What to Do',
   description:
     'Prehypertension (now called Elevated blood pressure) means systolic 120 to 129 and diastolic under 80. Learn what it means and how to track it.',
 };
@@ -200,9 +201,7 @@ export default function PrehypertensionPage() {
                 The AHA specifically recommends home monitoring for people with elevated or high blood pressure because it gives a much more accurate baseline than clinic readings.
               </p>
             </div>
-            <Link href="/free-download" className="btn-primary">
-              Start tracking with BP Central
-            </Link>
+            <AppStoreCta source="/prehypertension" />
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
               Free. iPhone and Android. No subscription.
             </p>
@@ -251,9 +250,7 @@ export default function PrehypertensionPage() {
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
               BP Central logs your readings daily and shows your 30-day trend. You will know within weeks if your lifestyle changes are moving your numbers in the right direction.
             </p>
-            <Link href="/free-download" className="btn-primary">
-              Download BP Central free
-            </Link>
+            <AppStoreCta source="/prehypertension" />
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
               Free download. No subscription. iPhone and Android.
             </p>
