@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'What Is Prehypertension? AHA Ranges + What to Do',
   description:
     'Prehypertension (now called Elevated blood pressure) means systolic 120 to 129 and diastolic under 80. Learn what it means and how to track it.',
+  alternates: { canonical: 'https://bptrack.app/prehypertension' },
 };
 
 const LIFESTYLE_CHANGES = [

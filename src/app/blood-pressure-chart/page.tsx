@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Blood Pressure Chart: AHA Ranges by Category',
   description:
     'Blood pressure chart with AHA categories: Normal, Elevated, Stage 1, Stage 2, and Hypertensive Crisis. Know what your numbers mean.',
+  alternates: { canonical: 'https://bptrack.app/blood-pressure-chart' },
 };
 
 const AHA_CHART = [

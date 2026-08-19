@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'Terms of service for the BP Central mobile application and bptrack.app website.',
+  alternates: { canonical: 'https://bptrack.app/terms' },
 };
 
 export default function TermsPage() {

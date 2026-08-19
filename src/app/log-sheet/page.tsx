@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Free Blood Pressure Log Sheet',
   description:
     'Printable blood pressure log sheet with columns for date, time, systolic, diastolic, pulse, and notes. Download free PDF or track digitally in BP Central.',
+  alternates: { canonical: 'https://bptrack.app/log-sheet' },
 };
 
 const COLUMNS = [

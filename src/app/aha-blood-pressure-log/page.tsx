@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'AHA Blood Pressure Log: Track Your Readings',
   description:
     'The American Heart Association recommends tracking blood pressure at home. BP Central is a free digital AHA-aligned blood pressure log for iPhone and Android.',
+  alternates: { canonical: 'https://bptrack.app/aha-blood-pressure-log' },
 };
 
 const WHAT_TO_LOG = [

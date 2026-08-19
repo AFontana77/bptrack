@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: "About",
   description: "The story behind BP Central. Search blood pressure ranges. Log your readings. Know your numbers.",
+  alternates: { canonical: 'https://bptrack.app/about' },
 };
 
 export default function AboutPage() {
