@@ -16,7 +16,7 @@ export const PRODUCT = {
   name: 'BP Central',
   publisher: 'Anvil Road LLC',
   domain: 'bptrack.app',
-  siteUrl: 'https://www.bptrack.app',
+  siteUrl: 'https://bptrack.app',
   supportEmail: 'support@bptrack.app',
 
   freeReadings: 10,

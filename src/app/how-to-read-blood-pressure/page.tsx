@@ -3,12 +3,64 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { AppStoreCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { AHA_SOURCE, AHA_AMA_HOME_SOURCE } from '@/lib/product';
+
+const URL = 'https://bptrack.app/how-to-read-blood-pressure';
 
 export const metadata: Metadata = {
-  title: 'How to Read Blood Pressure Numbers',
+  title: 'How to Take and Read Blood Pressure at Home',
   description:
-    'Learn how to read blood pressure numbers. What systolic and diastolic mean, what the AHA categories are, and how to know if your reading is normal.',
+    'How to take a blood pressure reading at home in seven steps, and how to read the result. What systolic and diastolic mean, the AHA categories, and the mistakes that push readings up.',
+  alternates: { canonical: URL },
+  openGraph: {
+    type: 'article',
+    url: URL,
+    title: 'How to Take and Read Blood Pressure at Home',
+    description:
+      'Seven steps to a reading you can trust, and what the two numbers mean once you have it.',
+  },
 };
+
+/**
+ * Steps for taking the reading, not just reading it.
+ *
+ * Added in M0.3.2. The page explained what the numbers mean but never covered
+ * how to produce a trustworthy one in the first place, which is the more common
+ * question and the higher intent search.
+ *
+ * Technique follows the AHA and AMA joint policy statement on self measured
+ * blood pressure monitoring, cited at the foot of this page.
+ */
+const HOW_TO_STEPS = [
+  {
+    name: 'Skip caffeine, tobacco and exercise for 30 minutes',
+    text: 'All three raise blood pressure for a while. A reading taken straight after any of them tells you about the coffee, not about you.',
+  },
+  {
+    name: 'Empty your bladder',
+    text: 'A full bladder can add several points to a reading. It is the easiest error on this list to remove.',
+  },
+  {
+    name: 'Sit still for 5 minutes',
+    text: 'Sit in a chair with your back supported and both feet flat on the floor. Do not cross your legs. Do not talk, and do not scroll your phone. Just sit.',
+  },
+  {
+    name: 'Put the cuff on a bare upper arm',
+    text: 'Take your arm out of the sleeve rather than rolling it up, because a bunched sleeve squeezes the arm. The bottom edge of the cuff sits about an inch above the bend of your elbow.',
+  },
+  {
+    name: 'Rest your arm at heart level',
+    text: 'Support your arm on a table so the cuff is level with your heart. An arm hanging by your side reads high. An arm held up reads low.',
+  },
+  {
+    name: 'Take two readings, one minute apart',
+    text: 'Write both down. If they differ by more than about 5 points, take a third. Averaging is what makes the number stable.',
+  },
+  {
+    name: 'Measure at the same times each day',
+    text: 'Morning before medication, and evening. What a doctor can use is a run of readings taken the same way, not one number from one moment.',
+  },
+];
 
 const CATEGORIES = [
   {
@@ -55,7 +107,7 @@ const MISTAKES = [
   },
   {
     mistake: 'Cuff size is wrong',
-    fix: 'An undersized cuff reads high. An oversized cuff reads low. The bladder inside the cuff should wrap around about 80% of your upper arm. Most monitors come with two cuff sizes.',
+    fix: 'An undersized cuff reads high. An oversized cuff reads low. Most monitors ship with one wide range cuff that fits 8.6 to 16.5 in (22 to 42 cm), and if your arm falls outside that you need a different cuff, not a different monitor. Measure your arm before you trust any reading.',
   },
   {
     mistake: 'Not resting first',
@@ -76,8 +128,53 @@ const WHEN_TO_CALL = [
 ];
 
 export default function HowToReadBloodPressurePage() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        '@id': `${URL}#article`,
+        headline: 'How to Take and Read Blood Pressure at Home',
+        datePublished: '2026-04-19',
+        dateModified: '2026-08-19',
+        author: { '@type': 'Organization', name: 'Anvil Road LLC' },
+        publisher: { '@type': 'Organization', name: 'BP Central' },
+        mainEntityOfPage: URL,
+        citation: [
+          { '@type': 'WebPage', name: AHA_SOURCE.title, url: AHA_SOURCE.url },
+          { '@type': 'WebPage', name: AHA_AMA_HOME_SOURCE.title, url: AHA_AMA_HOME_SOURCE.url },
+        ],
+      },
+      {
+        '@type': 'HowTo',
+        '@id': `${URL}#howto`,
+        name: 'How to take a blood pressure reading at home',
+        totalTime: 'PT10M',
+        step: HOW_TO_STEPS.map((st, i) => ({
+          '@type': 'HowToStep',
+          position: i + 1,
+          name: st.name,
+          text: st.text,
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${URL}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://bptrack.app' },
+          { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://bptrack.app/resources' },
+          { '@type': 'ListItem', position: 3, name: 'How to read blood pressure', item: URL },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <SiteNav />
       <main id="main-content" className="pt-20">
 
@@ -90,11 +187,58 @@ export default function HowToReadBloodPressurePage() {
             </span>
             <h1 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)', lineHeight: 1.1 }}
                 className="text-4xl sm:text-5xl font-bold mb-6">
-              How to read blood pressure numbers.
+              How to take and read blood pressure at home.
             </h1>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed max-w-2xl">
-              Two numbers on a cuff. Here is what they measure, what the ranges mean, and how to know if yours is normal.
+              Getting a number you can trust comes first. Here are the seven steps to a good reading, then what the two numbers mean once you have one.
             </p>
+          </div>
+        </section>
+
+        {/* How to take a reading. Added M0.3.2. */}
+        <section style={{ background: 'oklch(0.96 0.008 20)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
+            <span style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-body)', letterSpacing: '0.18em' }}
+                  className="uppercase text-xs font-semibold mb-5 block">
+              Before you read it
+            </span>
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-3xl sm:text-4xl font-bold mb-6">
+              How to take a blood pressure reading at home.
+            </h2>
+            <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed max-w-2xl mb-10">
+              The same arm on the same day can give two very different numbers depending on how the
+              reading was taken. These seven steps are what separate a number worth writing down
+              from one that just worries you.
+            </p>
+
+            <ol className="space-y-6 max-w-2xl">
+              {HOW_TO_STEPS.map((st, i) => (
+                <li key={st.name} className="flex gap-4">
+                  <span className="num font-bold shrink-0"
+                        style={{ color: 'oklch(0.45 0.18 25)', fontFamily: 'var(--font-display)' }}>
+                    {i + 1}
+                  </span>
+                  <div>
+                    <p className="font-semibold mb-1" style={{ color: 'oklch(0.18 0.02 20)' }}>
+                      {st.name}
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: 'oklch(0.40 0.018 20)' }}>
+                      {st.text}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link href="/blood-pressure-cuff-size" className="btn-ghost">
+                Check your cuff size
+              </Link>
+              <Link href="/validated-blood-pressure-monitors" className="btn-ghost">
+                Monitors that passed an accuracy test
+              </Link>
+            </div>
           </div>
         </section>
 

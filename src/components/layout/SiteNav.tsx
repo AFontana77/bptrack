@@ -12,10 +12,10 @@ import { APP_STORE } from '@/lib/product';
  */
 
 const links = [
+  { href: '/resources', label: 'Resources' },
+  { href: '/validated-blood-pressure-monitors', label: 'Monitors' },
   { href: '/library', label: 'Learn' },
   { href: '/checklist', label: 'Free checklist' },
-  { href: '/log-sheet', label: 'Printable log' },
-  { href: '/about', label: 'About' },
 ];
 
 export function SiteNav() {

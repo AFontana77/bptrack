@@ -26,7 +26,7 @@ export const metadata: Metadata = {
  * are in src/hooks/usePurchase.ts.
  */
 
-const UPDATED = 'August 18, 2026';
+const UPDATED = 'August 19, 2026';
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
@@ -235,7 +235,33 @@ export default function PrivacyPage() {
               website only. The app contains no analytics of any kind.
             </P>
 
-            <H2>9. Medical information</H2>
+            <H2>9. Affiliate links</H2>
+            <P>
+              Some pages on this website contain affiliate links to Amazon. As an Amazon Associate
+              we earn from qualifying purchases. If you click one of those links and buy something,
+              Amazon pays us a commission and you pay exactly the same price you would have paid
+              anyway.
+            </P>
+            <P>
+              What this means for your privacy: when you click an affiliate link you leave this
+              website and arrive on Amazon, and from that point Amazon&apos;s own privacy policy
+              applies, not ours. Amazon uses a cookie to tell that the visit came from us. We never
+              see who you are, what you looked at, or what you bought. Amazon reports totals to us,
+              not people.
+            </P>
+            <P>
+              We do not put affiliate links in email, in the printable PDF, or in any attachment. If
+              you are on our mailing list, the links in those emails point back to guides on this
+              website. Nothing about your blood pressure readings is ever shared with Amazon or with
+              any other merchant, and no affiliate partner has any access to app data.
+            </P>
+            <P>
+              Which monitors we recommend is not for sale. No brand pays us for a place on the list,
+              no brand has reviewed our pages, and we drop products that fail our checks even when
+              the brand has other products we do recommend.
+            </P>
+
+            <H2>10. Medical information</H2>
             <P>
               BP Central is not a medical device and we are not a healthcare provider. We are not a
               covered entity under HIPAA and we make no claim to any medical certification. The app
@@ -243,18 +269,18 @@ export default function PrivacyPage() {
               not diagnose anything and it is not medical advice.
             </P>
 
-            <H2>10. Children</H2>
+            <H2>11. Children</H2>
             <P>
               BP Central is not meant for children under 13 and we do not knowingly collect
               information from them.
             </P>
 
-            <H2>11. Changes</H2>
+            <H2>12. Changes</H2>
             <P>
               If we change this policy we will post the new version here with a new date at the top.
             </P>
 
-            <H2>12. Contact</H2>
+            <H2>13. Contact</H2>
             <P>
               Questions about any of this? Email{' '}
               <a href={`mailto:${PRODUCT.supportEmail}`} style={{ color: 'var(--primary)' }}>

@@ -18,7 +18,7 @@ const workSans = Work_Sans({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const SITE_URL = "https://www.bptrack.app";
+const SITE_URL = "https://bptrack.app";
 
 const DESCRIPTION =
   "BP Central is a blood pressure log for your phone. Save each reading, see your 7, 30 and 90 day trends, and send a plain summary to your doctor. First 10 readings free, then $6.99 once. No subscription.";

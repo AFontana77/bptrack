@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const BASE = 'https://www.bptrack.app';
+const BASE = 'https://bptrack.app';
 const now = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -19,5 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/free-blood-pressure-log-pdf`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/prehypertension`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/aha-blood-pressure-log`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    // Resource hub + commercial-intent spokes (M0.3.2)
+    { url: `${BASE}/resources`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE}/validated-blood-pressure-monitors`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/blood-pressure-cuff-size`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
   ];
 }

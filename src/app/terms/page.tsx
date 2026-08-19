@@ -84,7 +84,34 @@ export default function TermsPage() {
             </p>
 
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
-                className="text-xl font-semibold mt-10 mb-3">6. Limitation of liability</h2>
+                className="text-xl font-semibold mt-10 mb-3">6. Affiliate links and recommendations</h2>
+            <p className="leading-relaxed mb-4" style={{ color: 'oklch(0.40 0.018 20)' }}>
+              Some pages on this website link to products on Amazon. As an Amazon Associate we earn
+              from qualifying purchases. You pay the same price either way.
+            </p>
+            <p className="leading-relaxed mb-4" style={{ color: 'oklch(0.40 0.018 20)' }}>
+              We are not the seller. We do not stock, ship, warrant or service any product we link
+              to, and we are not a party to your purchase. The sale is between you and Amazon or the
+              merchant selling on Amazon, under their terms, their returns policy and their
+              warranty. Price and availability on Amazon change and are not shown on this site.
+            </p>
+            <p className="leading-relaxed mb-4" style={{ color: 'oklch(0.40 0.018 20)' }}>
+              When we describe a monitor as validated, we mean its exact model number appeared on
+              the Validated Device Listing at validatebp.org on the date we state on the page. That
+              is a statement about an independent accuracy test, nothing more. It is not an
+              endorsement by the American Medical Association, the American Heart Association or any
+              other body, of us or of any product. Listings change, and manufacturers revise
+              products without changing the name on the box. Check the model number yourself before
+              you buy.
+            </p>
+            <p className="leading-relaxed mb-4" style={{ color: 'oklch(0.40 0.018 20)' }}>
+              No blood pressure monitor diagnoses, prevents or treats anything, and none of them
+              lowers your blood pressure. A monitor reports a measurement. What that measurement
+              means is for a doctor or other health professional to say.
+            </p>
+
+            <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
+                className="text-xl font-semibold mt-10 mb-3">7. Limitation of liability</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
               BP Central is provided &quot;as is&quot; without warranties of any kind. Anvil Road LLC is not liable for any damages
               arising from use of the app, including data loss, inaccurate reference information, or service interruptions.
@@ -92,21 +119,21 @@ export default function TermsPage() {
             </p>
 
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
-                className="text-xl font-semibold mt-10 mb-3">7. Changes to these terms</h2>
+                className="text-xl font-semibold mt-10 mb-3">8. Changes to these terms</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
               We may update these terms from time to time. We will post the revised terms at this URL with a new last updated date.
               Continued use of the service after changes constitutes your acceptance of the updated terms.
             </p>
 
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
-                className="text-xl font-semibold mt-10 mb-3">8. Governing law</h2>
+                className="text-xl font-semibold mt-10 mb-3">9. Governing law</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed mb-4">
               These terms are governed by the laws of the State of New Jersey, United States, without regard to conflict of law principles.
               Any disputes must be brought in the courts of New Jersey.
             </p>
 
             <h2 style={{ fontFamily: 'var(--font-display)', color: 'oklch(0.18 0.02 20)' }}
-                className="text-xl font-semibold mt-10 mb-3">9. Contact</h2>
+                className="text-xl font-semibold mt-10 mb-3">10. Contact</h2>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="leading-relaxed">
               Questions about these terms? Email <a href="mailto:support@bptrack.app" style={{ color: 'oklch(0.45 0.18 25)' }} className="hover:underline">support@bptrack.app</a>.
             </p>

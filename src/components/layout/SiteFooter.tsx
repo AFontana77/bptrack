@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { BrandLockup } from './BrandLockup';
 import { PRODUCT, MEDICAL_DISCLAIMER } from '@/lib/product';
+import { AMAZON_DISCLOSURE } from '@/lib/monitors';
 
 /**
  * The footer previously linked only to Library, Free Download and About, so
@@ -13,17 +14,26 @@ const columns = [
     heading: 'BP Central',
     links: [
       { href: '/', label: 'The app' },
-      { href: '/library', label: 'Learn' },
+      { href: '/resources', label: 'All resources' },
       { href: '/blood-pressure-chart', label: 'Blood pressure chart' },
       { href: '/how-to-read-blood-pressure', label: 'How to read the numbers' },
     ],
   },
   {
-    heading: 'Free resources',
+    heading: 'Choosing a monitor',
     links: [
-      { href: '/checklist', label: 'Home measurement checklist' },
+      { href: '/validated-blood-pressure-monitors', label: 'Validated monitors' },
+      { href: '/blood-pressure-cuff-size', label: 'Cuff size chart' },
+      { href: '/checklist', label: 'Measurement checklist' },
+      { href: '/library', label: 'Learn' },
+    ],
+  },
+  {
+    heading: 'Free printables',
+    links: [
       { href: '/log-sheet', label: 'Printable log sheet' },
       { href: '/free-blood-pressure-log-pdf', label: 'Printable log PDF' },
+      { href: '/aha-blood-pressure-log', label: 'AHA log format' },
       { href: '/prehypertension', label: 'Elevated readings' },
     ],
   },
@@ -46,7 +56,7 @@ export function SiteFooter() {
       role="contentinfo"
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-8 py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div>
             <BrandLockup size={30} />
             <p className="text-sm mt-4 leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
@@ -84,6 +94,11 @@ export function SiteFooter() {
         <div className="mt-12 pt-8" style={{ borderTop: '1px solid var(--border)' }}>
           <p className="text-xs leading-relaxed max-w-3xl" style={{ color: 'var(--muted-foreground)' }}>
             {MEDICAL_DISCLAIMER}
+          </p>
+          {/* Amazon requires this sentence clearly and prominently wherever
+              Program Content appears. Site wide is the safest place for it. */}
+          <p className="text-xs leading-relaxed max-w-3xl mt-4" style={{ color: 'var(--muted-foreground)' }}>
+            {AMAZON_DISCLOSURE}
           </p>
           <p className="text-xs mt-5" style={{ color: 'var(--muted-foreground)' }}>
             &copy; {new Date().getFullYear()} {PRODUCT.publisher}. {PRODUCT.domain}

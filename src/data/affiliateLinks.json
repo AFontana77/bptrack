@@ -2,20 +2,20 @@
   "_meta": {
     "purpose": "Centralized affiliate link registry for bptrack.app. Same shape as 10+ other portfolio sites. Currently Amazon-only; brand enrollments will populate programs as they land.",
     "format_note": "Each program: { brand, base_url, tracking_param, tracking_value, status, network, commission, cookie, notes }. status = pending | queued_signup | enrolled | declined.",
-    "last_updated": "2026-05-19",
-    "session": "Sites-S22-resolver-rollout"
+    "last_updated": "2026-08-19",
+    "session": "Phase-A-M0.3.2B-bp-seo-aio-affiliate"
   },
   "programs": {
     "amazon": {
       "brand": "Amazon",
       "base_url": "https://www.amazon.com",
-      "status": "pending",
+      "status": "enrolled",
       "network": "amazon",
       "tracking_param": "tag",
-      "commission": "3-4%",
+      "commission": "1% (Health & Household, observed in SiteStripe 2026-08-19)",
       "cookie": "24h",
-      "notes": "Blood pressure monitor purchase links + KDP book back-matter. Enroll at https://affiliate-program.amazon.com/ after domain goes live. Replace PENDING_TRACKING_ID with actual associate tag.",
-      "tracking_value": "PENDING_TRACKING_ID"
+      "notes": "Live. Tracking ID bpcentral-20, created 2026-08-19 window (M0.3.2A). bptrack.app registered as an Associates site. Links are built by amazonLink() in src/lib/monitors.ts and point straight at amazon.com/dp/<ASIN>. No shortener, no /go/ redirect: cloaking and Redirecting Links are both prohibited and disqualify commission. NEVER place these links in email, PDFs, attachments or SMS.",
+      "tracking_value": "bpcentral-20"
     }
   }
 }

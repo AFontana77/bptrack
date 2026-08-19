@@ -317,6 +317,29 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+
+            {/* The first item above says you need a monitor. This answers that,
+                and nothing more. No banner, no product grid on the homepage. */}
+            <p className="text-base leading-relaxed mt-8" style={{ color: 'var(--muted-foreground)' }}>
+              Do not have a monitor yet? We checked which ones passed an independent accuracy test
+              and wrote up{' '}
+              <Link
+                href="/validated-blood-pressure-monitors"
+                className="underline underline-offset-4"
+                style={{ color: 'var(--primary)' }}
+              >
+                the four we recommend
+              </Link>
+              , plus{' '}
+              <Link
+                href="/blood-pressure-cuff-size"
+                className="underline underline-offset-4"
+                style={{ color: 'var(--primary)' }}
+              >
+                how to get the cuff size right
+              </Link>
+              .
+            </p>
           </div>
         </section>
 
