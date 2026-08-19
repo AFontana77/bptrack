@@ -149,9 +149,9 @@ export default function ResourcesPage() {
               Everything we publish, in the order you need it
             </h1>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--foreground)' }}>
-              If a doctor has just asked you to check your blood pressure at home, work down this
-              page. Get a monitor that has actually been tested, get the cuff size right, learn to
-              take the reading the same way each time, then learn what the number means.
+              Has a doctor just asked you to check your blood pressure at home? Work down this page.
+              Get a monitor that has actually been tested. Get the cuff size right. Learn to take
+              the reading the same way each time. Then learn what the number means.
             </p>
           </div>
         </section>

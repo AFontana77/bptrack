@@ -321,10 +321,9 @@ export default function ValidatedMonitorsPage() {
               </p>
               <p>
                 The listing is clear about how to use that, though. In its own words, clinical
-                guidelines call for an upper arm device that has been validated for clinical
-                accuracy for self measured blood pressure. A validated wrist device may be used in
-                place of an upper arm one for certain needs, such as when an upper arm cuff does not
-                fit the arm, or when a medical condition means an upper arm device cannot be used.
+                guidelines call for an upper arm device for home monitoring. A validated wrist
+                device may be used in its place for certain needs. That covers cases where an upper
+                arm cuff will not fit the arm, or where a medical condition rules one out.
               </p>
               <p>
                 There is also a practical catch. A wrist device has to sit over the artery and be
