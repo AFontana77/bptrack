@@ -23,5 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/resources`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/validated-blood-pressure-monitors`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/blood-pressure-cuff-size`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    // Tools + app-intent authority (M2)
+    { url: `${BASE}/blood-pressure-average-calculator`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/blood-pressure-apps`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
   ];
 }

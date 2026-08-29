@@ -196,6 +196,58 @@ export const AHA_AMA_HOME_SOURCE = {
   url: 'https://www.ahajournals.org/doi/10.1161/CIR.0000000000000803',
 } as const;
 
+/**
+ * The self-measured blood pressure protocol, from the joint AHA/AMA statement
+ * already cited above as AHA_AMA_HOME_SOURCE.
+ *
+ * These numbers drive the average calculator. They are the reason it can tell
+ * someone "you have 9 readings, the minimum useful set is 12" instead of just
+ * returning a mean of whatever it was handed.
+ *
+ * Two things this must NOT say, because the source does not:
+ *   - It does not tell anyone to discard the first day. Some clinical protocols
+ *     do. This one says to average all of them, so that is what we say.
+ *   - It does not turn an average into a diagnosis. The statement is about how
+ *     to measure, not about what the number means for one person.
+ */
+export const SMBP_PROTOCOL = {
+  perSession: 2,
+  minutesBetween: 1,
+  sessionsPerDay: 2,
+  readingsPerDay: 4,
+  optimalDays: 7,
+  optimalReadings: 28,
+  minimumDays: 3,
+  minimumReadings: 12,
+  method:
+    'Average every reading you took. The statement warns against the "eyeball method", which means scanning a list and forming an impression instead of working out the number.',
+} as const;
+
+/**
+ * Apps that claim to read blood pressure off a phone.
+ *
+ * This is the single most useful true thing this site can tell someone
+ * searching for a "blood pressure checker app", and it needs real sources
+ * because it contradicts what several App Store listings imply.
+ */
+export const CUFFLESS_SOURCES = {
+  aha: {
+    organization: 'American Heart Association',
+    title: 'Cuffless Devices for the Measurement of Blood Pressure: A Scientific Statement',
+    citation: 'Hypertension, 2026',
+    url: 'https://www.ahajournals.org/doi/10.1161/HYP.0000000000000254',
+    finding:
+      'Cuffless devices such as smartwatches, rings, patches and fingertip monitors are not yet proven accurate enough to diagnose high blood pressure or to guide treatment. The 2025 AHA/ACC High Blood Pressure Guideline recommends against using them for diagnosis or treatment.',
+  },
+  harvard: {
+    organization: 'Harvard Health Publishing',
+    title: 'Don’t trust this smartphone app to measure your blood pressure',
+    url: 'https://www.health.harvard.edu/heart-health/dont-trust-this-smartphone-app-to-measure-your-blood-pressure',
+    finding:
+      'Reporting on a JAMA Internal Medicine study of the Instant Blood Pressure app, which found that more than three quarters of people with high blood pressure using it were falsely reassured their blood pressure was normal. Its advice is not to use any app that measures blood pressure with the phone itself.',
+  },
+} as const;
+
 /** One disclaimer, used everywhere, so the wording cannot drift. */
 export const MEDICAL_DISCLAIMER =
   'BP Central keeps a record of readings you enter yourself. It does not measure your blood pressure and it is not medical advice. One reading at home does not diagnose anything. Only a doctor or other health professional can do that.';

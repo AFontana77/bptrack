@@ -14,6 +14,7 @@ import { APP_STORE } from '@/lib/product';
 const links = [
   { href: '/resources', label: 'Resources' },
   { href: '/validated-blood-pressure-monitors', label: 'Monitors' },
+  { href: '/blood-pressure-average-calculator', label: 'Calculator' },
   { href: '/library', label: 'Learn' },
   { href: '/checklist', label: 'Free checklist' },
 ];

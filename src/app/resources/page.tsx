@@ -99,6 +99,23 @@ const GROUPS = [
         title: 'AHA blood pressure log',
         desc: 'What the American Heart Association log format asks for, and how to keep the same record digitally.',
       },
+      {
+        href: '/blood-pressure-average-calculator',
+        title: 'Blood pressure average calculator',
+        desc: 'Turn a pile of readings into the one number a doctor asks for. Runs in your browser, and nothing you type is sent anywhere.',
+      },
+    ],
+  },
+  {
+    step: 'Keeping it up',
+    heading: 'Tracking over time',
+    blurb: 'One reading says very little. Thirty say something.',
+    links: [
+      {
+        href: '/blood-pressure-apps',
+        title: 'Blood pressure apps, honestly',
+        desc: 'Three different things get called a blood pressure app, and one of them does not work. What the AHA says about measuring without a cuff.',
+      },
     ],
   },
 ] as const;

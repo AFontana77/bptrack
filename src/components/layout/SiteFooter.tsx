@@ -17,6 +17,7 @@ const columns = [
       { href: '/resources', label: 'All resources' },
       { href: '/blood-pressure-chart', label: 'Blood pressure chart' },
       { href: '/how-to-read-blood-pressure', label: 'How to read the numbers' },
+      { href: '/blood-pressure-apps', label: 'Blood pressure apps' },
     ],
   },
   {
@@ -34,6 +35,7 @@ const columns = [
       { href: '/log-sheet', label: 'Printable log sheet' },
       { href: '/free-blood-pressure-log-pdf', label: 'Printable log PDF' },
       { href: '/aha-blood-pressure-log', label: 'AHA log format' },
+      { href: '/blood-pressure-average-calculator', label: 'Average calculator' },
       { href: '/prehypertension', label: 'Elevated readings' },
     ],
   },
