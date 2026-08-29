@@ -1,6 +1,7 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { AppStoreCta } from '@/components/AppStoreCta';
+import { PageSchema } from '@/components/PageSchema';
+import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -46,6 +47,15 @@ const FAQS = [
 export default function PrehypertensionPage() {
   return (
     <>
+      <PageSchema
+        path="/prehypertension"
+        headline="What Is Prehypertension? AHA Ranges and What to Do"
+        published="2026-04-19"
+        modified="2026-08-19"
+        breadcrumb={[{ name: 'Resources', path: '/resources' }]}
+        faqs={FAQS}
+        citeAha
+      />
       <SiteNav />
       <main id="main-content" className="pt-20">
 
@@ -138,7 +148,7 @@ export default function PrehypertensionPage() {
                 Over years, elevated pressure causes wear on the artery walls. This leads to a gradual buildup of plaque, reduced elasticity, and higher risk of heart attack and stroke. The damage accumulates silently.
               </p>
               <p>
-                The good news: elevated blood pressure is the easiest stage to reverse. At this range, lifestyle changes alone can bring readings back to normal without medication. Many people do it in a few months.
+                The good news: elevated blood pressure is the easiest stage to reverse. At this range the AHA recommends lifestyle changes first, and for many people that is enough to bring readings down without medication. It does not work for everyone, and your doctor decides. Many people do it in a few months.
               </p>
               <p style={{ color: 'oklch(0.18 0.02 20)' }} className="font-medium pt-2">
                 Act now, not later. People with elevated blood pressure are twice as likely to develop full hypertension compared to those with normal readings. The window to reverse it with lifestyle changes is open now.
@@ -203,9 +213,7 @@ export default function PrehypertensionPage() {
               </p>
             </div>
             <AppStoreCta source="/prehypertension" />
-            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
-              Free. iPhone and Android. No subscription.
-            </p>
+              <AppStoreCaption />
           </div>
         </section>
 
@@ -252,9 +260,7 @@ export default function PrehypertensionPage() {
               BP Central logs your readings daily and shows your 30-day trend. You will know within weeks if your lifestyle changes are moving your numbers in the right direction.
             </p>
             <AppStoreCta source="/prehypertension" />
-            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
-              Free download. No subscription. iPhone and Android.
-            </p>
+              <AppStoreCaption />
           </div>
         </section>
 

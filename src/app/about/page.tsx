@@ -30,7 +30,7 @@ export default function AboutPage() {
               BP Central was built because 47% of American adults have high blood pressure but most cannot show their doctor a meaningful log at their appointment. BP Central keeps every reading in one place and shows you where each one falls on the American Heart Association chart, so you have more than a feeling to go on.
             </p>
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-10 max-w-2xl">
-              The app for iPhone and Android adds trends, averages and a summary you can send. The free log sheet on this site gives you the paper version. No app required.
+              The app adds trends, averages and a summary you can send. The free log sheet on this site gives you the paper version. No app required.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/library" className="btn-primary">

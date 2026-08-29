@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Download } from 'lucide-react';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { PageSchema } from '@/components/PageSchema';
 import { AppStoreCta } from '@/components/AppStoreCta';
 import { EmailCaptureForm } from '@/components/EmailCaptureForm';
 import { PRODUCT, MEDICAL_DISCLAIMER } from '@/lib/product';
@@ -45,6 +46,13 @@ const WHATS_ON_IT = [
 export default function FreePdfPage() {
   return (
     <>
+      <PageSchema
+        path="/free-blood-pressure-log-pdf"
+        headline="Free Blood Pressure Log PDF"
+        published="2026-04-19"
+        modified="2026-08-18"
+        breadcrumb={[{ name: 'Resources', path: '/resources' }]}
+      />
       <SiteNav />
       <main id="main-content" className="pt-20">
 

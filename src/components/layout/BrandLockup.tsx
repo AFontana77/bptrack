@@ -1,15 +1,22 @@
 import Image from 'next/image';
 
 /**
- * The BP Central lockup: the app's own mark next to the wordmark.
+ * The BP Central lockup: the mark next to the name.
  *
- * The mark is derived from bplog-app/assets/images/icon.png, the icon Anthony
- * approved on 2026-05-20, so someone who installs the app sees the same heart
- * they saw on the site. Nothing new was designed here.
+ * The wordmark is LIVE TEXT, not an image, and that is deliberate. The 2026-08-29
+ * brand package ships a wordmark and a lockup PNG, and both read "BPTrack" - the
+ * app's old name. The product is "BP Central" (App Store listing: "BP Central:
+ * Blood Pressure Log"), so neither PNG can go on this site without putting the
+ * wrong product name in front of a reader. Rendering the name as text also keeps
+ * it selectable, translatable and sharp at any size.
  *
- * The source icon draws its heart as a transparent knockout, which renders
- * black on a dark background, so the web copies in /public were flattened over
- * white first. See the M0.3 handoff.
+ * The mark is /icons/icon-192.png, replaced 2026-08-29 with the package's symbol
+ * (white heart, red ECG, rounded red tile). It arrives pre-rounded with
+ * transparent corners, so no border radius is applied here.
+ *
+ * NOTE: the shipped app binary still carries the older anatomical-heart icon.
+ * Site and store will show different marks until the app icon is updated, which
+ * needs a new build. Flagged in the M1 report.
  */
 
 interface Props {
@@ -35,12 +42,7 @@ export function BrandLockup({
         width={size}
         height={size}
         priority
-        style={{
-          width: size,
-          height: size,
-          borderRadius: Math.round(size * 0.24),
-          display: 'block',
-        }}
+        style={{ width: size, height: size, display: 'block' }}
       />
       {showWordmark ? (
         <span

@@ -40,6 +40,20 @@
   /* Calm cyan accent (normal-range indicators only) */
   --accent: oklch(0.62 0.12 200);
 
+  /*
+   * Brand tint, from the 2026-08-29 brand package.
+   *
+   * The package leads on #E53935. That colour is ~3.9:1 on white, which fails
+   * WCAG AA for text, and this project mandates AA. So the package red is used
+   * as a GRAPHIC FILL only: it is the colour inside the icons and the mark,
+   * never a text or link colour. Text and buttons stay on the burgundy
+   * --primary, which passes.
+   *
+   * These two tints are the backing for icon tiles, nothing else.
+   */
+  --brand-tint: oklch(0.965 0.018 25);
+  --brand-tint-border: oklch(0.90 0.045 25);
+
   /* Status dots */
   --status-normal: oklch(0.62 0.14 150);
   --status-elevated: oklch(0.74 0.14 75);

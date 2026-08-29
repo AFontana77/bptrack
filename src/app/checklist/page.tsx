@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { PageSchema } from '@/components/PageSchema';
 import { EmailCaptureForm } from '@/components/EmailCaptureForm';
 import {
   CHECKLIST,
@@ -22,6 +23,14 @@ export const metadata: Metadata = {
 export default function ChecklistPage() {
   return (
     <>
+      <PageSchema
+        path="/checklist"
+        headline="Home Blood Pressure Checklist"
+        published="2026-08-18"
+        modified="2026-08-18"
+        breadcrumb={[{ name: 'Resources', path: '/resources' }]}
+        citeAha
+      />
       <SiteNav />
       <main id="main-content" className="pt-20">
         <section style={{ background: 'var(--background)' }}>

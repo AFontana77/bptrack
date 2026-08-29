@@ -42,6 +42,47 @@ export const APP_STORE = {
   /** Shown while `released` is false. */
   comingSoonLabel: 'Coming to the App Store',
   releasedLabel: 'Download on the App Store',
+
+  /**
+   * Where the release actually stands, re-checked 29 August 2026.
+   *
+   * iOS 1.0 was submitted to Apple on 23 August 2026 and came back the same day
+   * under Guideline 2.1, Information Needed. Apple did not name a bug and did
+   * not fault the in-app purchase. It asked for a screen recording and a device
+   * matrix, and both are outstanding. Until they are supplied the app cannot be
+   * resubmitted, so nobody can download it.
+   *
+   * Verified independently rather than taken on trust: the iTunes lookup for
+   * bundle com.anvilroad.bptrack returns nothing, Apple ID 6770084204 has no
+   * public page, and Google Play returns 404 for the same package. Android was
+   * never started.
+   *
+   * This is why every download button on the site still says "coming". Turning
+   * `released` on before those three checks pass would put a dead link and a
+   * false promise on a health site.
+   */
+  appleId: '6770084204',
+  appleState: 'Rejected under Guideline 2.1 (Information Needed). Not resubmitted.',
+  androidState: 'Not started.',
+  stateCheckedOn: '29 August 2026',
+} as const;
+
+/**
+ * Sister property.
+ *
+ * BPMonitorLab is ours. It goes deep on the hardware: model by model reviews,
+ * validation detail, error codes and cuff compatibility. This site owns the
+ * other half, which is what you do with the numbers once you have them.
+ *
+ * We link to it where it genuinely answers the question better than we can,
+ * and we say plainly that we own it. Hiding that would be the shady version of
+ * a useful thing.
+ */
+export const SIBLING = {
+  name: 'BP Monitor Lab',
+  url: 'https://www.bpmonitorlab.com',
+  owns: 'Monitor reviews, model by model, plus error codes and device detail.',
+  relationship: 'Also published by Anvil Road LLC.',
 } as const;
 
 /**
@@ -57,30 +98,52 @@ export const APP_STORE = {
  */
 export const SCREENSHOTS: { src: string; alt: string; caption: string }[] = [];
 
-/** What the app actually does. Each line is a feature you can open and use. */
+/**
+ * What the app actually does. Each line is a feature you can open and use.
+ *
+ * `icon` comes from the 2026-08-29 brand package (`09-web/icons`). Four of its
+ * ten icons are deliberately NOT used anywhere on this site:
+ *
+ *   reminders (bell)   BP Central has no reminders and no notifications. See
+ *                      NOT_INCLUDED below. A bell on this page would promise a
+ *                      feature the app does not have.
+ *   medications (pill) There is no medication tracking.
+ *   weight (scale)     There is no weight tracking.
+ *   settings (gear)    Real, but not a reason anyone downloads anything.
+ *
+ * An icon is a claim. The three rejected feature icons would each have shipped
+ * a false one straight past every text-based check, because no sentence on the
+ * page would have changed.
+ */
 export const FEATURES = [
   {
     label: 'Fast entry',
+    icon: '/brand/icons/log-bp.png',
     desc: 'Type your top number, bottom number and pulse. Add your arm, your position and a note if you want to. Then save.',
   },
   {
     label: 'Your whole history',
+    icon: '/brand/icons/history.png',
     desc: 'Every reading you save stays in one list. Search it, filter it by date, and tap any reading to see everything you recorded with it.',
   },
   {
     label: 'Trends you can tap',
+    icon: '/brand/icons/trends.png',
     desc: 'A chart of your readings over 7, 30 or 90 days, or all of them. Tap any point to see that exact reading, right down to the time of day.',
   },
   {
     label: 'Averages that update',
+    icon: '/brand/icons/dashboard.png',
     desc: 'Your 7, 30 and 90 day averages, plus your average pulse. No maths on your part.',
   },
   {
     label: 'What the numbers mean',
+    icon: '/brand/icons/notes.png',
     desc: 'Each reading is shown against the American Heart Association range chart. It tells you the range a reading falls in. It does not tell you that you have a condition.',
   },
   {
     label: 'A summary you can send',
+    icon: '/brand/icons/reports.png',
     desc: 'Pick a date range and BP Central writes a plain summary of your readings and averages. Send it to yourself or take it to an appointment using your phone share button.',
   },
 ] as const;

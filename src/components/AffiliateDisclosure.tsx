@@ -14,8 +14,20 @@ import { AMAZON_DISCLOSURE } from '@/lib/monitors';
 export function AffiliateDisclosure({
   variant = 'banner',
 }: {
-  variant?: 'banner' | 'inline';
+  variant?: 'banner' | 'inline' | 'accessory';
 }) {
+  // For a cuff or a tool. The monitor sentence would be wrong here: neither is
+  // a validated device and neither was checked against the AMA listing,
+  // because that listing does not cover them.
+  if (variant === 'accessory') {
+    return (
+      <p className="text-sm leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
+        {AMAZON_DISCLOSURE} The link below goes to Amazon. You pay the same price either way, and
+        nobody paid to be here.
+      </p>
+    );
+  }
+
   if (variant === 'inline') {
     return (
       <p className="text-sm leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>

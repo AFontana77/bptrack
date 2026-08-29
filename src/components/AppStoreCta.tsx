@@ -78,3 +78,31 @@ export function AppStoreCta({ variant = 'primary', source = 'home-hero' }: Props
     </div>
   );
 }
+
+/**
+ * The line that sits under a download button.
+ *
+ * It exists because seven pages had hand-written versions of it and every one
+ * of them was wrong. They said "Free." and "Free download." next to a CTA for
+ * an app that is free for ten readings and then costs $6.99, and they promised
+ * "iPhone and Android" for an app that is on neither store and whose Android
+ * build was never started.
+ *
+ * That is exactly the drift src/lib/product.ts was created to stop, so this
+ * reads from it instead of repeating it. Platforms are only named once there
+ * is a store listing to name them on.
+ */
+export function AppStoreCaption({ className = '' }: { className?: string }) {
+  const platforms = APP_STORE.released
+    ? APP_STORE.androidUrl
+      ? ' iPhone and Android.'
+      : ' iPhone.'
+    : '';
+
+  return (
+    <p className={`text-sm mt-6 ${className}`} style={{ color: 'var(--muted-foreground)' }}>
+      First {PRODUCT.freeReadings} readings free. Then {PRODUCT.price} {PRODUCT.priceNote}. No
+      subscription.{platforms}
+    </p>
+  );
+}

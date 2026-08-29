@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
@@ -6,6 +7,7 @@ import { EmailCaptureForm } from '@/components/EmailCaptureForm';
 import { AppStoreCta } from '@/components/AppStoreCta';
 import {
   PRODUCT,
+  APP_STORE,
   FEATURES,
   UNLOCK_INCLUDES,
   NOT_INCLUDED,
@@ -15,7 +17,7 @@ import {
 } from '@/lib/product';
 
 export const metadata: Metadata = {
-  title: 'BP Central - Blood pressure log for iPhone and Android',
+  title: 'BP Central - Blood pressure log and tracker app for your phone',
   description:
     'Save every blood pressure reading in one place. See your 7, 30 and 90 day trends, tap any point on the chart, and send a plain summary to your doctor. First 10 readings free, then $6.99 once.',
   alternates: { canonical: PRODUCT.siteUrl },
@@ -35,17 +37,36 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
+          /*
+           * The app is real and built, but it is not on a store yet, so this
+           * block must not describe something a reader can go and get.
+           *
+           * `offers` stays out while `APP_STORE.released` is false. An Offer
+           * on a SoftwareApplication is a claim that the thing can be
+           * acquired at that price. It cannot. The $6.99 is still stated in
+           * the visible copy, where it reads as "what it will cost", which is
+           * true. In schema it would read as "buy it now", which is not.
+           *
+           * `operatingSystem` names iOS only. Android was never submitted.
+           * When the listing goes live, flip `released` in product.ts and both
+           * halves of this correct themselves.
+           */
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'SoftwareApplication',
-            name: 'BP Central',
+            name: PRODUCT.name,
             applicationCategory: 'HealthApplication',
-            operatingSystem: 'iOS, Android',
+            operatingSystem: APP_STORE.released ? 'iOS, Android' : 'iOS',
             publisher: { '@type': 'Organization', name: PRODUCT.publisher },
-            offers: [
-              { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'First 10 readings free' },
-              { '@type': 'Offer', price: '6.99', priceCurrency: 'USD', description: 'One-time unlock. Not a subscription.' },
-            ],
+            ...(APP_STORE.released
+              ? {
+                  offers: [
+                    { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'First 10 readings free' },
+                    { '@type': 'Offer', price: '6.99', priceCurrency: 'USD', description: 'One-time unlock. Not a subscription.' },
+                  ],
+                  ...(APP_STORE.iosUrl ? { installUrl: APP_STORE.iosUrl } : {}),
+                }
+              : {}),
             description:
               'A blood pressure log for your phone. Save each reading, see your trends over 7, 30 and 90 days, and share a plain summary.',
             url: PRODUCT.siteUrl,
@@ -55,8 +76,33 @@ export default function HomePage() {
       <SiteNav />
       <main id="main-content" className="pt-16">
 
-        {/* Hero */}
-        <section style={{ background: 'var(--background)' }}>
+        {/*
+          Hero.
+
+          The ECG graph-paper tile from the brand package sits behind this
+          section at low opacity. It is the paper a real trace is printed on,
+          so it says "clinical" without the page having to claim anything, and
+          it costs one 512px tile.
+
+          The tile ships opaque with a cool #F6F7F9 baked in, which would show
+          as a grey block over this warm background. `multiply` drops the light
+          part out and leaves only the grid lines. It is aria-hidden and sits
+          behind the content with a z-index, so it never intercepts a click.
+        */}
+        <section className="relative isolate overflow-hidden" style={{ background: 'var(--background)' }}>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10"
+            style={{
+              backgroundImage: 'url(/brand/patterns/ecg-grid.png)',
+              backgroundSize: '420px',
+              backgroundRepeat: 'repeat',
+              mixBlendMode: 'multiply',
+              opacity: 0.28,
+              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 78%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 78%)',
+            }}
+          />
           <div className="max-w-6xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
@@ -190,19 +236,36 @@ export default function HomePage() {
               Six things, and every one of them is in the app today.
             </p>
 
+            {/*
+              The icon is decorative: alt="" and aria-hidden, because the label
+              next to it already says the same thing and a screen reader should
+              not hear it twice.
+            */}
             <div className="border-t" style={{ borderColor: 'var(--border)' }}>
               {FEATURES.map((f) => (
                 <div
                   key={f.label}
-                  className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 py-6 border-b"
+                  className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 py-6 border-b"
                   style={{ borderColor: 'var(--border)' }}
                 >
-                  <div className="md:col-span-4">
+                  <div className="md:col-span-4 flex items-center gap-4">
+                    <span
+                      aria-hidden="true"
+                      className="shrink-0 inline-flex items-center justify-center rounded-xl"
+                      style={{
+                        width: 48,
+                        height: 48,
+                        background: 'var(--brand-tint)',
+                        border: '1px solid var(--brand-tint-border)',
+                      }}
+                    >
+                      <Image src={f.icon} alt="" width={26} height={26} />
+                    </span>
                     <h3 className="font-display text-lg" style={{ color: 'var(--foreground)' }}>
                       {f.label}
                     </h3>
                   </div>
-                  <div className="md:col-span-8">
+                  <div className="md:col-span-8 flex items-center">
                     <p className="text-base leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
                       {f.desc}
                     </p>

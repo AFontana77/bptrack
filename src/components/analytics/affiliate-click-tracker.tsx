@@ -21,6 +21,7 @@ declare global {
  * Events emitted (GA4 recommended names where one applies):
  *   affiliate_click   outbound click to a known affiliate network
  *   app_store_click   outbound click to the App Store or Google Play
+ *   owned_property_click  click through to another property in the portfolio
  *   kdp_click         outbound click to an Amazon book listing
  *   sign_up           email capture form submitted (method = email_capture)
  *   generate_lead     lead / quote form submitted
@@ -69,6 +70,29 @@ const AFFILIATE_HOSTS: Array<[RegExp, string]> = [
 const APP_STORE_HOSTS: Array<[RegExp, string]> = [
   [/(^|\.)apps\.apple\.com$|(^|\.)itunes\.apple\.com$/i, "ios"],
   [/(^|\.)play\.google\.com$/i, "android"],
+];
+
+/**
+ * Properties we own.
+ *
+ * A click from one Anvil Road site to another is not leakage and it is not an
+ * affiliate click. It is internal routing, and it has to be counted as its own
+ * thing or the numbers lie in both directions: the sending site looks like it
+ * is bleeding traffic, and the receiving site looks like it found free organic
+ * demand it did not earn.
+ *
+ * Without this branch a sibling link falls through to `outbound_click`, which
+ * is the bucket for commercial intent leaving the estate unmonetized. That is
+ * the opposite of what a sibling link is.
+ *
+ * An explicit `data-owned-property` attribute wins over this list, so a new
+ * property works the moment someone links to it, without waiting for a deploy
+ * of this file.
+ */
+const OWNED_PROPERTY_HOSTS: RegExp[] = [
+  /(^|\.)anvilroad\.com$/i,
+  /(^|\.)bptrack\.app$/i,
+  /(^|\.)bpmonitorlab\.com$/i,
 ];
 
 const ASIN_RE = /\/(?:dp|gp\/product|gp\/aw\/d)\/([A-Z0-9]{10})/i;
@@ -176,6 +200,18 @@ export function AffiliateClickTracker({ measurementId: mid }: { measurementId?: 
           });
           return;
         }
+      }
+
+      // --- Another property we own ---------------------------------------
+      const declaredOwned = a.getAttribute("data-owned-property");
+      if (declaredOwned || OWNED_PROPERTY_HOSTS.some((re) => re.test(host))) {
+        send("owned_property_click", {
+          property: declaredOwned || host,
+          destination_host: host,
+          link_text: linkText,
+          placement,
+        });
+        return;
       }
 
       const network = networkFor(host);

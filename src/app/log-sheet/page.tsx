@@ -1,6 +1,7 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { AppStoreCta } from '@/components/AppStoreCta';
+import { PageSchema } from '@/components/PageSchema';
+import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -58,6 +59,13 @@ const APP_PROS = [
 export default function LogSheetPage() {
   return (
     <>
+      <PageSchema
+        path="/log-sheet"
+        headline="Free Blood Pressure Log Sheet"
+        published="2026-04-19"
+        modified="2026-08-19"
+        breadcrumb={[{ name: 'Resources', path: '/resources' }]}
+      />
       <SiteNav />
       <main id="main-content" className="pt-20">
 
@@ -76,9 +84,7 @@ export default function LogSheetPage() {
               Track every reading with the right columns. Print it out or log it on your phone with BP Central. Either way, you will have data your doctor can actually use.
             </p>
             <AppStoreCta source="/log-sheet" />
-            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
-              Free. No subscription. iPhone and Android.
-            </p>
+              <AppStoreCaption />
           </div>
         </section>
 
@@ -98,7 +104,7 @@ export default function LogSheetPage() {
             </p>
             <div>
               {[
-                { title: 'Spot patterns', body: 'High readings every morning but normal at night? That is masked hypertension. A log catches it. One clinic reading never would.' },
+                { title: 'Spot patterns', body: 'High every morning but settled by night? A log shows you that. One clinic reading never would, because it only ever catches one moment of one day.' },
                 { title: 'Doctor visits are faster', body: 'Hand your doctor 30 days of readings instead of one office number. They can adjust medication, confirm control, or rule out white coat hypertension in minutes.' },
                 { title: 'See what moves the needle', body: 'Log your notes column honestly. You will quickly see if salt, sleep, stress, or skipped medication is driving your numbers up.' },
               ].map((item, i, arr) => (
@@ -331,9 +337,7 @@ export default function LogSheetPage() {
               BP Central logs every reading on your phone, shows your 7, 30 and 90 day trends, and writes a summary you can send.
             </p>
             <AppStoreCta source="/log-sheet" />
-            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
-              Free. No subscription. iPhone and Android.
-            </p>
+              <AppStoreCaption />
           </div>
         </section>
 

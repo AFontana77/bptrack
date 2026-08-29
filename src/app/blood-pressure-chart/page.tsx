@@ -1,6 +1,7 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { AppStoreCta } from '@/components/AppStoreCta';
+import { PageSchema } from '@/components/PageSchema';
+import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -40,7 +41,7 @@ const AHA_CHART = [
     category: 'Stage 2 Hypertension',
     systolic: '140 or higher',
     diastolic: '90 or higher',
-    meaning: 'High blood pressure that almost always requires medication.',
+    meaning: 'High blood pressure that usually needs medication alongside lifestyle changes.',
     action: 'See your doctor soon. Medication plus lifestyle changes is the standard approach. Regular monitoring is essential.',
     dot: 'oklch(0.45 0.18 25)',
   },
@@ -93,6 +94,15 @@ const FAQS = [
 export default function BloodPressureChartPage() {
   return (
     <>
+      <PageSchema
+        path="/blood-pressure-chart"
+        headline="Blood Pressure Chart: AHA Ranges by Category"
+        published="2026-04-19"
+        modified="2026-08-19"
+        breadcrumb={[{ name: 'Resources', path: '/resources' }]}
+        faqs={FAQS}
+        citeAha
+      />
       <SiteNav />
       <main id="main-content" className="pt-20">
 
@@ -244,9 +254,7 @@ export default function BloodPressureChartPage() {
               BP Central logs your readings and shows the range each one falls in. Keep it up and watch the trend build over 7, 30 and 90 days.
             </p>
             <AppStoreCta source="/blood-pressure-chart" />
-            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
-              Free download. iPhone and Android. No subscription.
-            </p>
+              <AppStoreCaption />
           </div>
         </section>
 

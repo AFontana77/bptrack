@@ -1,6 +1,6 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { AppStoreCta } from '@/components/AppStoreCta';
+import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { AHA_SOURCE, AHA_AMA_HOME_SOURCE } from '@/lib/product';
@@ -443,9 +443,7 @@ export default function HowToReadBloodPressurePage() {
               BP Central logs every reading, shows the range it falls in, and builds a trend you can share with your doctor.
             </p>
             <AppStoreCta source="/how-to-read-blood-pressure" />
-            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
-              Free. No subscription. iPhone and Android.
-            </p>
+              <AppStoreCaption />
           </div>
         </section>
 

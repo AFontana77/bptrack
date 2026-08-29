@@ -2,7 +2,9 @@ import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
 import { MonitorCard } from '@/components/MonitorCard';
-import { CUFF_SIZES, MONITORS, VDL_SOURCE } from '@/lib/monitors';
+import { AccessoryCard } from '@/components/AccessoryCard';
+import { SiblingCallout } from '@/components/SiblingCallout';
+import { CUFF_SIZES, MONITORS, VDL_SOURCE, ACCESSORIES, EXTRA_LARGE_ARM } from '@/lib/monitors';
 import { MEDICAL_DISCLAIMER } from '@/lib/product';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -170,8 +172,16 @@ export default function CuffSizePage() {
             </ol>
             <p className="text-sm leading-relaxed mt-8" style={{ color: 'var(--muted-foreground)' }}>
               No tape measure? Use a strip of paper or a piece of string, mark where it meets, then
-              hold it against a ruler.
+              hold it against a ruler. That works and it costs nothing.
             </p>
+            <div className="mt-6">
+              <AffiliateDisclosure variant="accessory" />
+            </div>
+            <div className="mt-4">
+              {ACCESSORIES.filter((a) => a.kind === 'tool').map((a) => (
+                <AccessoryCard key={a.id} item={a} />
+              ))}
+            </div>
           </div>
         </section>
 
@@ -294,19 +304,41 @@ export default function CuffSizePage() {
               </p>
               <p>Two things work, in this order.</p>
               <p>
-                <strong>Add a large cuff to a validated monitor.</strong> The A&amp;D Medical
+                <strong>Add a large cuff to a validated monitor.</strong>{' '}The A&amp;D Medical
                 monitors on our list take a separate large cuff covering 12.2 to 17.7 in (31 to 45
                 cm). The monitor stays the validated one. You just fit it with a cuff that reaches
                 around your arm.
               </p>
               <p>
-                <strong>Above 17.7 in (45 cm), ask your clinic.</strong> Extra large cuffs going up
-                to about 22 in (56 cm) exist, and the AMA listing does include extra large devices.
-                We could not confirm one on Amazon where the listing reports the validated model
-                number, so we are not going to point you at a guess. Your doctor&apos;s office can
-                tell you what they use, and that is a better answer than a product link we cannot
-                stand behind.
+                <strong>Above {EXTRA_LARGE_ARM.threshold}, ask your clinic.</strong> Extra large
+                cuffs going up to about 22 in (56 cm) exist, and the AMA listing does include extra
+                large devices. {EXTRA_LARGE_ARM.brandOption} sells the{' '}
+                <span className="num">{EXTRA_LARGE_ARM.namedOption}</span> with a cuff covering{' '}
+                <span className="num">{EXTRA_LARGE_ARM.namedOptionRange}</span>. We are naming it
+                because you deserve to know it exists. We are not linking it and it is not on our
+                list, because {EXTRA_LARGE_ARM.reason}. Every monitor we do recommend cleared that
+                check. Your doctor&apos;s office can also tell you what they use, and that is a
+                better answer than a link we cannot stand behind.
               </p>
+            </div>
+
+            {/* The advice above is useless without a way to act on it. */}
+            <h3
+              style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
+              className="text-xl font-bold mt-12 mb-3"
+            >
+              The large cuffs A&amp;D makes for the monitors on our list
+            </h3>
+            <p className="leading-relaxed mb-6" style={{ color: 'var(--muted-foreground)' }}>
+              Both reach {EXTRA_LARGE_ARM.threshold}. They are made by A&amp;D, the same company
+              that makes the monitor, and A&amp;D names the compatible models itself. We do not list
+              third party cuffs sold as &ldquo;compatible with&rdquo; a brand. A cuff that reads long
+              turns a validated monitor into an unvalidated one and you would never know.
+            </p>
+            <div className="grid gap-5 sm:grid-cols-2">
+              {ACCESSORIES.filter((a) => a.kind === 'cuff' && a.range.startsWith('12.2')).map((a) => (
+                <AccessoryCard key={a.id} item={a} />
+              ))}
             </div>
             <div
               className="rounded-lg px-5 py-4 mt-8"
@@ -326,6 +358,17 @@ export default function CuffSizePage() {
                 yourself and filter by cuff size. It is free, and it is the same list we used.
               </p>
             </div>
+          </div>
+        </section>
+
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
+            <SiblingCallout
+              question="Still not sure which monitor takes the cuff you need?"
+              deepLink="/bp-monitor-cuff-sizing-guide"
+              deepLinkLabel="Read the cuff sizing guide on BP Monitor Lab"
+              placement="cuff-size-footer"
+            />
           </div>
         </section>
 

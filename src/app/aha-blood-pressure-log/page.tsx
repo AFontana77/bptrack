@@ -1,13 +1,14 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { AppStoreCta } from '@/components/AppStoreCta';
+import { PageSchema } from '@/components/PageSchema';
+import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'AHA Blood Pressure Log: Track Your Readings',
   description:
-    'The American Heart Association recommends tracking blood pressure at home. BP Central is a free digital AHA-aligned blood pressure log for iPhone and Android.',
+    'The American Heart Association recommends tracking blood pressure at home. Print our AHA-style log free, or keep the same readings in BP Central. First 10 readings free, then $6.99 once.',
   alternates: { canonical: 'https://bptrack.app/aha-blood-pressure-log' },
 };
 
@@ -75,6 +76,15 @@ const FAQS = [
 export default function AhaBloodPressureLogPage() {
   return (
     <>
+      <PageSchema
+        path="/aha-blood-pressure-log"
+        headline="AHA Blood Pressure Log: Track Your Readings"
+        published="2026-04-19"
+        modified="2026-08-19"
+        breadcrumb={[{ name: 'Resources', path: '/resources' }]}
+        faqs={FAQS}
+        citeAha
+      />
       <SiteNav />
       <main id="main-content" className="pt-20">
 
@@ -97,9 +107,7 @@ export default function AhaBloodPressureLogPage() {
                 Get the free log
               </Link>
             </div>
-            <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
-              Free. No subscription. iPhone and Android.
-            </p>
+              <AppStoreCaption />
           </div>
         </section>
 

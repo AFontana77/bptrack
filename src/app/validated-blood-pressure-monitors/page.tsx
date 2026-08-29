@@ -2,6 +2,7 @@ import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { MonitorCard } from '@/components/MonitorCard';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
+import { SiblingCallout } from '@/components/SiblingCallout';
 import { MONITORS, REJECTED, VDL_SOURCE } from '@/lib/monitors';
 import { MEDICAL_DISCLAIMER, AHA_AMA_HOME_SOURCE } from '@/lib/product';
 import Link from 'next/link';
@@ -360,6 +361,19 @@ export default function ValidatedMonitorsPage() {
             <Link href="/blood-pressure-cuff-size" className="btn-primary">
               Work out your cuff size
             </Link>
+          </div>
+        </section>
+
+        {/* Deeper hardware questions belong on the sister property, not in a
+            thinner second copy of a review it already publishes. */}
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
+            <SiblingCallout
+              question="Want a full review of one of these models before you buy?"
+              deepLink="/best-blood-pressure-monitor-for-home"
+              deepLinkLabel="Read the monitor reviews on BP Monitor Lab"
+              placement="validated-monitors-footer"
+            />
           </div>
         </section>
 

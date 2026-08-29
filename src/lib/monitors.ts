@@ -217,3 +217,123 @@ export const CUFF_SIZES = [
   { label: 'Large adult', cm: '31 to 45 cm', inches: '12.2 to 17.7 in' },
   { label: 'Extra large', cm: '43 to 56 cm', inches: '16.9 to 22.0 in' },
 ] as const;
+
+/**
+ * Accessories.
+ *
+ * A separate export from MONITORS on purpose. A cuff and a tape measure are
+ * not validated devices and must never be described as if they were. Validation
+ * belongs to a monitor model number. Nothing in this list carries one.
+ *
+ * The bar for a cuff is different from the bar for a monitor, and it is just as
+ * strict:
+ *
+ *   1. It is made by the same company that makes the monitor it goes on.
+ *   2. That company names our exact monitor model in its own compatibility
+ *      list. Not "fits most monitors". Not "compatible with Omron". The model
+ *      number, written by the maker.
+ *
+ * Anything sold as "compatible with" by a third party is out, however good the
+ * reviews are. A cuff that leaks or reads long turns a validated monitor into
+ * an unvalidated one, and the reader has no way to tell that happened.
+ *
+ * `fits` lists only the monitors WE recommend, taken from the manufacturer's
+ * own compatibility text on the listing. Checked 29 August 2026.
+ */
+export type Accessory = {
+  id: string;
+  brand: string;
+  model: string;
+  name: string;
+  asin: string;
+  kind: 'cuff' | 'tool';
+  /** What problem this solves, in one plain sentence. */
+  why: string;
+  /** Arm range the maker states, inches first. Empty for tools. */
+  range: string;
+  /** Which of OUR recommended monitors the maker names. */
+  fits: string[];
+  /** The honest limit. Every item gets one. */
+  caveat: string;
+};
+
+export const ACCESSORIES: Accessory[] = [
+  {
+    id: 'tape-myotape',
+    brand: 'MyoTape',
+    model: 'MT05',
+    name: 'MyoTape body tape measure',
+    asin: 'B000G7YW7Y',
+    kind: 'tool',
+    why: 'You cannot pick a cuff size until you have measured your arm, and measuring your own upper arm with an ordinary tape takes two hands you do not have. This one hooks to itself and locks, so you can do it alone.',
+    range: '',
+    fits: [],
+    caveat:
+      'It is a tape measure, nothing more. A strip of paper and a ruler works too, and costs nothing. Buy this only if you would rather not fiddle.',
+  },
+  {
+    id: 'cuff-ua-291a',
+    brand: 'A&D Medical',
+    model: 'UA-291A',
+    name: 'A&D Medical UA-291A large cuff',
+    asin: 'B0BLT9CM2H',
+    kind: 'cuff',
+    why: 'The large cuff for the UA-651 and the UA-651SAC. Your monitor stays the validated one. Only the cuff changes.',
+    range: '12.2 to 17.7 in (31 to 45 cm)',
+    fits: ['UA-651', 'UA-651SAC'],
+    caveat:
+      'A&D does not name the UA-767F in this cuff\u2019s compatibility list. If yours is the UA-767F, use the UA-291 below instead.',
+  },
+  {
+    id: 'cuff-ua-291',
+    brand: 'A&D Medical',
+    model: 'UA-291',
+    name: 'A&D Medical UA-291 large cuff',
+    asin: 'B018H6GEBM',
+    kind: 'cuff',
+    why: 'The large cuff A&D names for the UA-767F, the multi user monitor on our list. Same arm range as the UA-291A, different compatibility list.',
+    range: '12.2 to 17.7 in (31 to 45 cm)',
+    fits: ['UA-651', 'UA-767F'],
+    caveat:
+      'A&D does not name the UA-651SAC here. If yours is the UA-651SAC, use the UA-291A above.',
+  },
+  {
+    id: 'cuff-ua-290a',
+    brand: 'A&D Medical',
+    model: 'UA-290A',
+    name: 'A&D Medical UA-290A medium cuff',
+    asin: 'B0BLT633NC',
+    kind: 'cuff',
+    why: 'A spare or second cuff in the ordinary adult size, for a second person in the house who does not need the wide range one.',
+    range: '9.0 to 14.6 in (23 to 37 cm)',
+    fits: ['UA-651', 'UA-651SAC'],
+    caveat:
+      'Most people do not need this. The wide range cuff in the box already covers 8.6 to 16.5 in.',
+  },
+];
+
+/**
+ * Arms bigger than 17.7 in (45 cm).
+ *
+ * We have no product to sell here and we are not going to invent one. The
+ * largest cuff either maker on our list sells for a monitor we recommend stops
+ * at 17.7 in.
+ *
+ * A&D does sell the UA-789AC with a 16.5 to 23.6 in (42 to 60 cm) cuff. We are
+ * naming it because a reader with a 19 in arm deserves to know it exists. We
+ * are NOT linking it and NOT putting it on the recommended list, because we
+ * could not confirm that model number on the AMA listing ourselves. Every
+ * monitor we recommend cleared that check. This one has not, so it does not get
+ * the same treatment.
+ *
+ * If the check passes later, it can move up. Until then a missing link beats a
+ * wrong one.
+ */
+export const EXTRA_LARGE_ARM = {
+  threshold: '17.7 in (45 cm)',
+  brandOption: 'A&D',
+  namedOption: 'UA-789AC',
+  namedOptionRange: '16.5 to 23.6 in (42 to 60 cm)',
+  /** Why it is named but not linked. Reads after the word "because". */
+  reason: 'we have not checked that model number against the AMA listing ourselves',
+} as const;
