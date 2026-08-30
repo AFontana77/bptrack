@@ -7,6 +7,7 @@ import { MONITORS, REJECTED, VDL_SOURCE } from '@/lib/monitors';
 import { MEDICAL_DISCLAIMER, AHA_AMA_HOME_SOURCE } from '@/lib/product';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { NextStepStrip } from '@/components/WorkflowModule';
 
 const REVIEWED = '19 August 2026';
 const URL = 'https://bptrack.app/validated-blood-pressure-monitors';
@@ -454,6 +455,12 @@ export default function ValidatedMonitorsPage() {
             </p>
           </div>
         </section>
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
+            <NextStepStrip current="/validated-blood-pressure-monitors" />
+          </div>
+        </section>
+
       </main>
       <SiteFooter />
     </>

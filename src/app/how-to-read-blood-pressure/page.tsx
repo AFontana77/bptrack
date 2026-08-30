@@ -4,6 +4,7 @@ import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { AHA_SOURCE, AHA_AMA_HOME_SOURCE } from '@/lib/product';
+import { NextStepStrip } from '@/components/WorkflowModule';
 
 const URL = 'https://bptrack.app/how-to-read-blood-pressure';
 
@@ -444,6 +445,12 @@ export default function HowToReadBloodPressurePage() {
             </p>
             <AppStoreCta source="/how-to-read-blood-pressure" />
               <AppStoreCaption />
+          </div>
+        </section>
+
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
+            <NextStepStrip current="/how-to-read-blood-pressure" />
           </div>
         </section>
 

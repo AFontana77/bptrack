@@ -15,6 +15,7 @@ const columns = [
     links: [
       { href: '/', label: 'The app' },
       { href: '/resources', label: 'All resources' },
+      { href: '/tracking-starter-kit', label: 'Tracking starter kit' },
       { href: '/blood-pressure-chart', label: 'Blood pressure chart' },
       { href: '/how-to-read-blood-pressure', label: 'How to read the numbers' },
       { href: '/blood-pressure-apps', label: 'Blood pressure apps' },

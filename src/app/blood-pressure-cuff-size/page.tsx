@@ -8,6 +8,7 @@ import { CUFF_SIZES, MONITORS, VDL_SOURCE, ACCESSORIES, EXTRA_LARGE_ARM } from '
 import { MEDICAL_DISCLAIMER } from '@/lib/product';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { NextStepStrip } from '@/components/WorkflowModule';
 
 const REVIEWED = '19 August 2026';
 const URL = 'https://bptrack.app/blood-pressure-cuff-size';
@@ -420,6 +421,12 @@ export default function CuffSizePage() {
             </p>
           </div>
         </section>
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
+            <NextStepStrip current="/blood-pressure-cuff-size" />
+          </div>
+        </section>
+
       </main>
       <SiteFooter />
     </>

@@ -8,7 +8,8 @@ import {
   CHECKLIST_DISCLAIMER,
   checklistAsText,
 } from '@/lib/checklist';
-import { PRODUCT } from '@/lib/product';
+import { PRODUCT, SMBP_PROTOCOL } from '@/lib/product';
+import { CUFF_SIZES } from '@/lib/monitors';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -43,7 +44,7 @@ function esc(s: string): string {
   return s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
 }
 
-function checklistHtml(): string {
+function checklistHtml(extras = ''): string {
   const sections = CHECKLIST.map(
     (section) => `
       <h3 style="font-size:15px;color:#1A0E0E;margin:26px 0 10px;text-transform:uppercase;letter-spacing:0.06em">${esc(section.heading)}</h3>
@@ -65,7 +66,7 @@ function checklistHtml(): string {
           <h1 style="font-family:Georgia,serif;font-size:25px;color:#1A0E0E;margin:0 0 12px;line-height:1.25">${esc(CHECKLIST_TITLE)}</h1>
           <p style="color:#665A5A;font-size:15px;line-height:1.6;margin:0">${esc(CHECKLIST_INTRO)}</p>
         </td></tr>
-        <tr><td style="padding:0 32px">${sections}</td></tr>
+        <tr><td style="padding:0 32px">${sections}${extras}</td></tr>
         <tr><td style="padding:24px 32px 0">
           <p style="color:#665A5A;font-size:13px;line-height:1.6;margin:0 0 6px"><strong style="color:#1A0E0E">Source.</strong> ${esc(CHECKLIST_SOURCE.organization)}. ${esc(CHECKLIST_SOURCE.title)}. ${esc(CHECKLIST_SOURCE.citation)}.</p>
           <a href="${CHECKLIST_SOURCE.url}" style="color:#A20519;font-size:13px">Read the statement</a>
@@ -84,6 +85,71 @@ function checklistHtml(): string {
       </table>
     </td></tr>
   </table>`;
+}
+
+const KIT_TITLE = 'Your home blood pressure tracking starter kit';
+
+/**
+ * The starter kit email.
+ *
+ * /tracking-starter-kit promises "the kit", so this has to send a kit. Sending
+ * the bare checklist under that promise is a small lie, and small lies about
+ * what is inside an email are how a list stops being opened.
+ *
+ * It is the checklist plus the three things the kit page adds: what to record,
+ * the cuff table, and how much to bring to an appointment. All of it is also
+ * public on the site. Nothing safety-related is gated behind an address, and
+ * nothing about the reader's health is asked for or stored.
+ */
+const WHAT_TO_RECORD: [string, string][] = [
+  ['The top number', 'Systolic, the first and larger number.'],
+  ['The bottom number', 'Diastolic, the second and smaller one.'],
+  ['Your pulse', 'Whatever the monitor shows next to the two numbers.'],
+  ['The date and time', 'Readings move through the day, so the time matters.'],
+  ['Which arm', 'Use the same one every time so the readings compare.'],
+  ['Anything unusual', 'A rushed morning, a missed dose, a bad night. One word is enough.'],
+];
+
+function kitExtrasText(): string {
+  const rec = WHAT_TO_RECORD.map(([k, v]) => `  - ${k}: ${v}`).join('\n');
+  const cuffs = CUFF_SIZES.map((c) => `  - ${c.label}: ${c.inches} (${c.cm})`).join('\n');
+  return [
+    '',
+    'WHAT TO WRITE DOWN, EVERY TIME',
+    rec,
+    '',
+    'CUFF SIZES',
+    cuffs,
+    '  Measure around the middle of your bare upper arm, halfway between shoulder and elbow.',
+    '',
+    'HOW MUCH TO BRING TO AN APPOINTMENT',
+    `  ${SMBP_PROTOCOL.perSession} readings at least ${SMBP_PROTOCOL.minutesBetween} minute apart, morning and evening.`,
+    `  ${SMBP_PROTOCOL.optimalDays} days is ${SMBP_PROTOCOL.optimalReadings} readings and the fuller picture.`,
+    `  ${SMBP_PROTOCOL.minimumDays} days is ${SMBP_PROTOCOL.minimumReadings} readings and the minimum described.`,
+    '  Average all of them. If your doctor asked for a different routine, do theirs.',
+    '',
+    `Work out the average: ${PRODUCT.siteUrl}/blood-pressure-average-calculator`,
+    `Printable log:        ${PRODUCT.siteUrl}/log-sheet`,
+    `The whole kit:        ${PRODUCT.siteUrl}/tracking-starter-kit`,
+  ].join('\n');
+}
+
+function kitExtrasHtml(): string {
+  const rec = WHAT_TO_RECORD.map(
+    ([k, v]) => `<li style="margin-bottom:9px"><strong style="color:#1A0E0E">${esc(k)}.</strong> ${esc(v)}</li>`,
+  ).join('');
+  const cuffs = CUFF_SIZES.map(
+    (c) => `<tr><td style="padding:5px 12px 5px 0;color:#1A0E0E">${esc(c.label)}</td><td style="padding:5px 0;color:#665A5A" align="right">${esc(c.inches)} &middot; ${esc(c.cm)}</td></tr>`,
+  ).join('');
+  return `
+    <h3 style="font-size:15px;color:#1A0E0E;margin:30px 0 10px;text-transform:uppercase;letter-spacing:0.06em">What to write down, every time</h3>
+    <ul style="margin:0;padding-left:18px;color:#3d3333;font-size:15px;line-height:1.6">${rec}</ul>
+    <h3 style="font-size:15px;color:#1A0E0E;margin:30px 0 10px;text-transform:uppercase;letter-spacing:0.06em">Cuff sizes</h3>
+    <table role="presentation" width="100%" style="font-size:14px;border-collapse:collapse">${cuffs}</table>
+    <p style="color:#665A5A;font-size:13px;line-height:1.6;margin:10px 0 0">Measure around the middle of your bare upper arm, halfway between shoulder and elbow.</p>
+    <h3 style="font-size:15px;color:#1A0E0E;margin:30px 0 10px;text-transform:uppercase;letter-spacing:0.06em">How much to bring to an appointment</h3>
+    <p style="color:#3d3333;font-size:15px;line-height:1.6;margin:0">${SMBP_PROTOCOL.perSession} readings at least ${SMBP_PROTOCOL.minutesBetween} minute apart, morning and evening. ${SMBP_PROTOCOL.optimalDays} days is ${SMBP_PROTOCOL.optimalReadings} readings and the fuller picture; ${SMBP_PROTOCOL.minimumDays} days is ${SMBP_PROTOCOL.minimumReadings} and the minimum described. Average all of them. If your doctor asked for a different routine, do theirs.</p>
+    <p style="margin:26px 0 0"><a href="${PRODUCT.siteUrl}/blood-pressure-average-calculator" style="color:#A20519;font-weight:bold;text-decoration:underline">Work out your average</a></p>`;
 }
 
 export async function POST(req: NextRequest) {
@@ -110,6 +176,7 @@ export async function POST(req: NextRequest) {
   const source = String(data.source || 'unknown').slice(0, 120);
   const campaign = String(data.campaign || 'home-bp-checklist').slice(0, 80);
   const consentAt = new Date().toISOString();
+  const wantsKit = campaign === 'starter-kit';
 
   // An unconfigured backend must say so rather than showing a success message
   // over a form that threw the address away. That is what the old form did.
@@ -127,9 +194,14 @@ export async function POST(req: NextRequest) {
     await sendEmail({
       to: email,
       replyTo: NOTIFY_TO,
-      subject: CHECKLIST_TITLE,
-      text: `${checklistAsText()}\n\nPrintable version: ${PRODUCT.siteUrl}/checklist\n\nYou asked for this checklist at ${PRODUCT.domain}. Reply to this email to unsubscribe at any time.`,
-      html: checklistHtml(),
+      subject: wantsKit ? KIT_TITLE : CHECKLIST_TITLE,
+      text: wantsKit
+        ? `${checklistAsText()}
+${kitExtrasText()}
+
+You asked for this at ${PRODUCT.domain}. Everything above is also on the site, free. Reply to this email to unsubscribe at any time.`
+        : `${checklistAsText()}\n\nPrintable version: ${PRODUCT.siteUrl}/checklist\n\nYou asked for this checklist at ${PRODUCT.domain}. Reply to this email to unsubscribe at any time.`,
+      html: wantsKit ? checklistHtml(kitExtrasHtml()) : checklistHtml(),
     });
   } catch (err) {
     console.error('[subscribe] checklist send failed:', err);

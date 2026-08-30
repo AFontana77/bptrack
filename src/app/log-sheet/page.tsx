@@ -4,6 +4,7 @@ import { PageSchema } from '@/components/PageSchema';
 import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { NextStepStrip } from '@/components/WorkflowModule';
 
 export const metadata: Metadata = {
   title: 'Free Blood Pressure Log Sheet',
@@ -338,6 +339,12 @@ export default function LogSheetPage() {
             </p>
             <AppStoreCta source="/log-sheet" />
               <AppStoreCaption />
+          </div>
+        </section>
+
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
+            <NextStepStrip current="/log-sheet" />
           </div>
         </section>
 

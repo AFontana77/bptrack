@@ -176,6 +176,24 @@ export default function FreePdfPage() {
           </div>
         </section>
 
+        <section style={{ background: 'var(--surface)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
+            <aside className="rounded-xl px-6 py-5" style={{ background: 'var(--background)', border: '1px solid var(--border)' }}>
+              <p className="font-semibold mb-2" style={{ color: 'var(--foreground)' }}>
+                Printed it? The rest of the system is here.
+              </p>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--muted-foreground)' }}>
+                How to take a reading that counts, what to write in each column, cuff sizing, and how to
+                turn a month of numbers into the one figure to bring to your appointment. All free, all
+                on the page.
+              </p>
+              <Link href="/tracking-starter-kit" className="text-sm font-semibold underline underline-offset-4 inline-flex items-center min-h-[44px]" style={{ color: 'var(--primary)' }}>
+                The home tracking starter kit
+              </Link>
+            </aside>
+          </div>
+        </section>
+
       </main>
       <SiteFooter />
     </>

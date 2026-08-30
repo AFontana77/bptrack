@@ -26,5 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Tools + app-intent authority (M2)
     { url: `${BASE}/blood-pressure-average-calculator`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/blood-pressure-apps`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/tracking-starter-kit`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
   ];
 }

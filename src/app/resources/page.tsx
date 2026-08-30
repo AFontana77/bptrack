@@ -34,6 +34,11 @@ const GROUPS = [
     blurb: 'Buy the right thing once, instead of buying twice.',
     links: [
       {
+        href: '/tracking-starter-kit',
+        title: 'The home tracking starter kit',
+        desc: 'Everything in one place: how to take a reading that counts, what to write down, cuff sizing, and how to turn a month of numbers into one figure for your appointment.',
+      },
+      {
         href: '/validated-blood-pressure-monitors',
         title: 'Validated blood pressure monitors',
         desc: 'The four we recommend, every model number checked against the AMA listing, plus the ones we rejected and why.',

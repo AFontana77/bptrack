@@ -12,6 +12,7 @@ import {
   CHECKLIST_DISCLAIMER,
 } from '@/lib/checklist';
 import { PRODUCT } from '@/lib/product';
+import { NextStepStrip } from '@/components/WorkflowModule';
 
 export const metadata: Metadata = {
   title: 'Home Blood Pressure Checklist',
@@ -141,6 +142,12 @@ export default function ChecklistPage() {
             </div>
           </div>
         </section>
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
+            <NextStepStrip current="/checklist" />
+          </div>
+        </section>
+
       </main>
       <SiteFooter />
     </>

@@ -15,6 +15,7 @@ import {
 } from '@/lib/product';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { NextStepStrip } from '@/components/WorkflowModule';
 
 const URL = 'https://bptrack.app/blood-pressure-apps';
 const REVIEWED = '29 August 2026';
@@ -338,6 +339,12 @@ export default function BloodPressureAppsPage() {
             />
           </div>
         </section>
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
+            <NextStepStrip current="/blood-pressure-apps" />
+          </div>
+        </section>
+
       </main>
       <SiteFooter />
     </>

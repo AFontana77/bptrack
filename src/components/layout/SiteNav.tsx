@@ -12,6 +12,7 @@ import { APP_STORE } from '@/lib/product';
  */
 
 const links = [
+  { href: '/tracking-starter-kit', label: 'Starter kit' },
   { href: '/resources', label: 'Resources' },
   { href: '/validated-blood-pressure-monitors', label: 'Monitors' },
   { href: '/blood-pressure-average-calculator', label: 'Calculator' },

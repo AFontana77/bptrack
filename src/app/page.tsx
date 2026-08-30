@@ -5,6 +5,7 @@ import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { EmailCaptureForm } from '@/components/EmailCaptureForm';
 import { AppStoreCta } from '@/components/AppStoreCta';
+import { WorkflowModule } from '@/components/WorkflowModule';
 import {
   PRODUCT,
   APP_STORE,
@@ -206,6 +207,37 @@ export default function HomePage() {
               </div>
 
             </div>
+          </div>
+        </section>
+
+        {/*
+          The workflow. This is the site's actual purpose and until now a reader
+          had to infer it from a nav bar. Someone arriving from a search for
+          "cuff size chart" could not see that the page they landed on is step 2
+          of eight, or what step 3 is.
+
+          It sits directly under the hero, above the app's own feature list, on
+          purpose: the sequence is what the site is for, and the app is one step
+          inside it rather than the reason the other seven exist.
+        */}
+        <section style={{ background: 'var(--surface)' }}>
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+            <p
+              className="text-xs font-semibold uppercase tracking-[0.18em] mb-4"
+              style={{ color: 'var(--primary)' }}
+            >
+              Start anywhere
+            </p>
+            <h2
+              className="font-display text-3xl sm:text-4xl leading-tight mb-4"
+              style={{ color: 'var(--foreground)' }}
+            >
+              From a monitor in a box to a history worth showing your doctor
+            </h2>
+            <p className="text-lg mb-10 max-w-2xl" style={{ color: 'var(--muted-foreground)' }}>
+              Eight steps. Most people get stuck on one of them, so find yours and start there.
+            </p>
+            <WorkflowModule />
           </div>
         </section>
 
