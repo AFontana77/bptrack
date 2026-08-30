@@ -278,8 +278,27 @@ export function AffiliateClickTracker({ measurementId: mid }: { measurementId?: 
       const hasEmail = !!f.querySelector('input[type="email"]');
       const hasPassword = !!f.querySelector('input[type="password"]');
       if (!hasEmail || hasPassword) return; // not a capture form / is a login
-      const fieldCount = f.querySelectorAll("input:not([type=hidden]),select,textarea").length;
-      send(fieldCount > 2 ? "generate_lead" : "sign_up", {
+      /*
+       * Honeypots must not count as fields.
+       *
+       * A decoy input is positioned off-screen rather than given
+       * type="hidden", because a bot that skips hidden inputs also skips the
+       * trap. It carries aria-hidden and tabindex="-1" so no human or screen
+       * reader ever reaches it.
+       *
+       * The old selector counted it anyway, so an email form with one address
+       * field, one consent box and one decoy scored 3 and every signup on the
+       * estate was reported as `generate_lead` instead of `sign_up`. Found on
+       * bptrack.app 2026-08-30: GA4 held 5 generate_lead and 0 sign_up, from a
+       * form that only ever collected an email address.
+       */
+      const realFields = Array.from(
+        f.querySelectorAll("input:not([type=hidden]),select,textarea"),
+      ).filter(
+        (el) =>
+          el.getAttribute("aria-hidden") !== "true" && el.getAttribute("tabindex") !== "-1",
+      );
+      send(realFields.length > 2 ? "generate_lead" : "sign_up", {
         method: "email_capture",
         form_id: f.id || f.getAttribute("name") || "UNKNOWN",
       });
