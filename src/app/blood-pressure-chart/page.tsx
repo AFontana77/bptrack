@@ -4,6 +4,7 @@ import { PageSchema } from '@/components/PageSchema';
 import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ChartDepthSections } from '@/components/chart/ChartDepthSections';
 
 export const metadata: Metadata = {
   title: 'Blood Pressure Chart: AHA Ranges by Category',
@@ -210,6 +211,8 @@ export default function BloodPressureChartPage() {
             </div>
           </div>
         </section>
+
+        <ChartDepthSections />
 
         {/* FAQ */}
         <section style={{ background: 'oklch(0.96 0.008 20)' }}>

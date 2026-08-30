@@ -175,12 +175,47 @@ export const NOT_INCLUDED = [
  * last reviewed 14 August 2025.
  */
 export const BP_CATEGORIES = [
-  { label: 'Normal', range: 'Under 120 / under 80', tone: 'normal' },
-  { label: 'Elevated', range: '120 to 129 / under 80', tone: 'elevated' },
-  { label: 'High, stage 1', range: '130 to 139 / 80 to 89', tone: 'stage1' },
-  { label: 'High, stage 2', range: '140 or higher / 90 or higher', tone: 'stage2' },
-  { label: 'Crisis range', range: 'Over 180 and/or over 120', tone: 'crisis' },
+  { label: 'Normal', range: 'Under 120 / under 80', tone: 'normal',
+    sysMin: 0, sysMax: 119, diaMin: 0, diaMax: 79, join: 'and' },
+  { label: 'Elevated', range: '120 to 129 / under 80', tone: 'elevated',
+    sysMin: 120, sysMax: 129, diaMin: 0, diaMax: 79, join: 'and' },
+  { label: 'High, stage 1', range: '130 to 139 / 80 to 89', tone: 'stage1',
+    sysMin: 130, sysMax: 139, diaMin: 80, diaMax: 89, join: 'or' },
+  { label: 'High, stage 2', range: '140 or higher / 90 or higher', tone: 'stage2',
+    sysMin: 140, sysMax: 180, diaMin: 90, diaMax: 120, join: 'or' },
+  { label: 'Crisis range', range: 'Over 180 and/or over 120', tone: 'crisis',
+    sysMin: 181, sysMax: 220, diaMin: 121, diaMax: 140, join: 'or' },
 ] as const;
+
+/**
+ * Classify a reading against BP_CATEGORIES.
+ *
+ * ONE implementation, used by the calculator and by anything else that needs
+ * it. Before this, the calculator carried its own copy of the thresholds as
+ * hard-coded numbers while BP_CATEGORIES held only display strings, so the
+ * site had two sources for one fact and nothing kept them in step.
+ *
+ * The `join` field is the whole point and it is not decoration. Normal and
+ * Elevated require BOTH numbers to be in range. Stage 1, Stage 2 and Crisis
+ * need only ONE. That asymmetry is what produces the answer people actually
+ * search for: 140 over 70 is stage 2, because the systolic alone puts it
+ * there. The higher category wins, and it wins because of the OR, not because
+ * of a separate rule someone invented.
+ *
+ * Evaluated from the top of the scale down, so the highest matching category
+ * is returned.
+ */
+export function classifyBp(sys: number, dia: number): (typeof BP_CATEGORIES)[number] {
+  for (let i = BP_CATEGORIES.length - 1; i >= 0; i--) {
+    const c = BP_CATEGORIES[i];
+    if (c.join === 'or') {
+      if (sys >= c.sysMin || dia >= c.diaMin) return c;
+    } else {
+      if (sys >= c.sysMin && sys <= c.sysMax && dia <= c.diaMax) return c;
+    }
+  }
+  return BP_CATEGORIES[0];
+}
 
 export const AHA_SOURCE = {
   organization: 'American Heart Association',

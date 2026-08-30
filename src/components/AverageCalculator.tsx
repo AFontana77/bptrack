@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { BP_CATEGORIES, SMBP_PROTOCOL, AHA_SOURCE } from '@/lib/product';
+import { BP_CATEGORIES, SMBP_PROTOCOL, AHA_SOURCE, classifyBp } from '@/lib/product';
 
 /**
  * The blood pressure average calculator.
@@ -37,16 +37,11 @@ type Row = { sys: string; dia: string };
 const BLANK: Row = { sys: '', dia: '' };
 const START_ROWS = 4;
 
-/** AHA categories, in the order a reading escalates. Source: BP_CATEGORIES. */
-function categoryFor(sys: number, dia: number): { label: string; tone: string } {
-  // Crisis is checked first because it is defined by EITHER number, and it
-  // outranks everything below it.
-  if (sys > 180 || dia > 120) return { label: 'Crisis range', tone: 'crisis' };
-  if (sys >= 140 || dia >= 90) return { label: 'High, stage 2', tone: 'stage2' };
-  if (sys >= 130 || dia >= 80) return { label: 'High, stage 1', tone: 'stage1' };
-  if (sys >= 120) return { label: 'Elevated', tone: 'elevated' };
-  return { label: 'Normal', tone: 'normal' };
-}
+/*
+ * Classification comes from classifyBp() in product.ts, not from a copy kept
+ * here. This component used to carry its own hard-coded thresholds, which meant
+ * the site had two sources for one clinical fact and nothing kept them in step.
+ */
 
 const TONE_COLOR: Record<string, string> = {
   normal: 'var(--status-normal)',
@@ -146,7 +141,7 @@ export function AverageCalculator() {
   }, [parsed.count]);
 
   const done = parsed.count > 0;
-  const cat = done ? categoryFor(parsed.avgSys, parsed.avgDia) : null;
+  const cat = done ? classifyBp(parsed.avgSys, parsed.avgDia) : null;
 
   const enough =
     parsed.count >= SMBP_PROTOCOL.optimalReadings

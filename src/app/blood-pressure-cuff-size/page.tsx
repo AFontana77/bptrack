@@ -9,6 +9,7 @@ import { MEDICAL_DISCLAIMER } from '@/lib/product';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { NextStepStrip } from '@/components/WorkflowModule';
+import { CuffSizeHelper } from '@/components/CuffSizeHelper';
 
 const REVIEWED = '19 August 2026';
 const URL = 'https://bptrack.app/blood-pressure-cuff-size';
@@ -178,6 +179,10 @@ export default function CuffSizePage() {
             <div className="mt-6">
               <AffiliateDisclosure variant="accessory" />
             </div>
+            <div className="mt-8">
+              <CuffSizeHelper />
+            </div>
+
             <div className="mt-4">
               {ACCESSORIES.filter((a) => a.kind === 'tool').map((a) => (
                 <AccessoryCard key={a.id} item={a} />

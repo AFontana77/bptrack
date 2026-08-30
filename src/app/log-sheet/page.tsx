@@ -5,6 +5,7 @@ import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { NextStepStrip } from '@/components/WorkflowModule';
+import { LogDepthSections } from '@/components/log/LogDepthSections';
 
 export const metadata: Metadata = {
   title: 'Free Blood Pressure Log Sheet',
@@ -341,6 +342,8 @@ export default function LogSheetPage() {
               <AppStoreCaption />
           </div>
         </section>
+
+        <LogDepthSections />
 
         <section style={{ background: 'var(--background)' }}>
           <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-16">
