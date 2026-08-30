@@ -57,6 +57,23 @@ DISCLAIM = ("This sheet organises readings you took yourself. It does not interp
             "medical advice, and it does not diagnose anything.")
 
 
+def set_lang(c):
+    """Declare the document language so a screen reader is not left guessing.
+
+    reportlab 5.0 has no canvas.setLang(), so this goes straight onto the
+    document catalogue. It MUST be wrapped in PDFString: assigning a bare
+    Python str serialises as `/Lang en-US`, where `en-US` is not a valid PDF
+    object at all. Lenient viewers recover from that and render the file
+    normally, which is exactly why it survived a visual check - but a strict
+    parser rejects the whole document.
+    """
+    try:
+        from reportlab.pdfbase.pdfdoc import PDFString
+        c._doc.Catalog.Lang = PDFString("en-US")
+    except Exception:
+        pass
+
+
 def line_field(c, x, y, w, label, hint=""):
     """A labelled rule to write on."""
     c.setFillColorRGB(*GREY)
@@ -98,6 +115,7 @@ def main():
     c.setTitle("BP Central - Blood Pressure Summary for an Appointment")
     c.setAuthor("Anvil Road LLC")
     c.setSubject("One-page summary sheet for taking home blood pressure readings to an appointment")
+    set_lang(c)
 
     left, right = M, W - M
     full = right - left

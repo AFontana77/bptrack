@@ -108,6 +108,23 @@ def footer(c, y, cta):
     c.drawString(M, y - 3 * 9 - 3, cta)
 
 
+def set_lang(c):
+    """Declare the document language so a screen reader is not left guessing.
+
+    reportlab 5.0 has no canvas.setLang(), so this goes straight onto the
+    document catalogue. It MUST be wrapped in PDFString: assigning a bare
+    Python str serialises as `/Lang en-US`, where `en-US` is not a valid PDF
+    object at all. Lenient viewers recover from that and render the file
+    normally, which is exactly why it survived a visual check - but a strict
+    parser rejects the whole document.
+    """
+    try:
+        from reportlab.pdfbase.pdfdoc import PDFString
+        c._doc.Catalog.Lang = PDFString("en-US")
+    except Exception:
+        pass
+
+
 def page_protocol(c):
     """7 days x 4 readings. The routine the rest of the site teaches."""
     y = header(c, "7-Day Blood Pressure Record",
@@ -206,13 +223,7 @@ def main():
     c.setTitle("BP Central - Blood Pressure Log")
     c.setAuthor("Anvil Road LLC")
     c.setSubject("Printable blood pressure log and 7-day record sheet")
-    # Document language, so a screen reader in a PDF viewer is not left
-    # guessing. reportlab exposes this on the doc catalogue rather than the
-    # canvas; c.setLang() does not exist in 5.0.
-    try:
-        c._doc.Catalog.Lang = "en-US"
-    except Exception:
-        pass
+    set_lang(c)
     page_protocol(c)
     c.showPage()
     page_freeform(c)
