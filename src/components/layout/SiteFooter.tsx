@@ -26,6 +26,7 @@ const columns = [
     links: [
       { href: '/validated-blood-pressure-monitors', label: 'Validated monitors' },
       { href: '/blood-pressure-cuff-size', label: 'Cuff size chart' },
+      { href: '/extra-large-blood-pressure-cuff', label: 'Extra large cuffs' },
       { href: '/checklist', label: 'Measurement checklist' },
       { href: '/library', label: 'Learn' },
     ],

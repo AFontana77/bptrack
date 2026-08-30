@@ -248,6 +248,39 @@ export const CUFFLESS_SOURCES = {
   },
 } as const;
 
+/**
+ * What using the wrong cuff size actually costs, in mmHg.
+ *
+ * This is the single most useful number this site can give somebody with a
+ * large arm, and it is far bigger than most people expect: a regular cuff on
+ * an arm that needs an extra-large one overstates systolic by 19.5 mmHg. That
+ * is the width of two whole AHA categories. Somebody genuinely in the normal
+ * range can be told they have stage 2 hypertension by nothing but a cuff.
+ *
+ * Randomised crossover trial, so the same people were measured both ways. That
+ * matters: it rules out the obvious confounder that people with bigger arms
+ * might simply have higher blood pressure.
+ *
+ * Direction is not symmetric and the copy must not imply it is. A cuff that is
+ * too small reads HIGH. A cuff that is too big reads LOW, and by much less.
+ */
+export const CUFF_SIZE_ERROR = {
+  source: {
+    authors: 'Ishigami J, Charleston J, Miller ER III, et al.',
+    title: 'Effects of Cuff Size on the Accuracy of Blood Pressure Readings: The Cuff(SZ) Randomized Crossover Trial',
+    journal: 'JAMA Internal Medicine',
+    year: '2023',
+    participants: 195,
+    url: 'https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2807853',
+  },
+  /** Mean systolic difference when a REGULAR cuff was used instead of the right one. */
+  findings: [
+    { needed: 'Extra-large cuff', mmHg: '+19.5', ci: '16.1 to 22.9', direction: 'too high' },
+    { needed: 'Large cuff', mmHg: '+4.8', ci: '3.0 to 6.6', direction: 'too high' },
+    { needed: 'Small cuff', mmHg: '−3.6', ci: '−5.6 to −1.7', direction: 'too low' },
+  ],
+} as const;
+
 /** One disclaimer, used everywhere, so the wording cannot drift. */
 export const MEDICAL_DISCLAIMER =
   'BP Central keeps a record of readings you enter yourself. It does not measure your blood pressure and it is not medical advice. One reading at home does not diagnose anything. Only a doctor or other health professional can do that.';

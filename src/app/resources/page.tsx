@@ -44,6 +44,11 @@ const GROUPS = [
         desc: 'The four we recommend, every model number checked against the AMA listing, plus the ones we rejected and why.',
       },
       {
+        href: '/extra-large-blood-pressure-cuff',
+        title: 'Extra large cuffs and big arms',
+        desc: 'A regular cuff on an arm that needs an extra large one reads 19.5 mmHg too high. What to measure, and what to buy when the cuff in the box does not reach.',
+      },
+      {
         href: '/blood-pressure-cuff-size',
         title: 'Blood pressure cuff size chart',
         desc: 'Measure your arm, match it to the chart. The wrong cuff size changes your reading more than the wrong monitor does.',

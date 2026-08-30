@@ -16,6 +16,7 @@ import {
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { NextStepStrip } from '@/components/WorkflowModule';
+import { AppDepthSections } from '@/components/apps/AppDepthSections';
 
 const URL = 'https://bptrack.app/blood-pressure-apps';
 const REVIEWED = '29 August 2026';
@@ -210,6 +211,8 @@ export default function BloodPressureAppsPage() {
             </div>
           </div>
         </section>
+
+        <AppDepthSections />
 
         {/* The commercial turn, and it is the honest one: the conclusion of this
             page is that you need a cuff, so a cuff is the right thing to offer. */}

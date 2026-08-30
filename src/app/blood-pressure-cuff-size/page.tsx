@@ -311,15 +311,19 @@ export default function CuffSizePage() {
                 around your arm.
               </p>
               <p>
-                <strong>Above {EXTRA_LARGE_ARM.threshold}, ask your clinic.</strong> Extra large
-                cuffs going up to about 22 in (56 cm) exist, and the AMA listing does include extra
-                large devices. {EXTRA_LARGE_ARM.brandOption} sells the{' '}
-                <span className="num">{EXTRA_LARGE_ARM.namedOption}</span> with a cuff covering{' '}
-                <span className="num">{EXTRA_LARGE_ARM.namedOptionRange}</span>. We are naming it
-                because you deserve to know it exists. We are not linking it and it is not on our
-                list, because {EXTRA_LARGE_ARM.reason}. Every monitor we do recommend cleared that
-                check. Your doctor&apos;s office can also tell you what they use, and that is a
-                better answer than a link we cannot stand behind.
+                <strong>Above {EXTRA_LARGE_ARM.threshold}, it gets harder.</strong> Extra large
+                cuffs going up to about 22 in (56 cm) exist, and there is a specific model worth
+                knowing about, but no monitor has cleared our check at that size yet. We wrote the
+                whole thing up, including how much a too-small cuff actually costs you in mmHg.
+              </p>
+              <p>
+                <Link
+                  href="/extra-large-blood-pressure-cuff"
+                  className="font-semibold underline underline-offset-4 inline-flex items-center min-h-[44px]"
+                  style={{ color: 'var(--primary)' }}
+                >
+                  Extra large cuffs and big arms
+                </Link>
               </p>
             </div>
 

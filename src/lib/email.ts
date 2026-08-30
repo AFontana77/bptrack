@@ -12,6 +12,8 @@
 
 export interface SendArgs {
   to: string;
+  /** Address the List-Unsubscribe header points at. Defaults to LEAD_NOTIFY_TO. */
+  unsubscribeTo?: string;
   subject: string;
   html: string;
   text: string;
@@ -36,6 +38,27 @@ export async function sendEmail(args: SendArgs): Promise<void> {
     text: args.text,
   };
   if (args.replyTo) body.reply_to = args.replyTo;
+
+  /*
+   * List-Unsubscribe, so the person gets the native "Unsubscribe" control that
+   * Gmail and Apple Mail render next to the sender name.
+   *
+   * Why this matters here: Resend manages unsubscribe state for BROADCASTS,
+   * and these are transactional sends, so without this header the only way out
+   * of the list is to read the footer and reply. That is a real path and a
+   * human honours it, but it is not the one-tap control people expect and its
+   * absence is the kind of thing that gets mail marked as spam rather than
+   * unsubscribed from.
+   *
+   * mailto rather than a URL on purpose: a one-click HTTP unsubscribe endpoint
+   * that anything can GET is a way to get people removed from a list they
+   * wanted, and we do not have a signed-token endpoint to do it safely yet.
+   * RFC 8058 one-click is the upgrade when that exists.
+   */
+  const unsubTo = args.unsubscribeTo || process.env.LEAD_NOTIFY_TO || 'anthony@anvilroad.com';
+  body.headers = {
+    'List-Unsubscribe': `<mailto:${unsubTo}?subject=unsubscribe>`,
+  };
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',

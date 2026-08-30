@@ -10,6 +10,7 @@ import { MEDICAL_DISCLAIMER, SMBP_PROTOCOL, AHA_AMA_HOME_SOURCE, PRODUCT } from 
 import { CHECKLIST } from '@/lib/checklist';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { AppointmentPrep } from '@/components/AppointmentPrep';
 
 const URL = 'https://bptrack.app/tracking-starter-kit';
 const REVIEWED = '30 August 2026';
@@ -285,6 +286,8 @@ export default function StarterKitPage() {
             </p>
           </div>
         </section>
+
+        <AppointmentPrep />
 
         {/* Email: a convenience, offered after everything has already been given away. */}
         <section style={{ background: 'var(--surface)' }}>
