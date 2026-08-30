@@ -1,0 +1,22 @@
+# Binary assets git must never line-ending-normalise.
+#
+# reportlab's PDF output contains few NUL bytes near the top of the file, so
+# git's text/binary heuristic misread bp-central-blood-pressure-log.pdf as
+# text and rewrote LF to CRLF on checkout: 7112 bytes stored, 7211 bytes on
+# disk, 99 injected bytes. Viewers are lenient enough to still open it, which
+# is exactly what makes the failure easy to miss - every byte offset in the
+# xref table is silently wrong.
+#
+# PNGs were never affected because they carry NUL bytes early. Declaring the
+# whole family is cheaper than waiting to find out which format trips the
+# heuristic next.
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary

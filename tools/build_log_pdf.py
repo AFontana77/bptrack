@@ -197,7 +197,12 @@ def page_freeform(c):
 
 
 def main():
-    c = canvas.Canvas(str(OUT), pagesize=LETTER)
+    # invariant=1 fixes the creation timestamp and document id, so re-running
+    # this script produces a byte-identical file. Without it reportlab stamps
+    # "now" and every regeneration is a spurious binary diff, which trains
+    # people to stop reading changes to it. It must be set here, at
+    # construction; setting it on the doc afterwards is too late.
+    c = canvas.Canvas(str(OUT), pagesize=LETTER, invariant=1)
     c.setTitle("BP Central - Blood Pressure Log")
     c.setAuthor("Anvil Road LLC")
     c.setSubject("Printable blood pressure log and 7-day record sheet")
