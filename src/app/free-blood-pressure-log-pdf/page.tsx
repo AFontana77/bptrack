@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Download } from 'lucide-react';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
@@ -10,9 +11,9 @@ import { PRODUCT, MEDICAL_DISCLAIMER } from '@/lib/product';
 import { CHECKLIST_SOURCE } from '@/lib/checklist';
 
 export const metadata: Metadata = {
-  title: 'Free Blood Pressure Log PDF',
+  title: 'Printable Blood Pressure Chart and Log PDF, Free',
   description:
-    'A free printable blood pressure log PDF. Columns for date, time, arm, systolic, diastolic, pulse and notes, plus the AHA preparation steps. Print it, or keep the same log on your phone.',
+    'A free printable blood pressure chart to write your readings on. Two sheets: a 7-day record laid out to the AHA and AMA routine, and a blank log for a routine of your own. Columns for date, time, arm, systolic, diastolic, pulse and notes. No email needed.',
   alternates: { canonical: `${PRODUCT.siteUrl}/free-blood-pressure-log-pdf` },
 };
 
@@ -36,11 +37,41 @@ export const metadata: Metadata = {
 
 const PDF_PATH = '/bp-central-blood-pressure-log.pdf';
 
+const FAQS = [
+  {
+    q: 'Is there a free printable blood pressure chart?',
+    a: 'Yes. This one is free, needs no email address and no account, and downloads as a PDF with two sheets: a seven day record laid out to the AHA and AMA routine, and a blank log for a schedule of your own.',
+  },
+  {
+    q: 'What should a blood pressure log include?',
+    a: 'The top number, the bottom number, your pulse, the date and the time, and a short note about anything unusual such as a rushed morning or a missed dose. Recording which arm you used matters too, because you should use the same one every time for the readings to compare.',
+  },
+  {
+    q: 'How many days should I record before an appointment?',
+    a: 'The joint statement from the American Heart Association and the American Medical Association describes two readings at least a minute apart, morning and evening, for seven days. That is 28 readings. Three days, or 12 readings, is the minimum they describe. If your doctor gave you a routine, follow theirs.',
+  },
+  {
+    q: 'Is a paper blood pressure log good enough?',
+    a: 'For many people, yes. Most clinics hand out a paper chart for exactly this and it is what they ask to see. Paper struggles later, when you want an average across a month or you cannot find last week’s sheet.',
+  },
+  {
+    q: 'What is the difference between a blood pressure chart and a blood pressure log?',
+    a: 'People use both words for both things. A log or record sheet is blank and you write your readings on it, which is what this page gives you. A range chart shows what the numbers mean, from normal through to the crisis range, and lives on our blood pressure chart page.',
+  },
+  {
+    q: 'Do I have to print it, or can I track on my phone?',
+    a: 'Either. The printable is free and always will be. BP Central keeps the same log on a phone and works out the averages for you, which is the part paper is worst at.',
+  },
+];
+
+
 const WHATS_ON_IT = [
-  'Columns for date, time, arm, systolic, diastolic, pulse and a note.',
-  '24 rows, which is about a week of morning and evening readings.',
-  'The preparation steps printed at the top, so you do not have to remember them.',
-  'No category chart, on purpose. A log is for writing down numbers, not for grading them.',
+  'Sheet one is a 7-day record: two readings each morning and each evening, which is 28 in total.',
+  'Sheet two is blank, for a routine of your own or for a schedule your doctor gave you.',
+  'Columns for the top number, the bottom number, your pulse and a note about anything unusual.',
+  'The preparation steps printed at the top, so the sheet reminds you before you press the button.',
+  'A box at the end of the week for your two averages, which is the figure worth taking to an appointment.',
+  'Black and white throughout. It costs nothing to print and it still reads on a mono printer.',
 ];
 
 export default function FreePdfPage() {
@@ -48,10 +79,12 @@ export default function FreePdfPage() {
     <>
       <PageSchema
         path="/free-blood-pressure-log-pdf"
-        headline="Free Blood Pressure Log PDF"
+        headline="Printable Blood Pressure Chart and Log PDF"
         published="2026-04-19"
-        modified="2026-08-18"
+        modified="2026-08-30"
         breadcrumb={[{ name: 'Resources', path: '/resources' }]}
+        faqs={FAQS}
+        citeAha
       />
       <SiteNav />
       <main id="main-content" className="pt-20">
@@ -68,17 +101,17 @@ export default function FreePdfPage() {
               className="font-display text-4xl sm:text-5xl leading-[1.08] mb-6"
               style={{ color: 'var(--foreground)' }}
             >
-              Free blood pressure log PDF.
+              Printable blood pressure chart.
             </h1>
             <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: 'var(--muted-foreground)' }}>
-              One page. Print it, stick it on the fridge, and write your readings down as you take
-              them. No email needed and nothing to sign up for.
+              Two sheets in one PDF. Print them, stick them on the fridge, and write your readings
+              down as you take them. No email needed and nothing to sign up for.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
               <a href={PDF_PATH} download className="btn-primary">
                 <Download size={18} />
-                Download the log PDF
+                Download the PDF, both sheets
               </a>
               <Link href="/checklist" className="btn-ghost">
                 Read the measurement checklist
@@ -112,6 +145,89 @@ export default function FreePdfPage() {
                 {CHECKLIST_SOURCE.title}
               </a>
               . {CHECKLIST_SOURCE.citation}.
+            </p>
+          </div>
+        </section>
+
+        {/* Previews. The SERP for this term carries an image pack at position 1,
+            and a reader deciding whether to spend paper on a download deserves
+            to see it first either way. */}
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 py-16">
+            <h2 className="font-display text-3xl mb-3" style={{ color: 'var(--foreground)' }}>
+              Two sheets, one download
+            </h2>
+            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: 'var(--muted-foreground)' }}>
+              Use whichever fits. Most people want the first one.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-8">
+              {[
+                {
+                  src: '/brand/previews/log-7day.png',
+                  alt: 'Page one of the printable: a seven day blood pressure record with two morning and two evening rows for each day, and columns for the top number, bottom number, pulse and notes.',
+                  h: 'Sheet one, the 7-day record',
+                  d: 'Laid out to the routine the American Heart Association and American Medical Association describe: two readings a minute apart, morning and evening, for seven days. That is 28 readings, the fuller picture they name.',
+                },
+                {
+                  src: '/brand/previews/log-freeform.png',
+                  alt: 'Page two of the printable: a blank blood pressure log with columns for date, time, arm, top number, bottom number, and pulse or notes.',
+                  h: 'Sheet two, blank',
+                  d: 'Rows and columns, no schedule. If your doctor asked for something different, use this one and do theirs.',
+                },
+              ].map((x) => (
+                <figure key={x.src} className="m-0">
+                  <Image
+                    src={x.src}
+                    alt={x.alt}
+                    width={900}
+                    height={1165}
+                    className="rounded-lg w-full h-auto"
+                    style={{ border: '1px solid var(--border)' }}
+                  />
+                  <figcaption className="mt-4">
+                    <span className="font-semibold block mb-1" style={{ color: 'var(--foreground)' }}>{x.h}</span>
+                    <span className="text-sm leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>{x.d}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Disambiguation. "Blood pressure chart" means two different things and
+            the search results mix them. Saying so here keeps this page and
+            /blood-pressure-chart out of each other's way, and it is the honest
+            answer for the reader who wanted the other one. */}
+        <section style={{ background: 'var(--surface)' }}>
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 py-16">
+            <h2 className="font-display text-3xl mb-4" style={{ color: 'var(--foreground)' }}>
+              Wanted the other kind of chart?
+            </h2>
+            <p className="text-lg leading-relaxed mb-6 max-w-2xl" style={{ color: 'var(--muted-foreground)' }}>
+              People search for a &ldquo;blood pressure chart&rdquo; meaning one of two different
+              things, and it is worth being clear about which one you have landed on.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div className="rounded-xl px-6 py-5" style={{ background: 'var(--background)', border: '1px solid var(--border)' }}>
+                <p className="font-semibold mb-2" style={{ color: 'var(--foreground)' }}>A sheet to write on</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
+                  That is this page. Blank rows, you fill them in.
+                </p>
+              </div>
+              <div className="rounded-xl px-6 py-5" style={{ background: 'var(--background)', border: '1px solid var(--border)' }}>
+                <p className="font-semibold mb-2" style={{ color: 'var(--foreground)' }}>A chart of what the numbers mean</p>
+                <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--muted-foreground)' }}>
+                  The American Heart Association ranges, from normal through to the crisis range.
+                </p>
+                <Link href="/blood-pressure-chart" className="text-sm font-semibold underline underline-offset-4 inline-flex items-center min-h-[44px]" style={{ color: 'var(--primary)' }}>
+                  The blood pressure range chart
+                </Link>
+              </div>
+            </div>
+            <p className="text-sm leading-relaxed mt-6" style={{ color: 'var(--muted-foreground)' }}>
+              The ranges are deliberately not printed on the log sheet. A category table next to a
+              row of blank boxes invites people to diagnose themselves at the kitchen table, and
+              that is not what a record sheet is for.
             </p>
           </div>
         </section>
@@ -159,16 +275,29 @@ export default function FreePdfPage() {
             <div className="grid lg:grid-cols-12 gap-10 items-start">
               <div className="lg:col-span-6">
                 <h2 className="font-display text-2xl mb-3" style={{ color: 'var(--foreground)' }}>
-                  Want the checklist too?
+                  Want the whole system?
                 </h2>
                 <p className="text-base leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
-                  We will email you the one page checklist for taking a reading properly at home.
-                  Every step comes from the American Heart Association.
+                  You already have the printable. We will email you the rest of the starter kit:
+                  how to take a reading that counts, what to write in each column, cuff sizing, and
+                  how to turn a month of numbers into one figure. Every step comes from the
+                  American Heart Association.
                 </p>
               </div>
               <div className="lg:col-span-6 w-full">
-                <EmailCaptureForm source="/free-blood-pressure-log-pdf" />
+                <EmailCaptureForm source="/free-blood-pressure-log-pdf" campaign="starter-kit" buttonLabel="Send me the kit" />
               </div>
+            </div>
+            <div className="mt-16 border-t pt-12" style={{ borderColor: 'var(--border)' }}>
+              <h2 className="font-display text-3xl mb-8" style={{ color: 'var(--foreground)' }}>
+                Common questions
+              </h2>
+              {FAQS.map((f) => (
+                <div key={f.q} className="py-5 border-b" style={{ borderColor: 'var(--border)' }}>
+                  <h3 className="font-display text-lg mb-2" style={{ color: 'var(--foreground)' }}>{f.q}</h3>
+                  <p className="leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>{f.a}</p>
+                </div>
+              ))}
             </div>
             <p className="text-xs leading-relaxed mt-12" style={{ color: 'var(--muted-foreground)' }}>
               {MEDICAL_DISCLAIMER}
