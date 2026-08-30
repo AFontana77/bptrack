@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { AHA_SOURCE, AHA_AMA_HOME_SOURCE } from '@/lib/product';
 import { NextStepStrip } from '@/components/WorkflowModule';
+import { ReadingDepthSections } from '@/components/reading/ReadingDepthSections';
 
 const URL = 'https://bptrack.app/how-to-read-blood-pressure';
 
@@ -453,6 +454,8 @@ export default function HowToReadBloodPressurePage() {
             <NextStepStrip current="/how-to-read-blood-pressure" />
           </div>
         </section>
+
+        <ReadingDepthSections />
 
       </main>
       <SiteFooter />

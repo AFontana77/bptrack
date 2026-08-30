@@ -4,6 +4,7 @@ import { PageSchema } from '@/components/PageSchema';
 import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { PrehypertensionDepth } from '@/components/reading/PrehypertensionDepth';
 
 export const metadata: Metadata = {
   title: 'What Is Prehypertension? AHA Ranges + What to Do',
@@ -216,6 +217,8 @@ export default function PrehypertensionPage() {
               <AppStoreCaption />
           </div>
         </section>
+
+        <PrehypertensionDepth />
 
         {/* FAQ */}
         <section style={{ background: 'oklch(0.96 0.008 20)' }}>

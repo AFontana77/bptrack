@@ -104,12 +104,33 @@ export function AppointmentPrep() {
           ))}
         </ul>
 
+        <div
+          className="rounded-xl px-6 py-5 mb-6"
+          style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+        >
+          <p className="font-semibold mb-2" style={{ color: 'var(--foreground)' }}>
+            A one-page summary sheet
+          </p>
+          <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--muted-foreground)' }}>
+            Not the log. This is the cover note: how many readings, over what dates, your two
+            averages, which monitor and cuff, and room for the questions you want to ask. Nobody
+            wants twenty-eight rows handed across a desk.
+          </p>
+          <a href="/bp-central-appointment-summary.pdf" download className="btn-primary" data-placement="appointment-summary-pdf">
+            Download the summary sheet
+          </a>
+          <p className="text-xs mt-3" style={{ color: 'var(--muted-foreground)' }}>
+            PDF, one page, free, no email needed. It has no category table on it on purpose: a sheet
+            that classified its own averages would be interpreting them.
+          </p>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-3">
-          <Link href="/blood-pressure-average-calculator" className="btn-primary">
+          <Link href="/blood-pressure-average-calculator" className="btn-ghost">
             Work out the two averages
           </Link>
           <Link href="/free-blood-pressure-log-pdf" className="btn-ghost">
-            Print a sheet to bring
+            The log sheet it comes from
           </Link>
         </div>
       </div>

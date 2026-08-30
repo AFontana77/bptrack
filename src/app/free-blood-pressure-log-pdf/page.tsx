@@ -194,6 +194,27 @@ export default function FreePdfPage() {
           </div>
         </section>
 
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 py-16">
+            <h2 className="font-display text-3xl mb-3" style={{ color: 'var(--foreground)' }}>
+              And one for the appointment itself
+            </h2>
+            <p className="text-lg leading-relaxed mb-6 max-w-2xl" style={{ color: 'var(--muted-foreground)' }}>
+              The log is the working document you fill in all week. This is the single page you
+              carry in: the dates, the count, your two averages, the monitor and cuff you used, and
+              space for the questions you meant to ask.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a href="/bp-central-appointment-summary.pdf" download className="btn-ghost" data-placement="printables-summary-pdf">
+                Download the summary sheet
+              </a>
+              <Link href="/tracking-starter-kit" className="btn-ghost">
+                What to bring, in full
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Disambiguation. "Blood pressure chart" means two different things and
             the search results mix them. Saying so here keeps this page and
             /blood-pressure-chart out of each other's way, and it is the honest

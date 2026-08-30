@@ -11,6 +11,7 @@ import { CHECKLIST } from '@/lib/checklist';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { AppointmentPrep } from '@/components/AppointmentPrep';
+import { WorkflowDiagram } from '@/components/graphics/WorkflowDiagram';
 
 const URL = 'https://bptrack.app/tracking-starter-kit';
 const REVIEWED = '30 August 2026';
@@ -101,6 +102,19 @@ export default function StarterKitPage() {
               <strong style={{ color: 'var(--foreground)' }}>All of it is on this page.</strong>{' '}
               Nothing here is behind an email form, because none of it should be. Reviewed {REVIEWED}.
             </p>
+          </div>
+        </section>
+
+        <section style={{ background: 'var(--background)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-4">
+            <h2 className="font-display text-2xl font-bold mb-2" style={{ color: 'var(--foreground)' }}>
+              How the whole thing fits together
+            </h2>
+            <p className="leading-relaxed mb-7" style={{ color: 'var(--muted-foreground)' }}>
+              Three things you do once, then a loop of five you repeat. Most people stop because
+              nobody told them the second half was a loop.
+            </p>
+            <WorkflowDiagram />
           </div>
         </section>
 
