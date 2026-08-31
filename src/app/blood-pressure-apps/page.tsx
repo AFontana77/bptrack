@@ -1,7 +1,8 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
-import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
+import { AppStoreCta, AppStoreCaption, ContextualAppCta } from '@/components/AppStoreCta';
 import { SiblingCallout } from '@/components/SiblingCallout';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
 import { MonitorCard } from '@/components/MonitorCard';
@@ -285,7 +286,7 @@ export default function BloodPressureAppsPage() {
               </div>
             </div>
 
-            <AppStoreCta source="/blood-pressure-apps" />
+            <ContextualAppCta copy={appCtaCopy("/blood-pressure-apps")} source="/blood-pressure-apps" />
             <AppStoreCaption />
           </div>
         </section>

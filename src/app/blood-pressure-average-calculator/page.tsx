@@ -1,8 +1,9 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
 import { AverageCalculator } from '@/components/AverageCalculator';
-import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
+import { AppStoreCta, AppStoreCaption, ContextualAppCta } from '@/components/AppStoreCta';
 import { SiblingCallout } from '@/components/SiblingCallout';
 import { MEDICAL_DISCLAIMER, SMBP_PROTOCOL, AHA_AMA_HOME_SOURCE, PRODUCT } from '@/lib/product';
 import Link from 'next/link';
@@ -183,7 +184,7 @@ export default function AverageCalculatorPage() {
               If you are going to do it every week, {PRODUCT.name} keeps the running average for
               you, over 7, 30 and 90 days, and writes a summary you can take to an appointment.
             </p>
-            <AppStoreCta source="/blood-pressure-average-calculator" />
+            <ContextualAppCta copy={appCtaCopy("/blood-pressure-average-calculator")} source="/blood-pressure-average-calculator" />
             <AppStoreCaption />
             <p className="text-sm leading-relaxed mt-6" style={{ color: 'var(--muted-foreground)' }}>
               Prefer paper? The{' '}

@@ -8,7 +8,8 @@ import { AppStoreCta } from '@/components/AppStoreCta';
 import { WorkflowModule } from '@/components/WorkflowModule';
 import {
   PRODUCT,
-  APP_STORE,
+  anyReleased,
+  releasedPlatforms,
   FEATURES,
   UNLOCK_INCLUDES,
   NOT_INCLUDED,
@@ -42,30 +43,35 @@ export default function HomePage() {
            * The app is real and built, but it is not on a store yet, so this
            * block must not describe something a reader can go and get.
            *
-           * `offers` stays out while `APP_STORE.released` is false. An Offer
+           * `offers` stays out until at least one store is public. An Offer
            * on a SoftwareApplication is a claim that the thing can be
            * acquired at that price. It cannot. The $6.99 is still stated in
            * the visible copy, where it reads as "what it will cost", which is
            * true. In schema it would read as "buy it now", which is not.
            *
-           * `operatingSystem` names iOS only. Android was never submitted.
-           * When the listing goes live, flip `released` in product.ts and both
-           * halves of this correct themselves.
+           * `operatingSystem` is built from the platforms that are ACTUALLY
+           * live, not from the ones that exist in the config. Naming Android
+           * here while only iOS shipped would tell every crawler and answer
+           * engine that a Play listing exists, and that claim would outlive
+           * the correction by however long it takes them to recrawl.
            */
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'SoftwareApplication',
             name: PRODUCT.name,
             applicationCategory: 'HealthApplication',
-            operatingSystem: APP_STORE.released ? 'iOS, Android' : 'iOS',
+            operatingSystem:
+              releasedPlatforms().length > 0
+                ? releasedPlatforms().map((p) => (p.platform === 'ios' ? 'iOS' : 'Android')).join(', ')
+                : 'iOS',
             publisher: { '@type': 'Organization', name: PRODUCT.publisher },
-            ...(APP_STORE.released
+            ...(anyReleased()
               ? {
                   offers: [
                     { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'First 10 readings free' },
                     { '@type': 'Offer', price: '6.99', priceCurrency: 'USD', description: 'One-time unlock. Not a subscription.' },
                   ],
-                  ...(APP_STORE.iosUrl ? { installUrl: APP_STORE.iosUrl } : {}),
+                  installUrl: releasedPlatforms()[0].url,
                 }
               : {}),
             description:

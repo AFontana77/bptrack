@@ -1,7 +1,7 @@
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
-import { PRODUCT, SIBLING, MEDICAL_DISCLAIMER, AHA_SOURCE, AHA_AMA_HOME_SOURCE, APP_STORE } from '@/lib/product';
+import { PRODUCT, SIBLING, MEDICAL_DISCLAIMER, AHA_SOURCE, AHA_AMA_HOME_SOURCE, anyReleased } from '@/lib/product';
 import { VDL_SOURCE, AMAZON_TAG } from '@/lib/monitors';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -234,7 +234,7 @@ export default function AboutPage() {
                   We make it. It is our own app, so treat what we say about it accordingly. It is
                   free for your first {PRODUCT.freeReadings} readings and then {PRODUCT.price}{' '}
                   {PRODUCT.priceNote}, with no subscription.{' '}
-                  {APP_STORE.released ? '' : 'It is not on an app store yet, and every page on this site says so rather than linking somewhere that does not exist.'}
+                  {anyReleased() ? '' : 'It is not on an app store yet, and every page on this site says so rather than linking somewhere that does not exist.'}
                 </p>
               </div>
               <div>

@@ -1,7 +1,8 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
-import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
+import { AppStoreCta, AppStoreCaption, ContextualAppCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -295,7 +296,7 @@ export default function AhaBloodPressureLogPage() {
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
               Log your readings, watch the trend build, and take a clear summary to your next appointment.
             </p>
-            <AppStoreCta source="/aha-blood-pressure-log" />
+            <ContextualAppCta copy={appCtaCopy("/aha-blood-pressure-log")} source="/aha-blood-pressure-log" />
             <p style={{ color: 'oklch(0.48 0.015 20)' }} className="text-sm mt-6">
               First 10 readings free. Then $6.99 once. No subscription.
             </p>

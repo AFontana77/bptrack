@@ -1,8 +1,9 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { DATA_DURABILITY, PRODUCT } from '@/lib/product';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
-import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
+import { AppStoreCta, AppStoreCaption, ContextualAppCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { NextStepStrip } from '@/components/WorkflowModule';
@@ -91,7 +92,7 @@ export default function LogSheetPage() {
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8 max-w-2xl">
               Track every reading with the right columns. Print it out or log it on your phone with BP Central. Either way, you will have data your doctor can actually use.
             </p>
-            <AppStoreCta source="/log-sheet" />
+            <ContextualAppCta copy={appCtaCopy("/log-sheet")} source="/log-sheet" />
               <AppStoreCaption />
           </div>
         </section>
@@ -344,7 +345,7 @@ export default function LogSheetPage() {
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
               BP Central logs every reading on your phone, shows your 7, 30 and 90 day trends, and writes a summary you can send.
             </p>
-            <AppStoreCta source="/log-sheet" />
+            <ContextualAppCta copy={appCtaCopy("/log-sheet")} source="/log-sheet" />
               <AppStoreCaption />
           </div>
         </section>

@@ -194,8 +194,21 @@ export function AffiliateClickTracker({ measurementId: mid }: { measurementId?: 
             (url.pathname.match(/\/id(\d+)/) || [])[1] ||
             (url.pathname.match(/\/app\/([^/?#]+)/) || [])[1] ||
             "UNKNOWN";
+          // The brief for launch names four properties: platform, page,
+          // placement, cta_variant. `app_platform` and `source_path` already
+          // carried the first two under different names; renaming them would
+          // orphan any existing GTM trigger, so both spellings ship. They are
+          // two labels for one value, not two measurements.
+          //
+          // `data-store-platform` wins over the host regex when present,
+          // because the component knows which platform it rendered and the
+          // regex is only inferring it.
+          const declaredPlatform = a.getAttribute("data-store-platform") || platform;
           send("app_store_click", {
-            app_platform: platform, store_app_id: appId,
+            platform: declaredPlatform,
+            page: window.location.pathname,
+            cta_variant: a.getAttribute("data-cta-variant") || "unknown",
+            app_platform: declaredPlatform, store_app_id: appId,
             destination_host: host, link_text: linkText, placement,
           });
           return;

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { BrandLockup } from './BrandLockup';
-import { APP_STORE } from '@/lib/product';
+import { releasedPlatforms } from '@/lib/product';
 
 /**
  * Nav colours come from the site tokens now, not raw Tailwind reds. The old
@@ -22,8 +22,12 @@ const links = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
-  const ctaLabel = APP_STORE.released ? 'Get the app' : 'Get launch news';
-  const ctaHref = APP_STORE.released ? APP_STORE.iosUrl : '/#get-the-app';
+  // Nav sends people to the first live store, or to the launch-news anchor
+  // while nothing is public. It must never point at a platform's URL just
+  // because that platform exists in the config.
+  const live = releasedPlatforms();
+  const ctaLabel = live.length > 0 ? 'Get the app' : 'Get launch news';
+  const ctaHref = live.length > 0 ? live[0].url : '/#get-the-app';
 
   return (
     <>

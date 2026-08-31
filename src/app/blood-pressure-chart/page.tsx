@@ -1,8 +1,9 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { CRISIS_GUIDANCE } from '@/lib/product';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
-import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
+import { AppStoreCta, AppStoreCaption, ContextualAppCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ChartDepthSections } from '@/components/chart/ChartDepthSections';
@@ -257,7 +258,7 @@ export default function BloodPressureChartPage() {
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
               BP Central logs your readings and shows the range each one falls in. Keep it up and watch the trend build over 7, 30 and 90 days.
             </p>
-            <AppStoreCta source="/blood-pressure-chart" />
+            <ContextualAppCta copy={appCtaCopy("/blood-pressure-chart")} source="/blood-pressure-chart" />
               <AppStoreCaption />
           </div>
         </section>

@@ -1,7 +1,8 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
-import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
+import { AppStoreCta, AppStoreCaption, ContextualAppCta } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { PrehypertensionDepth } from '@/components/reading/PrehypertensionDepth';
@@ -213,7 +214,7 @@ export default function PrehypertensionPage() {
                 The AHA specifically recommends home monitoring for people with elevated or high blood pressure because it gives a much more accurate baseline than clinic readings.
               </p>
             </div>
-            <AppStoreCta source="/prehypertension" />
+            <ContextualAppCta copy={appCtaCopy("/prehypertension")} source="/prehypertension" />
               <AppStoreCaption />
           </div>
         </section>
@@ -262,7 +263,7 @@ export default function PrehypertensionPage() {
             <p style={{ color: 'oklch(0.40 0.018 20)' }} className="text-lg leading-relaxed mb-8">
               BP Central logs your readings daily and shows your 30-day trend. You will know within weeks if your lifestyle changes are moving your numbers in the right direction.
             </p>
-            <AppStoreCta source="/prehypertension" />
+            <ContextualAppCta copy={appCtaCopy("/prehypertension")} source="/prehypertension" />
               <AppStoreCaption />
           </div>
         </section>

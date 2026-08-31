@@ -1,4 +1,6 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { SiteNav } from '@/components/layout/SiteNav';
+import { ContextualAppCta } from '@/components/AppStoreCta';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
@@ -360,6 +362,14 @@ export default function ExtraLargeCuffPage() {
               deepLink="/bp-monitor-cuff-sizing-guide"
               deepLinkLabel="Read the cuff sizing guide on BP Monitor Lab"
               placement="xl-cuff-footer"
+            />
+          </div>
+        </section>
+        <section style={{ background: 'var(--surface)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-14">
+            <ContextualAppCta
+              copy={appCtaCopy('/extra-large-blood-pressure-cuff')}
+              source="/extra-large-blood-pressure-cuff"
             />
           </div>
         </section>

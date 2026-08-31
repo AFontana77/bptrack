@@ -26,50 +26,136 @@ export const PRODUCT = {
 } as const;
 
 /**
- * App Store state.
+ * Store state, held PER PLATFORM.
  *
- * BP Central is not on the App Store yet, so the site must not link to one.
- * The old site pointed its download buttons at apps.apple.com, the store's
- * front page, which is not a link to anything.
+ * WHY THIS IS TWO OBJECTS AND NOT ONE FLAG
+ * It used to be one `released` boolean plus an optional Android URL. That
+ * models three of the four states a two-platform launch actually has, and
+ * mis-models the fourth. With a single flag, an Android-first launch is
+ * unrepresentable: turning `released` on to serve Play users would
+ * simultaneously claim an App Store listing that does not exist.
  *
- * When the listing goes live, set `released: true` and paste the real URLs.
- * Nothing else needs editing: every button on the site reads this object.
+ * The four legitimate states are: neither, iOS only, Android only, both. Each
+ * platform now carries its own `released` and its own `url`, so the site can
+ * convert the visitors of whichever store went live first without making a
+ * claim about the other one.
+ *
+ * THE RULE EVERY CONSUMER MUST FOLLOW
+ * Never infer one platform's availability from the other's, and never render a
+ * download control for a platform whose `released` is false. `tools/link_audit.py`
+ * enforces both directions: a store URL for an unreleased platform fails the
+ * build, and a released platform with no URL fails it too.
  */
-export const APP_STORE = {
+/**
+ * The shape of one platform's store state.
+ *
+ * This interface is not decoration. Without it the objects below are `as
+ * const`, which makes `url` the LITERAL type `''` while the URL is empty — and
+ * every `url !== ''` check in this file then compares two types that cannot
+ * overlap, which TypeScript rejects outright.
+ *
+ * The consequence is that the build compiles perfectly today and breaks the
+ * instant somebody pastes a real store URL in. That is the single worst moment
+ * for a type error to appear: launch day, under time pressure, in the one edit
+ * the whole release depends on.
+ *
+ * Found by simulating an iOS-only launch and running the build, which is the
+ * only way it could have been found before it mattered.
+ */
+export interface PlatformStore {
+  readonly platform: 'ios' | 'android';
+  readonly storeName: string;
+  /** Is the listing PUBLIC? Not "submitted", not "approved". Public. */
+  readonly released: boolean;
+  /** Empty until the listing exists. Never a placeholder, never a store front page. */
+  readonly url: string;
+  readonly appleId?: string;
+  readonly bundleId?: string;
+  readonly packageName?: string;
+  readonly comingSoonLabel: string;
+  readonly releasedLabel: string;
+  readonly state: string;
+}
+
+export const IOS: PlatformStore = {
+  platform: 'ios',
+  storeName: 'App Store',
   released: false,
-  iosUrl: '',
-  androidUrl: '',
-  /** Shown while `released` is false. */
+  url: '',
+  appleId: '6770084204',
+  bundleId: 'com.anvilroad.bptrack',
   comingSoonLabel: 'Coming to the App Store',
   releasedLabel: 'Download on the App Store',
-
   /**
-   * Where the release actually stands, re-checked 29 August 2026.
+   * Where the iOS release actually stands, re-verified 31 August 2026.
    *
-   * iOS 1.0 was submitted to Apple on 23 August 2026 and came back the same day
-   * under Guideline 2.1, Information Needed. Apple did not name a bug and did
-   * not fault the in-app purchase. It asked for a screen recording and a device
-   * matrix, and both are outstanding. Until they are supplied the app cannot be
-   * resubmitted, so nobody can download it.
+   * 1.0 build 1.0.0 (2) was submitted 23 August 2026 and came back the same day
+   * under Guideline 2.1, Information Needed. Apple named no defect and did not
+   * fault the in-app purchase; it asked for a screen recording and a seven-part
+   * evidence packet. Resubmitted 30 August 2026 09:28 as submission
+   * 6e074296-b0fb-4076-87df-3b720b622f74, Waiting for Review, Apple SLA 48h.
    *
-   * Verified independently rather than taken on trust, and re-verified on
-   * 31 August 2026: the iTunes lookup for bundle com.anvilroad.bptrack returns
-   * resultCount 0, Apple ID 6770084204 has no public page, a store search for
-   * "BP Central" returns four unrelated apps, and Google Play returns 404 for
-   * both com.anvilroad.bptrack and com.anvilroad.bpcentral. Android was never
-   * started.
+   * Verified independently rather than taken on trust: the iTunes lookup for
+   * bundle com.anvilroad.bptrack returns resultCount 0, Apple ID 6770084204 has
+   * no public page, and a store search for "BP Central" returns four unrelated
+   * apps.
    *
-   * Note for whoever wires the store links: an app called "BP Better" by CS
-   * Studios does exist. It is not ours. Do not let a search result become a
-   * download button.
-   *
-   * This is why every download button on the site still says "coming". Turning
-   * `released` on before those three checks pass would put a dead link and a
-   * false promise on a health site.
+   * Note for whoever wires the store link: an app called "BP Better" by CS
+   * Studios INC. does exist and surfaces on that search. It is not ours. Do not
+   * let a search result become a download button.
    */
-  appleId: '6770084204',
-  appleState: 'Rejected under Guideline 2.1 (Information Needed). Not resubmitted.',
-  androidState: 'Not started.',
+  state: 'Submitted 30 Aug 2026, Waiting for Review (submission 6e074296). Not public.',
+};
+
+export const ANDROID: PlatformStore = {
+  platform: 'android',
+  storeName: 'Google Play',
+  released: false,
+  url: '',
+  packageName: 'com.anvilroad.bptrack',
+  comingSoonLabel: 'Coming to Google Play',
+  releasedLabel: 'Get it on Google Play',
+  /**
+   * Android is at zero, and this was proved rather than assumed.
+   *
+   * The Play Developer API answers "Package not found: com.anvilroad.bptrack"
+   * for an edits().insert on the Anvil Road publishing service account. The
+   * same account, in the same call, successfully opens an edit on
+   * com.anvilroad.dronelog107 and lists its four tracks, so this is a genuinely
+   * absent app record and not a permissions artefact.
+   *
+   * No Play Console entry means no AAB, no tracks, no store listing, no Data
+   * Safety form, no content rating and no pricing. Checked 31 August 2026.
+   */
+  state: 'No Play Console app record exists. Nothing uploaded. Checked 31 Aug 2026.',
+};
+
+export const PLATFORMS: readonly PlatformStore[] = [IOS, ANDROID];
+export type PlatformKey = PlatformStore['platform'];
+export type PlatformState = PlatformStore;
+
+/** Platforms a visitor can actually download from right now. */
+export function releasedPlatforms(): PlatformState[] {
+  return PLATFORMS.filter((p) => p.released && p.url !== '');
+}
+
+/** True when at least one store listing is public. */
+export function anyReleased(): boolean {
+  return releasedPlatforms().length > 0;
+}
+
+/**
+ * A platform is only "live" when it is BOTH marked released AND carries a URL.
+ * Treating `released` alone as live is how a flag flipped in a hurry turns into
+ * an empty href, which renders as a button that goes nowhere.
+ */
+export function isLive(p: PlatformState): boolean {
+  return p.released && p.url !== '';
+}
+
+export const APP_STORE = {
+  ios: IOS,
+  android: ANDROID,
   stateCheckedOn: '31 August 2026',
 } as const;
 

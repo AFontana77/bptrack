@@ -1,4 +1,6 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { SiteNav } from '@/components/layout/SiteNav';
+import { ContextualAppCta } from '@/components/AppStoreCta';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
 import { MonitorCard } from '@/components/MonitorCard';
@@ -428,6 +430,11 @@ export default function CuffSizePage() {
             <p className="text-xs leading-relaxed mt-10" style={{ color: 'var(--muted-foreground)' }}>
               {MEDICAL_DISCLAIMER}
             </p>
+          </div>
+        </section>
+        <section style={{ background: 'var(--surface)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-14">
+            <ContextualAppCta copy={appCtaCopy("/blood-pressure-cuff-size")} source="/blood-pressure-cuff-size" />
           </div>
         </section>
         <section style={{ background: 'var(--background)' }}>

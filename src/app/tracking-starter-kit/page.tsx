@@ -1,4 +1,6 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { SiteNav } from '@/components/layout/SiteNav';
+import { ContextualAppCta } from '@/components/AppStoreCta';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
 import { EmailCaptureForm } from '@/components/EmailCaptureForm';
@@ -343,6 +345,11 @@ export default function StarterKitPage() {
           </div>
         </section>
 
+        <section style={{ background: 'var(--surface)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-14">
+            <ContextualAppCta copy={appCtaCopy("/tracking-starter-kit")} source="/tracking-starter-kit" />
+          </div>
+        </section>
         <section style={{ background: 'var(--surface)' }}>
           <div className="max-w-3xl mx-auto px-6 lg:px-8 py-14 space-y-6">
             <NextStepStrip current="/tracking-starter-kit" />

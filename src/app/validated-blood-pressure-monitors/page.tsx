@@ -1,4 +1,6 @@
+import { appCtaCopy } from '@/lib/appCta';
 import { SiteNav } from '@/components/layout/SiteNav';
+import { ContextualAppCta } from '@/components/AppStoreCta';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { MonitorCard } from '@/components/MonitorCard';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
@@ -453,6 +455,11 @@ export default function ValidatedMonitorsPage() {
               </a>
               , {AHA_AMA_HOME_SOURCE.citation}.
             </p>
+          </div>
+        </section>
+        <section style={{ background: 'var(--surface)' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 py-14">
+            <ContextualAppCta copy={appCtaCopy("/validated-blood-pressure-monitors")} source="/validated-blood-pressure-monitors" />
           </div>
         </section>
         <section style={{ background: 'var(--background)' }}>

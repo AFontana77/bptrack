@@ -1,3 +1,4 @@
+import { appCtaCopy } from '@/lib/appCta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -5,7 +6,7 @@ import { Download } from 'lucide-react';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
-import { AppStoreCta } from '@/components/AppStoreCta';
+import { AppStoreCta, ContextualAppCta } from '@/components/AppStoreCta';
 import { EmailCaptureForm } from '@/components/EmailCaptureForm';
 import { PRODUCT, MEDICAL_DISCLAIMER } from '@/lib/product';
 import { CHECKLIST_SOURCE } from '@/lib/checklist';
@@ -284,7 +285,7 @@ export default function FreePdfPage() {
               </p>
             </div>
 
-            <AppStoreCta source="/free-blood-pressure-log-pdf" />
+            <ContextualAppCta copy={appCtaCopy("/free-blood-pressure-log-pdf")} source="/free-blood-pressure-log-pdf" />
             <p className="text-sm mt-5" style={{ color: 'var(--muted-foreground)' }}>
               First {PRODUCT.freeReadings} readings free. Then {PRODUCT.price} once. No subscription.
             </p>

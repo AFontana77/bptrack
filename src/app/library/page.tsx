@@ -1,8 +1,9 @@
+import { appCtaCopy } from '@/lib/appCta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { AppStoreCta } from '@/components/AppStoreCta';
+import { AppStoreCta, ContextualAppCta } from '@/components/AppStoreCta';
 import { EmailCaptureForm } from '@/components/EmailCaptureForm';
 import {
   PRODUCT,
@@ -236,7 +237,7 @@ export default function LibraryPage() {
                   over 7, 30 and 90 days. First {PRODUCT.freeReadings} readings free, then{' '}
                   {PRODUCT.price} once.
                 </p>
-                <AppStoreCta source="/library" />
+                <ContextualAppCta copy={appCtaCopy("/library")} source="/library" />
               </div>
               <div className="lg:col-span-6 w-full">
                 <p className="font-display text-xl mb-3" style={{ color: 'var(--foreground)' }}>
