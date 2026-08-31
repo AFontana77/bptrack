@@ -1,3 +1,4 @@
+import { DATA_DURABILITY, PRODUCT } from '@/lib/product';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
@@ -50,12 +51,17 @@ const PAPER_PROS = [
   { text: 'Manual math to find your average', positive: false },
 ];
 
+// Kept deliberately short and checked against FEATURES / NOT_INCLUDED in
+// src/lib/product.ts. It used to carry "Never lose your data", which the app
+// cannot support: readings sit under an anonymous install identity, so losing
+// the phone can lose the history. Paper survives a dead battery; this is the
+// one column where paper wins, and pretending otherwise earns a refund.
 const APP_PROS = [
-  'Automatic 30-day trend chart',
+  '7, 30 and 90 day trend charts',
+  'Averages worked out for you',
   'A summary you can send from your phone',
-  'AHA reference tables built in',
-  'Never lose your data',
-  'Free to download, $6.99 one-time unlock',
+  'AHA reference ranges built in',
+  `First ${PRODUCT.freeReadings} readings free, then ${PRODUCT.price} once`,
 ];
 
 export default function LogSheetPage() {

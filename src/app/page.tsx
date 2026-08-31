@@ -346,8 +346,8 @@ export default function HomePage() {
                 </h2>
                 <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--muted-foreground)' }}>
                   Your first {PRODUCT.freeReadings} readings are free, so you can see whether you
-                  like it before you pay anything. After that it is {PRODUCT.price} one time. There
-                  is no monthly fee and there never will be.
+                  like it before you pay anything. After that it is {PRODUCT.price} one time. No
+                  subscription, no monthly fee.
                 </p>
                 <AppStoreCta variant="ghost" />
               </div>

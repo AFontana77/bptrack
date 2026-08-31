@@ -157,6 +157,19 @@ export const UNLOCK_INCLUDES = [
 ] as const;
 
 /**
+ * What happens to readings if the phone goes.
+ *
+ * The log-sheet page used to sell "Never lose your data" against paper. The app
+ * cannot support that. Readings sit under an anonymous install identity, so
+ * deleting the app or losing the phone can take the history with it. Paper at
+ * least survives a dead battery.
+ *
+ * An honest line converts worse and refunds better.
+ */
+export const DATA_DURABILITY =
+  'Readings are tied to your install, not to an account. If you delete the app or lose the phone, they may not come back.';
+
+/**
  * Things people ask for that BP Central does not do. Listing them is a feature.
  * It keeps the site honest and it saves refund requests and one-star reviews.
  */
@@ -165,7 +178,46 @@ export const NOT_INCLUDED = [
   'There is no PDF or spreadsheet export. The summary goes out as plain text through your phone share button.',
   'It does not connect to Apple Health, and it does not pair with a cuff.',
   'There are no reminders and no notifications.',
+  DATA_DURABILITY,
 ] as const;
+
+/**
+ * What to do about a reading over 180 or over 120.
+ *
+ * WHY THIS IS HERE AND NOT WRITTEN OUT ON EACH PAGE
+ * It was written out on each page, and the pages drifted. Three of them told a
+ * reader to call 911 on the number alone. The library page told them to wait a
+ * minute, take it again, and only call 911 if symptoms came with it. Those are
+ * different instructions for the same reading, on the same site.
+ *
+ * The second one matches the AHA. The first one sends people to an emergency
+ * room for a number that a second reading often does not repeat, and it skips
+ * the step that decides the answer: whether there are symptoms.
+ *
+ * So the guidance lives here once and every page renders it.
+ *
+ * Source: American Heart Association, "Hypertensive Crisis: When You Should
+ * Call 911 for High Blood Pressure", and the same body's Understanding Blood
+ * Pressure Readings page.
+ */
+export const CRISIS_GUIDANCE = {
+  threshold: 'higher than 180 or higher than 120',
+  waitMinutes: 1,
+  retake: 'Wait one minute and take it again.',
+  symptoms: [
+    'chest pain',
+    'shortness of breath',
+    'back pain',
+    'numbness or weakness',
+    'a change in vision',
+    'trouble speaking',
+  ],
+  withSymptoms: 'call 911',
+  withoutSymptoms: 'contact your doctor right away',
+  /** One sentence, for tables and tight spaces. */
+  short:
+    'Wait a minute and take it again. If it is still that high, call 911 if you also have symptoms, or contact your doctor right away if you do not.',
+} as const;
 
 /**
  * The AHA range chart, kept in step with src/lib/bp.ts in the app so the site

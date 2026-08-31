@@ -67,7 +67,7 @@ const FAQS = [
   },
   {
     q: 'Are free blood pressure apps any good?',
-    a: 'Some are. Both Apple Health and Android Health Connect let you type readings in by hand at no cost, and both can export a file. They are general health apps rather than blood pressure tools, so they hold the numbers without doing much with them. Paid loggers usually add averages, trends and a summary you can hand over. Free is a fine place to start.',
+    a: 'Some are. On iPhone, Apple Health lets you type readings in by hand at no cost and export them. On Android it works differently: Health Connect stores blood pressure for other apps to write, so it is not somewhere you can sit and type a log yourself. You still need an app. Either way these are general health stores rather than blood pressure tools, so they hold the numbers without doing much with them. Paid loggers usually add averages, trends and a summary you can hand over. Free is a fine place to start.',
   },
   {
     q: 'Do I need an app to track my blood pressure?',

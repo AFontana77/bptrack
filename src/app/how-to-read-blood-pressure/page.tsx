@@ -3,7 +3,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { AppStoreCta, AppStoreCaption } from '@/components/AppStoreCta';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { AHA_SOURCE, AHA_AMA_HOME_SOURCE } from '@/lib/product';
+import { AHA_AMA_HOME_SOURCE, AHA_SOURCE, CRISIS_GUIDANCE } from '@/lib/product';
 import { NextStepStrip } from '@/components/WorkflowModule';
 import { ReadingDepthSections } from '@/components/reading/ReadingDepthSections';
 
@@ -92,7 +92,7 @@ const CATEGORIES = [
   {
     name: 'Hypertensive Crisis',
     range: 'Over 180 / Over 120',
-    plain: 'Emergency. Call 911 or go to an ER immediately.',
+    plain: CRISIS_GUIDANCE.short,
     dot: 'oklch(0.36 0.16 25)',
     emphasis: true,
   },
@@ -117,12 +117,12 @@ const MISTAKES = [
   },
   {
     mistake: 'Taking only one reading',
-    fix: 'Take two readings two minutes apart and average them. If they differ by more than 5 mmHg, take a third and average all three. Single readings have more error.',
+    fix: 'Take two readings at least a minute apart and average them. If they differ by more than 5 mmHg, take a third and average all three. Single readings have more error.',
   },
 ];
 
 const WHEN_TO_CALL = [
-  { text: 'Your reading is 180/120 or higher. Call 911.', urgent: true },
+  { text: 'Your reading is over 180 or over 120. Wait a minute and take it again. If it is still that high and you have chest pain, shortness of breath, back pain, numbness, weakness, a change in vision or trouble speaking, call 911. If you do not have those symptoms, contact your doctor right away.', urgent: true },
   { text: 'You have a consistent reading of 140/90 or higher over several days.', urgent: false },
   { text: 'Your blood pressure is dropping suddenly and you feel dizzy or faint.', urgent: false },
   { text: 'Your readings are suddenly much higher or lower than usual with no clear reason.', urgent: false },

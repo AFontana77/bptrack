@@ -6,3 +6,4 @@ node_modules/
 
 # Build artifact, regenerated on every build.
 *.tsbuildinfo
+tools/__pycache__/

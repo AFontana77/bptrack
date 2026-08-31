@@ -1,3 +1,4 @@
+import { CRISIS_GUIDANCE } from '@/lib/product';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PageSchema } from '@/components/PageSchema';
@@ -51,7 +52,7 @@ const AHA_CHART = [
     systolic: 'Over 180',
     diastolic: 'Over 120',
     meaning: 'A medical emergency.',
-    action: 'Call 911 or go to an emergency room immediately. Do not drive yourself. Do not wait to see if the reading drops.',
+    action: CRISIS_GUIDANCE.short,
     dot: 'oklch(0.36 0.16 25)',
     emphasis: true,
   },
@@ -80,7 +81,7 @@ const FAQS = [
   },
   {
     q: 'How often should I check my blood pressure at home?',
-    a: 'The AHA recommends checking twice a day for the first week, then twice a week once you have a baseline. Morning and evening readings are most useful. Always take two readings two minutes apart and average them.',
+    a: 'The AHA recommends checking twice a day for the first week, then twice a week once you have a baseline. Morning and evening readings are most useful. Take two readings at least a minute apart and average them.',
   },
   {
     q: 'What does it mean if only my top number is high?',
