@@ -52,10 +52,16 @@ export const APP_STORE = {
    * matrix, and both are outstanding. Until they are supplied the app cannot be
    * resubmitted, so nobody can download it.
    *
-   * Verified independently rather than taken on trust: the iTunes lookup for
-   * bundle com.anvilroad.bptrack returns nothing, Apple ID 6770084204 has no
-   * public page, and Google Play returns 404 for the same package. Android was
-   * never started.
+   * Verified independently rather than taken on trust, and re-verified on
+   * 31 August 2026: the iTunes lookup for bundle com.anvilroad.bptrack returns
+   * resultCount 0, Apple ID 6770084204 has no public page, a store search for
+   * "BP Central" returns four unrelated apps, and Google Play returns 404 for
+   * both com.anvilroad.bptrack and com.anvilroad.bpcentral. Android was never
+   * started.
+   *
+   * Note for whoever wires the store links: an app called "BP Better" by CS
+   * Studios does exist. It is not ours. Do not let a search result become a
+   * download button.
    *
    * This is why every download button on the site still says "coming". Turning
    * `released` on before those three checks pass would put a dead link and a
@@ -64,7 +70,7 @@ export const APP_STORE = {
   appleId: '6770084204',
   appleState: 'Rejected under Guideline 2.1 (Information Needed). Not resubmitted.',
   androidState: 'Not started.',
-  stateCheckedOn: '29 August 2026',
+  stateCheckedOn: '31 August 2026',
 } as const;
 
 /**
