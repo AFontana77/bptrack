@@ -80,31 +80,32 @@ export interface PlatformStore {
 export const IOS: PlatformStore = {
   platform: 'ios',
   storeName: 'App Store',
-  released: false,
-  url: '',
+  released: true,
+  url: 'https://apps.apple.com/us/app/bp-central-blood-pressure-log/id6770084204?uo=4',
   appleId: '6770084204',
   bundleId: 'com.anvilroad.bptrack',
   comingSoonLabel: 'Coming to the App Store',
   releasedLabel: 'Download on the App Store',
   /**
-   * Where the iOS release actually stands, re-verified 31 August 2026.
+   * Where the iOS release actually stands, verified 2 September 2026.
    *
    * 1.0 build 1.0.0 (2) was submitted 23 August 2026 and came back the same day
-   * under Guideline 2.1, Information Needed. Apple named no defect and did not
-   * fault the in-app purchase; it asked for a screen recording and a seven-part
-   * evidence packet. Resubmitted 30 August 2026 09:28 as submission
-   * 6e074296-b0fb-4076-87df-3b720b622f74, Waiting for Review, Apple SLA 48h.
+   * under Guideline 2.1, Information Needed. Resubmitted 30 August 2026 as
+   * submission 6e074296 with the evidence packet Apple asked for. Approved,
+   * IAP bptrack_full_unlock approved, and released manually on 1 September
+   * 2026 to 175 countries.
    *
-   * Verified independently rather than taken on trust: the iTunes lookup for
-   * bundle com.anvilroad.bptrack returns resultCount 0, Apple ID 6770084204 has
-   * no public page, and a store search for "BP Central" returns four unrelated
-   * apps.
+   * PUBLIC as of 2 September 2026, and proved rather than taken on trust: the
+   * iTunes lookup for Apple ID 6770084204 returns resultCount 1 with
+   * sellerName "Anvil Road LLC", bundleId com.anvilroad.bptrack and
+   * releaseDate 2026-09-02T07:00:00Z. The `url` above is that response's
+   * trackViewUrl, copied verbatim. It was NOT built from a store search.
    *
-   * Note for whoever wires the store link: an app called "BP Better" by CS
-   * Studios INC. does exist and surfaces on that search. It is not ours. Do not
-   * let a search result become a download button.
+   * Note for whoever touches the store link: an app called "BP Better" by CS
+   * Studios INC. also surfaces on a "BP Central" search. It is not ours. Always
+   * derive the URL from the Apple ID or the lookup response, never a search.
    */
-  state: 'Submitted 30 Aug 2026, Waiting for Review (submission 6e074296). Not public.',
+  state: 'Released 1 Sep 2026, public on the App Store as of 2 Sep 2026 (iTunes lookup resultCount 1).',
 };
 
 export const ANDROID: PlatformStore = {
@@ -156,7 +157,7 @@ export function isLive(p: PlatformState): boolean {
 export const APP_STORE = {
   ios: IOS,
   android: ANDROID,
-  stateCheckedOn: '31 August 2026',
+  stateCheckedOn: '2 September 2026',
 } as const;
 
 /**
